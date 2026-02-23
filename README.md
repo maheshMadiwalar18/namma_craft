@@ -1,20 +1,48 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# NammaCraft - Artisan Marketplace
 
-# Run and deploy your AI Studio app
+NammaCraft is a premium marketplace platform designed to empower local artisans by connecting them with a global audience. The platform features authentic handmade crafts, live auctions, and artisan storytelling.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/eda3a043-d1ff-485a-b14a-f0cbf3157db6
+- **Artisan Marketplace**: Browse and purchase authentic handmade items directly from creators.
+- **Live Auctions**: Participate in real-time auctions for exclusive, one-of-a-kind masterpieces.
+- **Artisan Spotlight**: Learn the stories and techniques behind the crafts.
+- **Admin & Creator Dashboards**: Comprehensive management tools for marketplace operators and artisans.
 
-## Run Locally
+## Getting Started
 
-**Prerequisites:**  Node.js
+### Prerequisites
 
+- Node.js (v18 or higher)
+- npm or yarn
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mahi-2-ron/namma_craft.git
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Configure environment variables:
+   Create a `.env` file in the root directory and add any necessary configuration keys.
+
+4. Run the application:
+   ```bash
+   npm run dev
+   ```
+
+## Technology Stack
+
+- **Frontend**: React, TypeScript, Tailwind CSS
+- **Animations**: Motion
+- **Icons**: Lucide React
+- **Build Tool**: Vite
+
+## License
+
+This project is licensed under the MIT License.
