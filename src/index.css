@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", serif;
+  
+  --color-primary: #6B1D1D;      /* Modern Maroon */
+  --color-primary-light: #8B2E2E;
+  --color-accent: #E67E22;       /* Saffron Accent */
+  --color-saffron: #F39C12;      /* Golden Saffron */
+  --color-cream: #FDFBF7;        /* Warm Cream BG */
+  --color-cream-dark: #F5F2ED;   /* Darker Cream for sections */
+  --color-highlight: #FEF3C7;    /* Soft Saffron Highlight */
+  --color-text: #1A1A1A;
+  --color-text-soft: #666666;
+  --color-lotus: #D4145A;
+  
+  /* Compatibility mappings */
+  --color-earth: #1A1A1A;
+  --color-terracotta: #E67E22;
+  --color-sand: #FEF3C7;
+  --color-clay: #6B1D1D;
+
+  --shadow-premium: 0 10px 30px -5px rgba(107,29,29,0.1), 0 4px 6px -2px rgba(107,29,29,0.05);
+}
+
+@layer base {
+  body {
+    @apply bg-cream text-text font-sans antialiased text-[16px] leading-[1.6];
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    background-attachment: fixed;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display text-primary leading-[1.2] tracking-tight;
+  }
+
+  h1 { @apply text-[56px] font-bold; }
+  h2 { @apply text-[40px] font-bold; }
+  h3 { @apply text-[24px] font-semibold; }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-primary-light hover:shadow-xl hover:-translate-y-1 active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply border border-primary text-primary px-8 py-4 rounded-full font-medium bg-transparent transition-all duration-300 hover:bg-primary hover:text-white active:scale-[0.98];
+  }
+
+  .btn-accent {
+    @apply bg-accent text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-accent/90 hover:shadow-lg active:scale-[0.98];
+  }
+
+  .input-field {
+    @apply p-[14px_18px] rounded-xl border border-[#E5E5E5] text-[15px] w-full bg-white/80 backdrop-blur-sm transition-all focus:border-accent focus:ring-2 focus:ring-accent/10 outline-none;
+  }
+
+  .search-bar {
+    @apply h-[48px] rounded-full pl-[20px] bg-white border border-[#EEE] outline-none transition-all focus:border-accent/40 focus:ring-4 focus:ring-accent/5;
+  }
+
+  .product-card {
+    @apply bg-white rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(107,29,29,0.04)] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(107,29,29,0.1)];
+  }
+
+  .artisan-card {
+    @apply bg-white rounded-2xl p-8 shadow-[0_4px_20px_rgba(107,29,29,0.04)] transition-all duration-500 hover:shadow-[0_15px_35px_rgba(107,29,29,0.08)];
+  }
+
+  .section-spacing {
+    @apply py-[100px];
+  }
+
+  .container-custom {
+    @apply max-w-[1280px] mx-auto px-8;
+  }
+
+  .badge-indian {
+    @apply bg-highlight/40 text-primary border border-primary/10 rounded-full px-[12px] py-[4px] text-[11px] font-bold uppercase tracking-widest;
+  }
+
+  .mandala-bg {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L60 30 L90 30 L65 50 L75 80 L50 60 L25 80 L35 50 L10 30 L40 30 Z' fill='%236B1D1D' fill-opacity='0.02'/%3E%3C/svg%3E");
+    background-size: 150px 150px;
+  }
+
+  .lotus-motif {
+    mask-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 22C12 22 16 18 16 12C16 6 12 4 12 4C12 4 8 6 8 12C8 18 12 22 12 22Z'/%3E%3Cpath d='M12 22C12 22 19 19 21 12C23 5 12 2 12 2C12 2 1 5 3 12C5 19 12 22 12 22Z' opacity='0.3'/%3E%3C/svg%3E");
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+}
+
+.glass-premium {
+  @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-premium;
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
