@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Star, Minus, Plus, ShoppingCart, Zap, Heart, Share2, ChevronLeft, ChevronRight, MapPin, Gavel, ShieldCheck, Truck, Package, Gem } from 'lucide-react';
+import { Star, Minus, Plus, ShoppingCart, Zap, Heart, Share2, ChevronLeft, ChevronRight, MapPin, Gavel, ShieldCheck, Truck, Package, Gem, Award } from 'lucide-react';
 import { ProductCard } from './FeaturedProducts';
+import { AuthenticityCertificate } from './AuthenticityCertificate';
 
 export const ProductDetail = ({ onNavigate }: any) => {
   const [quantity, setQuantity] = useState(1);
   const [activeTab, setActiveTab] = useState('description');
   const [activeImage, setActiveImage] = useState(0);
+  const [isCertificateOpen, setIsCertificateOpen] = useState(false);
 
   const product = {
     name: 'Hand-Painted Blue Pottery Vase',
@@ -141,6 +143,16 @@ export const ProductDetail = ({ onNavigate }: any) => {
               <h1 className="text-5xl md:text-6xl font-display font-bold text-primary mb-4 leading-[1.1] tracking-tight">
                 {product.name}
               </h1>
+
+              <div className="flex items-center gap-4 mb-8">
+                <button 
+                  onClick={() => setIsCertificateOpen(true)}
+                  className="flex items-center gap-2 px-4 py-2 bg-accent/5 hover:bg-accent/10 text-accent rounded-full border border-accent/20 transition-all group"
+                >
+                  <Award className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Digital Authenticity Certificate</span>
+                </button>
+              </div>
 
               <div className="flex items-center gap-3 mb-8">
                 <span className="badge-indian !bg-accent/10 !text-accent !border-accent/20">Handmade</span>
@@ -386,6 +398,16 @@ export const ProductDetail = ({ onNavigate }: any) => {
           </div>
         </section>
       </div>
+
+      <AuthenticityCertificate 
+        isOpen={isCertificateOpen}
+        onClose={() => setIsCertificateOpen(false)}
+        productName={product.name}
+        artisan={product.artisan}
+        region={product.location}
+        certificateId="CERT-JP-2024-8842"
+        dateIssued="February 23, 2026"
+      />
 
       {/* CTA Section */}
       <section className="section-spacing relative overflow-hidden">

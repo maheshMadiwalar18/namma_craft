@@ -158,6 +158,12 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
             </button>
             <div className="h-8 w-[1px] bg-highlight/10" />
             <button 
+              onClick={() => onNavigate('add-food')}
+              className="btn-secondary !py-2.5 !px-6 text-[10px] uppercase tracking-widest shadow-lg shadow-primary/5"
+            >
+              Add Food Item
+            </button>
+            <button 
               onClick={() => onNavigate('create-auction')}
               className="btn-primary !py-2.5 !px-6 text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20"
             >

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Sparkles } from 'lucide-react';
 
 export const Hero = ({ onNavigate }: any) => {
   return (
@@ -40,14 +40,17 @@ export const Hero = ({ onNavigate }: any) => {
             
             <div className="flex flex-wrap justify-center lg:justify-start gap-8">
               <button 
-                onClick={() => onNavigate('marketplace')}
+                onClick={() => onNavigate('discovery')}
                 className="btn-primary !px-12 !py-6 text-lg shadow-2xl shadow-primary/20 group flex items-center gap-4"
               >
-                Explore Crafts
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+                Cultural Discovery
+                <Sparkles className="w-5 h-5 group-hover:rotate-12 transition-transform" />
               </button>
-              <button className="btn-secondary !px-12 !py-6 text-lg group flex items-center gap-3">
-                Become a Seller
+              <button 
+                onClick={() => onNavigate('marketplace')}
+                className="btn-secondary !px-12 !py-6 text-lg group flex items-center gap-3"
+              >
+                Marketplace
               </button>
             </div>
           </motion.div>

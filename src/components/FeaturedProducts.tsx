@@ -1,8 +1,26 @@
 import React from 'react';
-import { Heart, ShoppingCart, ChevronRight } from 'lucide-react';
+import { Heart, ShoppingCart, ChevronRight, Gavel, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
 
-export const ProductCard = ({ image, name, artisan, price, region, onNavigate }: any) => {
+export const ProductCard = ({ image, name, artisan, price, region, rarity, stock, isPopularInAuction, onNavigate }: any) => {
+  const getRarityColor = (level: string) => {
+    switch (level?.toLowerCase()) {
+      case 'one-of-a-kind': return 'bg-purple-500 text-white';
+      case 'limited edition': return 'bg-[#CD7F32] text-white'; // Bronze
+      case 'rare': return 'bg-[#FFD700] text-primary'; // Gold
+      default: return 'bg-slate-200 text-slate-600';
+    }
+  };
+
+  const getRarityBar = (level: string) => {
+    switch (level?.toLowerCase()) {
+      case 'one-of-a-kind': return 'w-full bg-purple-500';
+      case 'limited edition': return 'w-3/4 bg-[#CD7F32]';
+      case 'rare': return 'w-1/2 bg-[#FFD700]';
+      default: return 'w-1/4 bg-slate-300';
+    }
+  };
+
   return (
     <motion.div 
       whileHover={{ y: -8 }}
@@ -23,9 +41,16 @@ export const ProductCard = ({ image, name, artisan, price, region, onNavigate }:
           <span className="badge-indian shadow-lg backdrop-blur-md bg-white/80 border-white/50 text-[10px]">
             {region || 'Handmade in India'}
           </span>
-          <span className="badge-indian !bg-accent/90 !text-white border-none text-[9px] shadow-lg">
-            Traditional Craft
-          </span>
+          {isPopularInAuction && (
+            <span className="badge-indian !bg-primary !text-white border-none text-[9px] shadow-lg flex items-center gap-1">
+              <Gavel className="w-3 h-3" /> Popular in Auctions
+            </span>
+          )}
+          {rarity && (
+            <span className={`badge-indian border-none text-[9px] shadow-lg font-bold uppercase tracking-widest ${getRarityColor(rarity)}`}>
+              {rarity}
+            </span>
+          )}
         </div>
 
         <button 
@@ -42,14 +67,35 @@ export const ProductCard = ({ image, name, artisan, price, region, onNavigate }:
         </div>
       </div>
 
-      <div className="px-2 pb-2 space-y-2">
+      <div className="px-2 pb-2 space-y-3">
         <div className="flex justify-between items-start gap-2">
           <h3 className="text-xl font-display font-bold text-primary leading-tight group-hover:text-accent transition-colors truncate">{name}</h3>
         </div>
-        <p className="text-sm text-text-soft font-medium flex items-center gap-2">
-          <span className="w-4 h-[1px] bg-accent/30" />
-          {artisan}
-        </p>
+        
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-text-soft font-medium flex items-center gap-2">
+            <span className="w-4 h-[1px] bg-accent/30" />
+            {artisan}
+          </p>
+          {stock !== undefined && (
+            <span className="text-[10px] font-bold text-text-soft uppercase tracking-widest">
+              {stock} Available
+            </span>
+          )}
+        </div>
+
+        {rarity && (
+          <div className="space-y-1.5">
+            <div className="flex justify-between items-center text-[9px] font-bold uppercase tracking-widest text-text-soft/60">
+              <span>Rarity Level</span>
+              <span className="text-primary">{rarity}</span>
+            </div>
+            <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
+              <div className={`h-full rounded-full transition-all duration-1000 ${getRarityBar(rarity)}`} />
+            </div>
+          </div>
+        )}
+
         <div className="flex justify-between items-center pt-2">
           <span className="text-2xl font-display font-bold text-primary">₹{price.toLocaleString()}</span>
           <div className="w-8 h-8 rounded-full border border-highlight/20 flex items-center justify-center group-hover:border-accent group-hover:text-accent transition-all">
@@ -63,10 +109,10 @@ export const ProductCard = ({ image, name, artisan, price, region, onNavigate }:
 
 export const FeaturedProducts = ({ onNavigate }: any) => {
   const products = [
-    { id: 1, name: 'Hand-Painted Blue Pottery Vase', artisan: 'Ananya Sharma', price: 2450, region: 'Jaipur, Rajasthan', image: 'https://picsum.photos/seed/jaipur-pottery/600/800' },
-    { id: 2, name: 'Hand-Woven Banarasi Silk Stole', artisan: 'Rajesh Kumar', price: 4500, region: 'Varanasi, UP', image: 'https://picsum.photos/seed/silk/600/800' },
-    { id: 3, name: 'Intricate Teak Wood Carving', artisan: 'Vikram Singh', price: 3200, region: 'Saharanpur, UP', image: 'https://picsum.photos/seed/wood/600/800' },
-    { id: 4, name: 'Traditional Meenakari Jhumkas', artisan: 'Priya Das', price: 1800, region: 'Bikaner, Rajasthan', image: 'https://picsum.photos/seed/jewelry-india/600/800' },
+    { id: 1, name: 'Hand-Painted Blue Pottery Vase', artisan: 'Ananya Sharma', price: 2450, region: 'Jaipur, Rajasthan', image: 'https://picsum.photos/seed/jaipur-pottery/600/800', rarity: 'Rare', stock: 5, isPopularInAuction: true },
+    { id: 2, name: 'Hand-Woven Banarasi Silk Stole', artisan: 'Rajesh Kumar', price: 4500, region: 'Varanasi, UP', image: 'https://picsum.photos/seed/silk/600/800', rarity: 'Limited Edition', stock: 2, isPopularInAuction: false },
+    { id: 3, name: 'Intricate Teak Wood Carving', artisan: 'Vikram Singh', price: 3200, region: 'Saharanpur, UP', image: 'https://picsum.photos/seed/wood/600/800', rarity: 'One-of-a-kind', stock: 1, isPopularInAuction: true },
+    { id: 4, name: 'Traditional Meenakari Jhumkas', artisan: 'Priya Das', price: 1800, region: 'Bikaner, Rajasthan', image: 'https://picsum.photos/seed/jewelry-india/600/800', rarity: 'Common', stock: 12, isPopularInAuction: false },
   ];
 
   return (

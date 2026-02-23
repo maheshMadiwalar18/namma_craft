@@ -1,4 +1,5 @@
 {
   "name": "NammaCraft - Artisan Marketplace",
-  "description": "A premium marketplace for authentic handmade crafts, empowering local artisans globally."
+  "description": "A premium marketplace for authentic handmade crafts, empowering local artisans globally.",
+  "requestFramePermissions": []
 }

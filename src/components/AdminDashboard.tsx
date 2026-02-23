@@ -295,9 +295,16 @@ export const AdminDashboard = ({ onNavigate }: any) => {
                                 >
                                   <Eye className="w-4 h-4" />
                                 </button>
-                                <button className="p-2 hover:bg-amber-500 hover:text-white rounded-lg transition-all text-text-soft">
-                                  <Pause className="w-4 h-4" />
-                                </button>
+                                {auc.status === 'Active' && (
+                                  <>
+                                    <button className="p-2 hover:bg-amber-500 hover:text-white rounded-lg transition-all text-text-soft">
+                                      <Pause className="w-4 h-4" />
+                                    </button>
+                                    <button className="p-2 hover:bg-emerald-500 hover:text-white rounded-lg transition-all text-text-soft">
+                                      <CheckCircle2 className="w-4 h-4" />
+                                    </button>
+                                  </>
+                                )}
                                 <button className="p-2 hover:bg-rose-500 hover:text-white rounded-lg transition-all text-text-soft">
                                   <XCircle className="w-4 h-4" />
                                 </button>

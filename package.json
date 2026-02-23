@@ -1,8 +1,7 @@
 {
-  "name": "namma-craft",
+  "name": "react-example",
   "private": true,
-  "version": "1.0.0",
-  "description": "NammaCraft - A premium marketplace for authentic handmade crafts",
+  "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
@@ -12,6 +11,7 @@
     "lint": "tsc --noEmit"
   },
   "dependencies": {
+    "@google/genai": "^1.29.0",
     "@tailwindcss/vite": "^4.1.14",
     "@types/d3": "^7.4.3",
     "@vitejs/plugin-react": "^5.0.4",

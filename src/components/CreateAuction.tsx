@@ -13,6 +13,8 @@ import {
   HelpCircle,
   Plus
 } from 'lucide-react';
+import { AIPricingPanel } from './AIPricingPanel';
+import { VoiceAssistant } from './VoiceAssistant';
 
 export const CreateAuction = ({ onNavigate }: any) => {
   const [formData, setFormData] = useState({
@@ -30,6 +32,18 @@ export const CreateAuction = ({ onNavigate }: any) => {
   });
 
   const [previewImage, setPreviewImage] = useState<string | null>(null);
+
+  const handleVoiceData = (data: any) => {
+    setFormData(prev => ({
+      ...prev,
+      name: data.name || prev.name,
+      category: data.category || prev.category,
+      origin: data.origin || prev.origin,
+      startPrice: data.startPrice?.toString() || prev.startPrice,
+      duration: data.duration || prev.duration,
+      craftStory: data.craftStory || prev.craftStory
+    }));
+  };
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -65,6 +79,8 @@ export const CreateAuction = ({ onNavigate }: any) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Form Section */}
           <div className="lg:col-span-7 space-y-10">
+            <VoiceAssistant onDataExtracted={handleVoiceData} />
+            
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -378,6 +394,9 @@ export const CreateAuction = ({ onNavigate }: any) => {
                   )}
                 </div>
               </div>
+
+              {/* AI Pricing Panel */}
+              <AIPricingPanel name={formData.name} category={formData.category} />
 
               {/* Tips Card */}
               <div className="bg-accent/5 p-8 rounded-[32px] border border-accent/10 space-y-4">

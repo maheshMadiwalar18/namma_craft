@@ -24,6 +24,7 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
         <div className="hidden lg:flex items-center gap-10 text-[11px] font-bold uppercase tracking-[0.2em] text-text-soft">
           {[
             { id: 'home', label: 'Home' },
+            { id: 'discovery', label: 'Discovery' },
             { id: 'marketplace', label: 'Marketplace' },
             { id: 'auction-listing', label: 'Auctions' },
             { id: 'artisan', label: 'Artisans' },
@@ -58,7 +59,10 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
             <span className="absolute top-2 right-2 w-5 h-5 bg-accent text-white text-[10px] font-bold flex items-center justify-center rounded-full border-2 border-white shadow-md">2</span>
           </button>
           
-          <button className="hidden sm:flex items-center gap-3 btn-primary !py-3 !px-8 text-[10px] uppercase tracking-[0.2em] shadow-lg shadow-primary/20 group">
+          <button 
+            onClick={() => onNavigate('login')}
+            className="hidden sm:flex items-center gap-3 btn-primary !py-3 !px-8 text-[10px] uppercase tracking-[0.2em] shadow-lg shadow-primary/20 group"
+          >
             <User className="w-4 h-4 group-hover:scale-110 transition-transform" />
             Account
           </button>

@@ -129,7 +129,10 @@ export const LiveAuction = ({ onNavigate }: any) => {
           </div>
 
           <div className="space-y-6">
-            <button className="w-full btn-primary !py-6 text-lg shadow-2xl shadow-primary/20">
+            <button 
+              onClick={() => onNavigate('checkout')}
+              className="w-full btn-primary !py-6 text-lg shadow-2xl shadow-primary/20"
+            >
               Proceed to Checkout
             </button>
             <button 
