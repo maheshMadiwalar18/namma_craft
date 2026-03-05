@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -12,9 +13,12 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+// Auth
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
-
-// Request Google profile info
 googleProvider.addScope('profile');
 googleProvider.addScope('email');
+
+// Firestore Database
+export const db = getFirestore(app);
