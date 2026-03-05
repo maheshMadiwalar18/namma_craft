@@ -101,11 +101,11 @@ export const Marketplace = ({ onNavigate }: any) => {
     { id: 1, name: 'Authentic Mysore Pak', creator: 'Lakshmi Devi', price: 450, region: 'Mysore, Karnataka', tag: 'Homemade', image: '/images/food/mysore-pak.png' },
     { id: 2, name: 'Rajasthani Ghevar', creator: 'Shanti Devi', price: 650, region: 'Jaipur, Rajasthan', tag: 'Festival Special', image: '/images/food/ghevar.png' },
     { id: 3, name: 'Malabar Parotta (Pack of 5)', creator: 'Mariam Beevi', price: 180, region: 'Kozhikode, Kerala', tag: 'Homemade', image: '/images/food/parotta.png' },
-    { id: 4, name: 'Organic Lakadong Turmeric', creator: 'Kong Mary', price: 320, region: 'Jaintia Hills, Meghalaya', tag: 'Organic', image: 'https://images.unsplash.com/photo-1615485242273-038234676646?auto=format&fit=crop&q=80&w=800' },
-    { id: 5, name: 'Hand-Pounded Red Rice', creator: 'Suresh Gowda', price: 240, region: 'Coorg, Karnataka', tag: 'Organic', image: 'https://images.unsplash.com/photo-1586201314853-272e2cf57f72?auto=format&fit=crop&q=80&w=800' },
-    { id: 6, name: 'Spicy Mango Pickle', creator: 'Amma\'s Kitchen', price: 150, region: 'Guntur, AP', tag: 'Homemade', image: 'https://images.unsplash.com/photo-1601050633647-8f8f17a940f3?auto=format&fit=crop&q=80&w=800' },
-    { id: 7, name: 'Darjeeling First Flush Tea', creator: 'Tenzing Norgay', price: 850, region: 'Darjeeling, WB', tag: 'Specialty', image: 'https://images.unsplash.com/photo-1544782707-170c6bc229c1?auto=format&fit=crop&q=80&w=800' },
-    { id: 8, name: 'Kashmiri Saffron (1g)', creator: 'Bilal Ahmad', price: 450, region: 'Pampore, J&K', tag: 'Specialty', image: 'https://images.unsplash.com/photo-1599940859674-a76ce63aa40c?auto=format&fit=crop&q=80&w=800' },
+    { id: 4, name: 'Organic Lakadong Turmeric', creator: 'Kong Mary', price: 320, region: 'Jaintia Hills, Meghalaya', tag: 'Organic', image: '/images/food/turmeric.png' },
+    { id: 5, name: 'Hand-Pounded Red Rice', creator: 'Suresh Gowda', price: 240, region: 'Coorg, Karnataka', tag: 'Organic', image: '/images/food/redrice.png' },
+    { id: 6, name: 'Spicy Mango Pickle', creator: 'Amma\'s Kitchen', price: 150, region: 'Guntur, AP', tag: 'Homemade', image: '/images/food/pickle.png' },
+    { id: 7, name: 'Darjeeling First Flush Tea', creator: 'Tenzing Norgay', price: 850, region: 'Darjeeling, WB', tag: 'Specialty', image: '/images/food/tea.png' },
+    { id: 8, name: 'Kashmiri Saffron (1g)', creator: 'Bilal Ahmad', price: 450, region: 'Pampore, J&K', tag: 'Specialty', image: '/images/food/saffron.png' },
   ];
 
   const [searchQuery, setSearchQuery] = useState('');
