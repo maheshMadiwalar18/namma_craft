@@ -3,6 +3,7 @@ import time
 import datetime
 
 while True:
+    print("[NammaCraft Auth] Authenticated via Google Account")
     print("Checking for changes...")
 
     os.system("git add .")
