@@ -98,14 +98,40 @@ export const Marketplace = ({ onNavigate }: any) => {
   ];
 
   const foodProducts = [
+    // Sweets
     { id: 1, name: 'Authentic Mysore Pak', creator: 'Lakshmi Devi', price: 450, region: 'Mysore, Karnataka', tag: 'Homemade', image: '/images/food/mysore-pak.png', category: 'Sweets' },
     { id: 2, name: 'Rajasthani Ghevar', creator: 'Shanti Devi', price: 650, region: 'Jaipur, Rajasthan', tag: 'Festival Special', image: '/images/food/ghevar.png', category: 'Sweets' },
-    { id: 3, name: 'Malabar Parotta (Pack of 5)', creator: 'Mariam Beevi', price: 180, region: 'Kozhikode, Kerala', tag: 'Homemade', image: '/images/food/parotta.png', category: 'Savories' },
-    { id: 4, name: 'Organic Lakadong Turmeric', creator: 'Kong Mary', price: 320, region: 'Jaintia Hills, Meghalaya', tag: 'Organic', image: '/images/food/turmeric.png', category: 'Spices' },
-    { id: 5, name: 'Hand-Pounded Red Rice', creator: 'Suresh Gowda', price: 240, region: 'Coorg, Karnataka', tag: 'Organic', image: '/images/food/redrice.png', category: 'Savories' },
-    { id: 6, name: 'Spicy Mango Pickle', creator: 'Amma\'s Kitchen', price: 150, region: 'Guntur, AP', tag: 'Homemade', image: '/images/food/pickle.png', category: 'Pickles' },
-    { id: 7, name: 'Darjeeling First Flush Tea', creator: 'Tenzing Norgay', price: 850, region: 'Darjeeling, WB', tag: 'Specialty', image: '/images/food/tea.png', category: 'Beverages' },
-    { id: 8, name: 'Kashmiri Saffron (1g)', creator: 'Bilal Ahmad', price: 450, region: 'Pampore, J&K', tag: 'Specialty', image: '/images/food/saffron.png', category: 'Spices' },
+    { id: 3, name: 'Premium Kaju Katli', creator: 'Brijwasi Sweets', price: 850, region: 'Mathura, UP', tag: 'Specialty', image: '/images/food/kaju-katli.png', category: 'Sweets' },
+    { id: 4, name: 'Spongy Bengali Rasgulla', creator: 'Das & Sons', price: 350, region: 'Kolkata, WB', tag: 'Homemade', image: '/images/food/rasgulla.png', category: 'Sweets' },
+    { id: 5, name: 'Warm Gulab Jamun (1kg)', creator: 'Annapurna', price: 420, region: 'Banaras, UP', tag: 'Festival Special', image: '/images/food/gulab-jamun.png', category: 'Sweets' },
+
+    // Savories
+    { id: 6, name: 'Malabar Parotta (Pack of 5)', creator: 'Mariam Beevi', price: 180, region: 'Kozhikode, Kerala', tag: 'Homemade', image: '/images/food/parotta.png', category: 'Savories' },
+    { id: 7, name: 'Hand-Pounded Red Rice', creator: 'Suresh Gowda', price: 240, region: 'Coorg, Karnataka', tag: 'Organic', image: '/images/food/redrice.png', category: 'Savories' },
+    { id: 8, name: 'Crunchy Rice Murukku', creator: 'Meenakshi Amma', price: 220, region: 'Madurai, TN', tag: 'Homemade', image: '/images/food/murukku.png', category: 'Savories' },
+    { id: 9, name: 'Kerala Banana Chips', creator: 'Kuttanad Store', price: 150, region: 'Thrissur, Kerala', tag: 'Homemade', image: '/images/food/banana-chips.png', category: 'Savories' },
+    { id: 10, name: 'Traditional Indori Poha', creator: 'Mama Ka Poha', price: 120, region: 'Indore, MP', tag: 'Specialty', image: 'https://images.unsplash.com/photo-1610192244261-3f33de3f55e4?auto=format&fit=crop&q=80&w=800', category: 'Savories' },
+
+    // Spices
+    { id: 11, name: 'Organic Lakadong Turmeric', creator: 'Kong Mary', price: 320, region: 'Jaintia Hills, Meghalaya', tag: 'Organic', image: '/images/food/turmeric.png', category: 'Spices' },
+    { id: 12, name: 'Kashmiri Saffron (1g)', creator: 'Bilal Ahmad', price: 450, region: 'Pampore, J&K', tag: 'Specialty', image: '/images/food/saffron.png', category: 'Spices' },
+    { id: 13, name: 'Tellicherry Black Pepper', creator: 'Thomas Chacko', price: 380, region: 'Wayanad, Kerala', tag: 'Organic', image: '/images/food/pepper.png', category: 'Spices' },
+    { id: 14, name: 'Grade A Green Cardamom', creator: 'Idukki Farmers', price: 550, region: 'Idukki, Kerala', tag: 'Organic', image: '/images/food/cardamom.png', category: 'Spices' },
+    { id: 15, name: 'Whole Organic Cloves', creator: 'Hill Spices', price: 290, region: 'Kanyakumari, TN', tag: 'Organic', image: '/images/food/clove.png', category: 'Spices' },
+
+    // Pickles
+    { id: 16, name: 'Spicy Mango Pickle', creator: 'Amma\'s Kitchen', price: 150, region: 'Guntur, AP', tag: 'Homemade', image: '/images/food/pickle.png', category: 'Pickles' },
+    { id: 17, name: 'Grandma’s Lemon Pickle', creator: 'Usha Rani', price: 140, region: 'Nagpur, MH', tag: 'Homemade', image: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=800', category: 'Pickles' },
+    { id: 18, name: 'Andhra Garlic Pickle', creator: 'Guntur Spice', price: 180, region: 'Vijayawada, AP', tag: 'Homemade', image: 'https://images.unsplash.com/photo-1601050633647-8f8f17a940f3?auto=format&fit=crop&q=80&w=800', category: 'Pickles' },
+    { id: 19, name: 'North Indian Mixed Veg', creator: 'Dadi Maa', price: 165, region: 'Amritsar, PB', tag: 'Homemade', image: 'https://images.unsplash.com/photo-1544782707-170c6bc229c1?auto=format&fit=crop&q=80&w=800', category: 'Pickles' },
+    { id: 20, name: 'Sweet & Sour Ginger Pickle', creator: 'Priya Foods', price: 155, region: 'Hyderabad, TS', tag: 'Homemade', image: 'https://images.unsplash.com/photo-1599940859674-a76ce63aa40c?auto=format&fit=crop&q=80&w=800', category: 'Pickles' },
+
+    // Beverages
+    { id: 21, name: 'Darjeeling First Flush Tea', creator: 'Tenzing Norgay', price: 850, region: 'Darjeeling, WB', tag: 'Specialty', image: '/images/food/tea.png', category: 'Beverages' },
+    { id: 22, name: 'Kumbakonam Degree Coffee', creator: 'Ranganathan', price: 340, region: 'Thanjavur, TN', tag: 'Specialty', image: 'https://images.unsplash.com/photo-1541167760496-162955ed8a9f?auto=format&fit=crop&q=80&w=800', category: 'Beverages' },
+    { id: 23, name: 'Royal Masala Chai Blend', creator: 'Varanasi Tea', price: 280, region: 'Varanasi, UP', tag: ' स्पेशल', image: 'https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?auto=format&fit=crop&q=80&w=800', category: 'Beverages' },
+    { id: 24, name: 'Traditional Kokum Sharbat', creator: 'Konkan Coast', price: 190, region: 'Ratnagiri, MH', tag: 'specialty', image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&q=80&w=800', category: 'Beverages' },
+    { id: 25, name: 'Banaras Thandai Mix', creator: 'Kashi Flavors', price: 320, region: 'Varanasi, UP', tag: 'Festival Special', image: 'https://images.unsplash.com/photo-1567129937968-cdad8f0d5a3a?auto=format&fit=crop&q=80&w=800', category: 'Beverages' },
   ];
 
   const [searchQuery, setSearchQuery] = useState('');
