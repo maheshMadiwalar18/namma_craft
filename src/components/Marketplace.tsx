@@ -111,7 +111,7 @@ export const Marketplace = ({ onNavigate }: any) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const activeProducts = (activeTab === 'crafts' ? craftProducts : foodProducts).filter(p => {
+  const activeProducts = (activeTab === 'crafts' ? craftProducts : foodProducts).filter((p: any) => {
     const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.artisan?.toLowerCase().includes(searchQuery.toLowerCase()) ||
       p.creator?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -212,7 +212,13 @@ export const Marketplace = ({ onNavigate }: any) => {
                   {activeCategories.map(cat => (
                     <label key={cat} className="flex items-center gap-3 cursor-pointer group">
                       <div className="relative flex items-center justify-center">
-                        <input type="radio" name="category" className="peer appearance-none w-5 h-5 rounded-full border-2 border-primary/10 checked:border-accent transition-all" defaultChecked={cat === 'All'} />
+                        <input
+                          type="radio"
+                          name="category"
+                          checked={selectedCategory === cat}
+                          onChange={() => setSelectedCategory(cat)}
+                          className="peer appearance-none w-5 h-5 rounded-full border-2 border-primary/10 checked:border-accent transition-all"
+                        />
                         <div className="absolute w-2 h-2 rounded-full bg-accent opacity-0 peer-checked:opacity-100 transition-opacity" />
                       </div>
                       <span className="text-[15px] text-text-soft group-hover:text-primary transition-colors font-medium">{cat}</span>

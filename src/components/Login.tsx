@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Lock, ArrowRight, Github, Chrome, User, ShieldCheck } from 'lucide-react';
+import { useToast } from '../ToastContext';
 
 export const Login = ({ onNavigate }: any) => {
+  const { showToast } = useToast();
   const [isLogin, setIsLogin] = useState(true);
   const [role, setRole] = useState('buyer'); // buyer, seller, admin
 
@@ -13,7 +15,7 @@ export const Login = ({ onNavigate }: any) => {
       <div className="absolute top-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent/5 blur-[120px] rounded-full" />
       <div className="absolute bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full" />
 
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         className="max-w-md w-full relative z-10"
@@ -22,8 +24,8 @@ export const Login = ({ onNavigate }: any) => {
           <div className="text-center mb-10">
             <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-primary/20">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="text-accent">
-                <path d="M12 22C12 22 16 18 16 12C16 6 12 4 12 4C12 4 8 6 8 12C8 18 12 22 12 22Z" fill="currentColor"/>
-                <path d="M12 22C12 22 19 19 21 12C23 5 12 2 12 2C12 2 1 5 3 12C5 19 12 22 12 22Z" fill="currentColor" fillOpacity="0.3"/>
+                <path d="M12 22C12 22 16 18 16 12C16 6 12 4 12 4C12 4 8 6 8 12C8 18 12 22 12 22Z" fill="currentColor" />
+                <path d="M12 22C12 22 19 19 21 12C23 5 12 2 12 2C12 2 1 5 3 12C5 19 12 22 12 22Z" fill="currentColor" fillOpacity="0.3" />
               </svg>
             </div>
             <h1 className="text-3xl font-display font-bold text-primary mb-2">
@@ -40,9 +42,8 @@ export const Login = ({ onNavigate }: any) => {
               <button
                 key={r}
                 onClick={() => setRole(r)}
-                className={`flex-1 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${
-                  role === r ? 'bg-white text-primary shadow-sm' : 'text-text-soft hover:text-primary'
-                }`}
+                className={`flex-1 py-2.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all ${role === r ? 'bg-white text-primary shadow-sm' : 'text-text-soft hover:text-primary'
+                  }`}
               >
                 {r}
               </button>
@@ -59,8 +60,8 @@ export const Login = ({ onNavigate }: any) => {
               <label className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-4">Email Address</label>
               <div className="relative">
                 <Mail className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-soft" />
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   placeholder="artisan@nammacraft.com"
                   className="w-full pl-14 pr-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium"
                   required
@@ -75,8 +76,8 @@ export const Login = ({ onNavigate }: any) => {
               </div>
               <div className="relative">
                 <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-4 h-4 text-text-soft" />
-                <input 
-                  type="password" 
+                <input
+                  type="password"
                   placeholder="••••••••"
                   className="w-full pl-14 pr-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium"
                   required
@@ -110,7 +111,7 @@ export const Login = ({ onNavigate }: any) => {
 
           <p className="text-center mt-10 text-sm text-text-soft">
             {isLogin ? "Don't have an account?" : "Already have an account?"}
-            <button 
+            <button
               onClick={() => setIsLogin(!isLogin)}
               className="ml-2 text-accent font-bold hover:text-primary transition-colors"
             >
