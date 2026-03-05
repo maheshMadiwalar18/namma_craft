@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  Plus, 
-  Package, 
-  DollarSign, 
-  Eye, 
-  MessageSquare, 
+import { useToast } from '../ToastContext';
+import {
+  Plus,
+  Package,
+  DollarSign,
+  Eye,
+  MessageSquare,
   Settings,
   MoreVertical,
   Edit3,
@@ -26,13 +27,13 @@ import {
   CheckCircle2,
   AlertCircle
 } from 'lucide-react';
-import { 
-  BarChart, 
-  Bar, 
-  XAxis, 
-  YAxis, 
-  CartesianGrid, 
-  Tooltip, 
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
   ResponsiveContainer,
   AreaChart,
   Area,
@@ -66,7 +67,7 @@ const completedAuctions = [
 ];
 
 const StatCard = ({ title, value, change, icon: Icon, trend, label }: any) => (
-  <motion.div 
+  <motion.div
     whileHover={{ y: -5 }}
     className="bg-white p-6 rounded-3xl border border-highlight/10 shadow-sm relative overflow-hidden group"
   >
@@ -88,6 +89,7 @@ const StatCard = ({ title, value, change, icon: Icon, trend, label }: any) => (
 );
 
 export const CreatorDashboard = ({ onNavigate }: any) => {
+  const { showToast } = useToast();
   const [activeTab, setActiveTab] = useState('dashboard');
 
   const sidebarItems = [
@@ -120,7 +122,7 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
             <span className="font-display font-bold text-2xl tracking-tight">Artisan Studio</span>
           </div>
         </div>
-        
+
         <nav className="flex-1 p-6 space-y-2">
           {sidebarItems.map((item) => (
             <button
@@ -153,8 +155,8 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
         <header className="h-24 bg-white border-b border-highlight/10 flex items-center justify-between px-10 sticky top-0 z-30 shadow-sm">
           <div className="relative w-96">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-soft" />
-            <input 
-              type="text" 
+            <input
+              type="text"
               placeholder="Search products, auctions..."
               className="w-full pl-12 pr-6 py-3 bg-cream/30 rounded-xl text-sm border-transparent focus:border-accent focus:bg-white transition-all outline-none"
             />
@@ -166,19 +168,19 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
               <span className="absolute top-2 right-2 w-2 h-2 bg-accent rounded-full border-2 border-white" />
             </button>
             <div className="h-8 w-[1px] bg-highlight/10" />
-            <button 
+            <button
               onClick={() => onNavigate('sell-product')}
               className="btn-accent !py-2.5 !px-6 text-[10px] uppercase tracking-widest shadow-lg shadow-accent/20"
             >
               Sell Product
             </button>
-            <button 
+            <button
               onClick={() => onNavigate('add-food')}
               className="btn-secondary !py-2.5 !px-6 text-[10px] uppercase tracking-widest shadow-lg shadow-primary/5"
             >
               Add Food
             </button>
-            <button 
+            <button
               onClick={() => onNavigate('create-auction')}
               className="btn-primary !py-2.5 !px-6 text-[10px] uppercase tracking-widest shadow-lg shadow-primary/20"
             >
@@ -243,15 +245,17 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
                             </div>
                           </td>
                           <td className="px-8 py-5">
-                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest ${
-                              auc.status === 'Active' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'
-                            }`}>
+                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest ${auc.status === 'Active' ? 'bg-emerald-50 text-emerald-600' : 'bg-amber-50 text-amber-600'
+                              }`}>
                               <div className={`w-1 h-1 rounded-full ${auc.status === 'Active' ? 'bg-emerald-600' : 'bg-amber-600'}`} />
                               {auc.status}
                             </span>
                           </td>
                           <td className="px-8 py-5 text-right">
-                            <button className="p-2 hover:bg-primary hover:text-white rounded-lg transition-all text-text-soft">
+                            <button
+                              onClick={() => showToast('Redirecting to edit product...')}
+                              className="p-2 hover:bg-primary hover:text-white rounded-lg transition-all text-text-soft"
+                            >
                               <Edit3 className="w-4 h-4" />
                             </button>
                           </td>
@@ -299,15 +303,17 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
                             <p className="text-xs text-text-soft font-mono">{auc.date}</p>
                           </td>
                           <td className="px-8 py-5">
-                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest ${
-                              auc.status === 'Shipped' ? 'bg-emerald-50 text-emerald-600' : 'bg-primary/5 text-primary'
-                            }`}>
+                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[9px] font-bold uppercase tracking-widest ${auc.status === 'Shipped' ? 'bg-emerald-50 text-emerald-600' : 'bg-primary/5 text-primary'
+                              }`}>
                               {auc.status}
                             </span>
                           </td>
                           <td className="px-8 py-5 text-right">
                             {auc.status === 'Pending Shipping' ? (
-                              <button className="btn-primary !py-1.5 !px-4 text-[9px] uppercase tracking-widest">
+                              <button
+                                onClick={() => showToast('Generating shipping label...')}
+                                className="btn-primary !py-1.5 !px-4 text-[9px] uppercase tracking-widest"
+                              >
                                 Ship Now
                               </button>
                             ) : (
@@ -346,13 +352,13 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
                     <AreaChart data={salesData}>
                       <defs>
                         <linearGradient id="colorBidsCreator" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#E67E22" stopOpacity={0.1}/>
-                          <stop offset="95%" stopColor="#E67E22" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="#E67E22" stopOpacity={0.1} />
+                          <stop offset="95%" stopColor="#E67E22" stopOpacity={0} />
                         </linearGradient>
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f0f0f0" />
-                      <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{fontSize: 10}} />
-                      <YAxis axisLine={false} tickLine={false} tick={{fontSize: 10}} />
+                      <XAxis dataKey="day" axisLine={false} tickLine={false} tick={{ fontSize: 10 }} />
+                      <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 10 }} />
                       <Tooltip />
                       <Area type="monotone" dataKey="bids" stroke="#E67E22" strokeWidth={3} fillOpacity={1} fill="url(#colorBidsCreator)" />
                     </AreaChart>
@@ -408,7 +414,12 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
                         <p className="text-cream/60 text-[10px] uppercase tracking-widest font-bold mb-1">Pending Payout</p>
                         <p className="text-xl font-display font-bold text-accent">₹12,400</p>
                       </div>
-                      <button className="btn-accent !py-2 !px-4 text-[10px] uppercase tracking-widest">Withdraw</button>
+                      <button
+                        onClick={() => showToast('Withdrawal request submitted! Payout will be processed in 3-5 business days.')}
+                        className="btn-accent !py-2 !px-4 text-[10px] uppercase tracking-widest"
+                      >
+                        Withdraw
+                      </button>
                     </div>
                   </div>
                 </div>

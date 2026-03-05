@@ -90,20 +90,26 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                   className="flex flex-wrap items-center gap-4"
                 >
                   <button
-                    onClick={() => alert('Following Ananya Sharma!')}
+                    onClick={() => {
+                      setIsFollowing(!isFollowing);
+                      showToast(isFollowing ? 'Unfollowed Ananya Sharma' : 'Following Ananya Sharma!');
+                    }}
                     className="btn-primary group"
                   >
-                    <Heart className="w-5 h-5 group-hover:fill-white transition-colors" />
-                    Follow Artisan
+                    <Heart className={`w-5 h-5 transition-colors ${isFollowing ? 'fill-white' : 'group-hover:fill-white'}`} />
+                    {isFollowing ? 'Following' : 'Follow Artisan'}
                   </button>
                   <button
-                    onClick={() => alert('Opening message window...')}
+                    onClick={() => showToast('Opening message window...')}
                     className="btn-secondary !px-6 flex items-center gap-2 group"
                   >
                     <MessageCircle className="w-5 h-5 group-hover:text-accent" />
                     Contact
                   </button>
-                  <button className="p-4 bg-white/80 backdrop-blur-md border border-highlight/30 rounded-full hover:bg-white hover:shadow-lg transition-all">
+                  <button
+                    onClick={() => showToast('Profile link copied to clipboard!')}
+                    className="p-4 bg-white/80 backdrop-blur-md border border-highlight/30 rounded-full hover:bg-white hover:shadow-lg transition-all"
+                  >
                     <Share2 className="w-5 h-5 text-primary" />
                   </button>
                 </motion.div>
@@ -250,7 +256,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
               </div>
 
               <button
-                onClick={() => alert('Opening message window...')}
+                onClick={() => showToast('Opening message window...')}
                 className="w-full mt-10 btn-primary py-5 text-lg shadow-xl shadow-primary/20 flex items-center justify-center gap-3"
               >
                 <MessageCircle className="w-6 h-6" />
@@ -273,7 +279,10 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                       <p className="text-sm text-text-soft italic">"{review.comment}"</p>
                     </div>
                   ))}
-                  <button className="w-full py-2 text-accent text-sm font-bold hover:tracking-widest transition-all uppercase">
+                  <button
+                    onClick={() => showToast('Loading more reviews...')}
+                    className="w-full py-2 text-accent text-sm font-bold hover:tracking-widest transition-all uppercase"
+                  >
                     View All Reviews →
                   </button>
                 </div>
@@ -298,8 +307,21 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
               By following Ananya, you're not just supporting an artist; you're helping preserve a 14th-century craft for future generations.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
-              <button className="btn-primary px-12 py-5 text-lg">Follow Ananya</button>
-              <button className="btn-secondary px-12 py-5 text-lg">Share Her Story</button>
+              <button
+                onClick={() => {
+                  setIsFollowing(!isFollowing);
+                  showToast(isFollowing ? 'Unfollowed Ananya Sharma' : 'Following Ananya Sharma!');
+                }}
+                className="btn-primary px-12 py-5 text-lg"
+              >
+                {isFollowing ? 'Following' : 'Follow Ananya'}
+              </button>
+              <button
+                onClick={() => showToast('Story link shared!')}
+                className="btn-secondary px-12 py-5 text-lg"
+              >
+                Share Her Story
+              </button>
             </div>
           </motion.div>
 
