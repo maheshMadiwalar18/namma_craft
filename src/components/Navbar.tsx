@@ -128,26 +128,41 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       {menuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-16 z-40 bg-white/95 backdrop-blur-xl border-b border-highlight/20 shadow-lg p-4 space-y-1">
-          {navItems.map((item) => (
+        <div className="lg:hidden fixed inset-0 top-16 z-[100] bg-black/20" onClick={() => setMenuOpen(false)}>
+          <div className="bg-white border-b border-highlight/20 shadow-xl p-4 space-y-1" onClick={(e) => e.stopPropagation()}>
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => { onNavigate(item.id); setMenuOpen(false); }}
+                className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-colors ${currentPage === item.id ? 'bg-primary/5 text-primary' : 'text-text-soft hover:bg-cream'}`}
+              >
+                {item.label}
+              </button>
+            ))}
             <button
-              key={item.id}
-              onClick={() => { onNavigate(item.id); setMenuOpen(false); }}
-              className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-colors ${currentPage === item.id ? 'bg-primary/5 text-primary' : 'text-text-soft hover:bg-cream'}`}
+              onClick={() => { onNavigate('admin'); setMenuOpen(false); }}
+              className="w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-text-soft hover:bg-cream"
             >
-              {item.label}
+              Admin
             </button>
-          ))}
-          {!user && (
-            <button
-              onClick={() => { onNavigate('login'); setMenuOpen(false); }}
-              className="w-full bg-primary text-white py-3 rounded-xl text-sm font-bold mt-2"
-            >
-              Login
-            </button>
-          )}
+            {!user ? (
+              <button
+                onClick={() => { onNavigate('login'); setMenuOpen(false); }}
+                className="w-full bg-primary text-white py-3 rounded-xl text-sm font-bold mt-2"
+              >
+                Login
+              </button>
+            ) : (
+              <button
+                onClick={() => { handleLogout(); setMenuOpen(false); }}
+                className="w-full bg-rose-50 text-rose-600 py-3 rounded-xl text-sm font-bold mt-2 flex items-center justify-center gap-2"
+              >
+                <LogOut className="w-4 h-4" /> Sign Out
+              </button>
+            )}
+          </div>
         </div>
       )}
     </>
