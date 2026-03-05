@@ -24,7 +24,7 @@ export const Login = ({ onNavigate }: any) => {
   const handleGoogleSignIn = async () => {
     setIsSigningIn(true);
     try {
-      await signInWithGoogle();
+      await signInWithGoogle(role);
       showToast('Signed in with Google successfully!');
       // Navigation will happen via the useEffect above
     } catch (error: any) {
