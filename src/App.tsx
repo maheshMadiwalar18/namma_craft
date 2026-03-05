@@ -1,4 +1,5 @@
 import React from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import { Sparkles, ChevronRight } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
@@ -30,71 +31,77 @@ import { LiveStudio } from './components/LiveStudio';
 import { HumanAssistant } from './components/HumanAssistant';
 import { Footer } from './components/Footer';
 
+function Home() {
+  const navigate = useNavigate();
+  return (
+    <>
+      <Hero onNavigate={navigate} />
+      {/* Festival Banner */}
+      <div
+        className="bg-primary py-4 relative overflow-hidden group cursor-pointer"
+        onClick={() => navigate('/festival-home')}
+      >
+        <div className="absolute inset-0 mandala-bg opacity-[0.05]" />
+        <div className="container-custom relative z-10 flex items-center justify-center gap-6">
+          <Sparkles className="w-5 h-5 text-accent animate-pulse" />
+          <p className="text-white text-sm font-bold uppercase tracking-[0.3em]">
+            Celebrate <span className="text-accent">Diwali</span> with our Exclusive Heritage Collection
+          </p>
+          <ChevronRight className="w-5 h-5 text-accent group-hover:translate-x-2 transition-transform" />
+        </div>
+      </div>
+      <CategoryGrid onNavigate={navigate} />
+      <CulturalMap onNavigate={navigate} />
+      <FeaturedProducts onNavigate={navigate} />
+      <LiveStudio />
+      <GiftBundles onNavigate={navigate} />
+      <ArtisanStory onNavigate={navigate} />
+      <TraditionalFoods onNavigate={navigate} />
+      <ArtisanSpotlight onNavigate={navigate} />
+      <FuturePlans />
+      <Recommendations onNavigate={navigate} />
+    </>
+  );
+}
+
 export default function App() {
-  const [currentPage, setCurrentPage] = React.useState('home');
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Helper for components that still expect 'currentPage' or 'onNavigate'
+  const currentPath = location.pathname.slice(1) || 'home';
+  const handleNavigate = (path: string) => {
+    if (path === 'home') navigate('/');
+    else navigate(`/${path}`);
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar onNavigate={setCurrentPage} currentPage={currentPage} />
+      <Navbar onNavigate={handleNavigate} currentPage={currentPath} />
       <main className="flex-grow">
-        {currentPage === 'home' ? (
-          <>
-            <Hero onNavigate={setCurrentPage} />
-            {/* Festival Banner */}
-            <div className="bg-primary py-4 relative overflow-hidden group cursor-pointer" onClick={() => setCurrentPage('festival-home')}>
-              <div className="absolute inset-0 mandala-bg opacity-[0.05]" />
-              <div className="container-custom relative z-10 flex items-center justify-center gap-6">
-                <Sparkles className="w-5 h-5 text-accent animate-pulse" />
-                <p className="text-white text-sm font-bold uppercase tracking-[0.3em]">
-                  Celebrate <span className="text-accent">Diwali</span> with our Exclusive Heritage Collection
-                </p>
-                <ChevronRight className="w-5 h-5 text-accent group-hover:translate-x-2 transition-transform" />
-              </div>
-            </div>
-            <CategoryGrid onNavigate={setCurrentPage} />
-            <CulturalMap onNavigate={setCurrentPage} />
-            <FeaturedProducts onNavigate={setCurrentPage} />
-            <LiveStudio />
-            <GiftBundles onNavigate={setCurrentPage} />
-            <ArtisanStory onNavigate={setCurrentPage} />
-            <TraditionalFoods onNavigate={setCurrentPage} />
-            <ArtisanSpotlight onNavigate={setCurrentPage} />
-            <FuturePlans />
-            <Recommendations onNavigate={setCurrentPage} />
-          </>
-        ) : currentPage === 'marketplace' ? (
-          <Marketplace onNavigate={setCurrentPage} />
-        ) : currentPage === 'artisan' ? (
-          <ArtisanProfile onNavigate={setCurrentPage} />
-        ) : currentPage === 'admin' ? (
-          <AdminDashboard onNavigate={setCurrentPage} />
-        ) : currentPage === 'creator' ? (
-          <CreatorDashboard onNavigate={setCurrentPage} />
-        ) : currentPage === 'sell-product' ? (
-          <SellProduct onNavigate={setCurrentPage} />
-        ) : currentPage === 'auction-listing' ? (
-          <AuctionListing onNavigate={setCurrentPage} />
-        ) : currentPage === 'auction' ? (
-          <LiveAuction onNavigate={setCurrentPage} />
-        ) : currentPage === 'create-auction' ? (
-          <CreateAuction onNavigate={setCurrentPage} />
-        ) : currentPage === 'login' ? (
-          <Login onNavigate={setCurrentPage} />
-        ) : currentPage === 'checkout' ? (
-          <Checkout onNavigate={setCurrentPage} />
-        ) : currentPage === 'food-detail' ? (
-          <FoodDetail onNavigate={setCurrentPage} />
-        ) : currentPage === 'add-food' ? (
-          <AddFoodItem onNavigate={setCurrentPage} />
-        ) : currentPage === 'discovery' ? (
-          <CulturalDiscovery onNavigate={setCurrentPage} />
-        ) : currentPage === 'festival-home' ? (
-          <FestivalHome onNavigate={setCurrentPage} />
-        ) : (
-          <ProductDetail onNavigate={setCurrentPage} />
-        )}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/marketplace" element={<Marketplace onNavigate={handleNavigate} />} />
+          <Route path="/artisan" element={<ArtisanProfile onNavigate={handleNavigate} />} />
+          <Route path="/admin" element={<AdminDashboard onNavigate={handleNavigate} />} />
+          <Route path="/creator" element={<CreatorDashboard onNavigate={handleNavigate} />} />
+          <Route path="/sell-product" element={<SellProduct onNavigate={handleNavigate} />} />
+          <Route path="/auction-listing" element={<AuctionListing onNavigate={handleNavigate} />} />
+          <Route path="/auction" element={<LiveAuction onNavigate={handleNavigate} />} />
+          <Route path="/create-auction" element={<CreateAuction onNavigate={handleNavigate} />} />
+          <Route path="/login" element={<Login onNavigate={handleNavigate} />} />
+          <Route path="/checkout" element={<Checkout onNavigate={handleNavigate} />} />
+          <Route path="/food-detail" element={<FoodDetail onNavigate={handleNavigate} />} />
+          <Route path="/add-food" element={<AddFoodItem onNavigate={handleNavigate} />} />
+          <Route path="/discovery" element={<CulturalDiscovery onNavigate={handleNavigate} />} />
+          <Route path="/festival-home" element={<FestivalHome onNavigate={handleNavigate} />} />
+          <Route path="/product/:id" element={<ProductDetail onNavigate={handleNavigate} />} />
+          {/* Default fallback */}
+          <Route path="*" element={<ProductDetail onNavigate={handleNavigate} />} />
+        </Routes>
       </main>
-      <Footer onNavigate={setCurrentPage} />
+      <Footer onNavigate={handleNavigate} />
       <HumanAssistant />
     </div>
   );
