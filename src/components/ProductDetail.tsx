@@ -4,8 +4,10 @@ import { Star, Minus, Plus, ShoppingCart, Zap, Heart, Share2, ChevronLeft, Chevr
 import { ProductCard } from './FeaturedProducts';
 import { AuthenticityCertificate } from './AuthenticityCertificate';
 import { HandwrittenNote } from './HandwrittenNote';
+import { useToast } from '../ToastContext';
 
 export const ProductDetail = ({ onNavigate }: any) => {
+  const { showToast } = useToast();
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [isCertificateOpen, setIsCertificateOpen] = useState(false);
@@ -56,7 +58,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
           {/* Left: Image Gallery */}
           <div className="lg:col-span-7 space-y-6 relative">
             <div className="absolute top-8 left-8 z-10 flex flex-col gap-3">
-              <motion.span 
+              <motion.span
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="badge-indian shadow-premium backdrop-blur-md bg-white/80 border-white/50"
@@ -67,24 +69,24 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 "One of a kind"
               </HandwrittenNote>
             </div>
-            
+
             <div className="relative aspect-[4/5] rounded-[40px] overflow-hidden shadow-premium bg-white group">
               <AnimatePresence mode="wait">
-                <motion.img 
+                <motion.img
                   key={activeImage}
                   initial={{ opacity: 0, scale: 1.05 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  src={product.images[activeImage]} 
-                  alt={product.name} 
+                  src={product.images[activeImage]}
+                  alt={product.name}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
               </AnimatePresence>
-              
+
               <div className="absolute inset-y-0 left-6 flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <button 
+                <button
                   onClick={() => setActiveImage((prev) => (prev === 0 ? product.images.length - 1 : prev - 1))}
                   className="p-4 bg-white/90 backdrop-blur-md rounded-full hover:bg-white transition-all shadow-xl hover:scale-110"
                 >
@@ -92,28 +94,28 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 </button>
               </div>
               <div className="absolute inset-y-0 right-6 flex items-center opacity-0 group-hover:opacity-100 transition-opacity">
-                <button 
+                <button
                   onClick={() => setActiveImage((prev) => (prev === product.images.length - 1 ? 0 : prev + 1))}
                   className="p-4 bg-white/90 backdrop-blur-md rounded-full hover:bg-white transition-all shadow-xl hover:scale-110"
                 >
                   <ChevronRight className="w-6 h-6 text-primary" />
                 </button>
               </div>
-              
+
               {/* Image Indicators */}
               <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
                 {product.images.map((_, idx) => (
-                  <div 
+                  <div
                     key={idx}
                     className={`h-1.5 rounded-full transition-all duration-300 ${activeImage === idx ? 'w-8 bg-white' : 'w-1.5 bg-white/40'}`}
                   />
                 ))}
               </div>
             </div>
-            
+
             <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
               {product.images.map((img, idx) => (
-                <button 
+                <button
                   key={idx}
                   onClick={() => setActiveImage(idx)}
                   className={`flex-shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${activeImage === idx ? 'border-accent scale-105 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'}`}
@@ -131,7 +133,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <button 
+              <button
                 onClick={() => onNavigate('artisan')}
                 className="group inline-flex items-center gap-3 mb-6"
               >
@@ -143,13 +145,13 @@ export const ProductDetail = ({ onNavigate }: any) => {
                   <p className="text-primary font-display font-bold text-lg leading-none group-hover:text-accent transition-colors">{product.artisan}</p>
                 </div>
               </button>
-              
+
               <h1 className="text-5xl md:text-6xl font-display font-bold text-primary mb-4 leading-[1.1] tracking-tight">
                 {product.name}
               </h1>
 
               <div className="flex items-center gap-4 mb-8">
-                <button 
+                <button
                   onClick={() => setIsCertificateOpen(true)}
                   className="flex items-center gap-2 px-4 py-2 bg-accent/5 hover:bg-accent/10 text-accent rounded-full border border-accent/20 transition-all group"
                 >
@@ -162,7 +164,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 <span className="badge-indian !bg-accent/10 !text-accent !border-accent/20">Handmade</span>
                 <span className="badge-indian !bg-primary/5 !text-primary !border-primary/10">Traditional Craft</span>
               </div>
-              
+
               <div className="flex items-center gap-6 mb-8">
                 <div className="flex items-center gap-1 text-accent">
                   {[...Array(5)].map((_, i) => (
@@ -173,7 +175,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 <div className="h-4 w-[1px] bg-highlight/30" />
                 <span className="text-text-soft text-sm font-medium">{product.reviews} Patrons</span>
               </div>
-              
+
               <div className="mb-10">
                 <p className="text-5xl font-display font-bold text-primary">₹{product.price.toLocaleString()}</p>
                 <p className="text-text-soft text-sm mt-2">Inclusive of all taxes • Free shipping in India</p>
@@ -183,14 +185,14 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 <div className="flex items-center gap-8">
                   <span className="font-bold text-primary uppercase tracking-widest text-xs">Quantity</span>
                   <div className="flex items-center border-2 border-highlight/20 rounded-full p-1.5 bg-white/50 backdrop-blur-sm shadow-sm">
-                    <button 
+                    <button
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
                       className="p-2.5 hover:bg-accent/10 rounded-full transition-all text-primary"
                     >
                       <Minus className="w-4 h-4" />
                     </button>
                     <span className="w-12 text-center font-display font-bold text-xl text-primary">{quantity}</span>
-                    <button 
+                    <button
                       onClick={() => setQuantity(quantity + 1)}
                       className="p-2.5 hover:bg-accent/10 rounded-full transition-all text-primary"
                     >
@@ -200,15 +202,18 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <button className="flex-1 btn-primary flex items-center justify-center gap-3 !py-5 text-lg shadow-xl shadow-primary/20 group">
-                    <Zap className="w-6 h-6 group-hover:scale-110 transition-transform" /> 
+                  <button
+                    onClick={() => showToast('Order placed successfully! Redirecting to payment...')}
+                    className="flex-1 btn-primary flex items-center justify-center gap-3 !py-5 text-lg shadow-xl shadow-primary/20 group"
+                  >
+                    <Zap className="w-6 h-6 group-hover:scale-110 transition-transform" />
                     Buy Now
                   </button>
-                  <button 
+                  <button
                     onClick={() => onNavigate('auction')}
                     className="flex-1 btn-secondary flex items-center justify-center gap-3 !py-5 text-lg shadow-xl group"
                   >
-                    <Gavel className="w-6 h-6 group-hover:scale-110 transition-transform" /> 
+                    <Gavel className="w-6 h-6 group-hover:scale-110 transition-transform" />
                     Join Auction
                   </button>
                 </div>
@@ -257,7 +262,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
                   { img: 'https://picsum.photos/seed/process-2/400/400', caption: 'Detailed painting' },
                   { img: 'https://picsum.photos/seed/process-3/400/400', caption: 'Kiln firing' }
                 ].map((item, idx) => (
-                  <motion.div 
+                  <motion.div
                     key={idx}
                     whileHover={{ scale: 1.05, rotate: idx % 2 === 0 ? 2 : -2 }}
                     className="bg-white p-4 pb-10 shadow-xl rounded-sm border border-primary/5 relative"
@@ -278,7 +283,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
         {/* Craft Story Section */}
         <section className="mb-32 relative overflow-hidden rounded-[60px] bg-cream-dark p-12 md:p-24 border border-highlight/20">
           <div className="absolute inset-0 mandala-bg opacity-[0.02] pointer-events-none" />
-          
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
             <div>
               <div className="flex items-center gap-4 mb-8">
@@ -300,17 +305,17 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 </div>
               </div>
             </div>
-            
+
             <div className="relative">
               <div className="aspect-square rounded-[40px] overflow-hidden shadow-premium">
-                <img 
-                  src="https://picsum.photos/seed/artisan-working/800/800" 
-                  alt="Artisan at work" 
+                <img
+                  src="https://picsum.photos/seed/artisan-working/800/800"
+                  alt="Artisan at work"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 className="absolute -bottom-10 -left-10 right-10 glass-premium p-10 rounded-[32px] border-white/40"
@@ -394,7 +399,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 </div>
               </div>
             </div>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
                 { user: 'Priya M.', initial: 'PM', comment: "The blue pottery is exquisite. The colors are so vibrant and the finish is perfect. It looks stunning in my living room." },
@@ -431,7 +436,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
               </div>
               <h2 className="text-4xl font-display font-bold text-primary">Artisan's Collection</h2>
             </div>
-            <button 
+            <button
               onClick={() => onNavigate('artisan')}
               className="text-accent font-bold uppercase tracking-widest text-sm hover:tracking-[0.2em] transition-all"
             >
@@ -446,7 +451,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
         </section>
       </div>
 
-      <AuthenticityCertificate 
+      <AuthenticityCertificate
         isOpen={isCertificateOpen}
         onClose={() => setIsCertificateOpen(false)}
         productName={product.name}

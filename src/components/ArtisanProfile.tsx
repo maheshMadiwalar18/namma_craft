@@ -3,8 +3,11 @@ import { motion } from 'motion/react';
 import { MapPin, Star, Heart, MessageCircle, Share2, Palette, Hammer, Scissors, Coffee, Gem, Camera } from 'lucide-react';
 import { ProductCard } from './FeaturedProducts';
 import { HandwrittenNote } from './HandwrittenNote';
+import { useToast } from '../ToastContext';
 
 export const ArtisanProfile = ({ onNavigate }: any) => {
+  const { showToast } = useToast();
+  const [isFollowing, setIsFollowing] = React.useState(false);
   const artisanProducts = [
     { id: 1, name: 'Hand-Painted Blue Pottery Vase', artisan: 'Ananya Sharma', price: 2450, image: 'https://picsum.photos/seed/jaipur-pottery/600/800' },
     { id: 5, name: 'Cobalt Blue Ceramic Bowl', artisan: 'Ananya Sharma', price: 1250, image: 'https://picsum.photos/seed/blue-bowl/600/800' },
@@ -22,32 +25,32 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
       {/* Header Section */}
       <div className="relative">
         <div className="h-64 md:h-[450px] w-full overflow-hidden relative">
-          <img 
-            src="https://picsum.photos/seed/rajasthan-landscape/1920/800" 
-            alt="Artisan Workshop" 
+          <img
+            src="https://picsum.photos/seed/rajasthan-landscape/1920/800"
+            alt="Artisan Workshop"
             className="w-full h-full object-cover brightness-[0.85]"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-cream via-transparent to-transparent opacity-60" />
           <div className="absolute inset-0 mandala-bg opacity-[0.03]" />
         </div>
-        
+
         <div className="container mx-auto px-6">
           <div className="relative -mt-32 md:-mt-48 flex flex-col md:flex-row items-end gap-8 mb-16">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               className="w-48 h-48 md:w-72 md:h-72 rounded-full border-[12px] border-cream overflow-hidden shadow-premium z-10 relative group"
             >
-              <img 
-                src="https://picsum.photos/seed/indian-face/600/600" 
-                alt="Ananya Sharma" 
+              <img
+                src="https://picsum.photos/seed/indian-face/600/600"
+                alt="Ananya Sharma"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 border-4 border-white/20 rounded-full pointer-events-none" />
             </motion.div>
-            
+
             <div className="flex-1 pb-6">
               <div className="flex flex-wrap items-end justify-between gap-6">
                 <motion.div
@@ -65,7 +68,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                   <h1 className="text-5xl md:text-7xl font-display font-bold text-primary mb-4 tracking-tight">Ananya Sharma</h1>
                   <div className="flex flex-wrap items-center gap-6 text-text-soft">
                     <span className="flex items-center gap-2 font-medium bg-white/50 px-4 py-2 rounded-full border border-highlight/20 shadow-sm">
-                      <MapPin className="w-5 h-5 text-accent" /> 
+                      <MapPin className="w-5 h-5 text-accent" />
                       <span className="text-primary">Jaipur, Rajasthan, India</span>
                     </span>
                     <div className="flex items-center gap-2">
@@ -79,21 +82,21 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                     </div>
                   </div>
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
                   className="flex flex-wrap items-center gap-4"
                 >
-                  <button 
+                  <button
                     onClick={() => alert('Following Ananya Sharma!')}
                     className="btn-primary group"
                   >
                     <Heart className="w-5 h-5 group-hover:fill-white transition-colors" />
                     Follow Artisan
                   </button>
-                  <button 
+                  <button
                     onClick={() => alert('Opening message window...')}
                     className="btn-secondary !px-6 flex items-center gap-2 group"
                   >
@@ -142,7 +145,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                   "Cobalt blue is the color of my soul."
                 </HandwrittenNote>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
                 <div className="bg-white p-8 rounded-2xl border border-highlight/20 shadow-sm relative overflow-hidden group">
                   <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
@@ -180,7 +183,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                   { img: 'https://picsum.photos/seed/pottery-2/400/400', caption: 'Fine brush strokes' },
                   { img: 'https://picsum.photos/seed/pottery-3/400/400', caption: 'Final kiln check' }
                 ].map((item, idx) => (
-                  <motion.div 
+                  <motion.div
                     key={idx}
                     whileHover={{ scale: 1.05, rotate: idx % 2 === 0 ? 2 : -2 }}
                     className="bg-white p-4 pb-12 shadow-xl rounded-sm border border-primary/5 relative"
@@ -245,15 +248,15 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                   </div>
                 </div>
               </div>
-              
-              <button 
+
+              <button
                 onClick={() => alert('Opening message window...')}
                 className="w-full mt-10 btn-primary py-5 text-lg shadow-xl shadow-primary/20 flex items-center justify-center gap-3"
               >
-                <MessageCircle className="w-6 h-6" /> 
+                <MessageCircle className="w-6 h-6" />
                 Message Artisan
               </button>
-              
+
               <div className="mt-12">
                 <h4 className="text-sm font-bold text-primary mb-6 uppercase tracking-widest">Recent Reviews</h4>
                 <div className="space-y-6">
@@ -299,7 +302,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
               <button className="btn-secondary px-12 py-5 text-lg">Share Her Story</button>
             </div>
           </motion.div>
-          
+
           <HandwrittenNote className="absolute -bottom-10 right-20 hidden lg:block" rotation={10}>
             "Namaste from Jaipur!"
           </HandwrittenNote>
