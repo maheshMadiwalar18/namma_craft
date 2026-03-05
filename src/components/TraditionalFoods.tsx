@@ -8,7 +8,7 @@ const foods = [
     name: 'Mysore Pak',
     region: 'Karnataka Specialty',
     tag: 'Homemade',
-    image: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=800',
+    image: '/images/food/mysore-pak.png',
     desc: 'A rich, buttery sweet made from gram flour, ghee, and sugar.'
   },
   {
@@ -16,7 +16,7 @@ const foods = [
     name: 'Rajasthani Ghevar',
     region: 'Rajasthan Specialty',
     tag: 'Festival Special',
-    image: 'https://images.unsplash.com/photo-1605065522891-6b120ee659c4?auto=format&fit=crop&q=80&w=800',
+    image: '/images/food/ghevar.png',
     desc: 'A disc-shaped honeycomb sweet made from all-purpose flour and soaked in sugar syrup.'
   },
   {
@@ -24,7 +24,7 @@ const foods = [
     name: 'Malabar Parotta',
     region: 'Kerala Specialty',
     tag: 'Homemade',
-    image: 'https://images.unsplash.com/photo-1633337474564-1d9478ca4e2e?auto=format&fit=crop&q=80&w=800',
+    image: '/images/food/parotta.png',
     desc: 'Layered flatbread made from maida flour, popular in Southern India.'
   },
   {
@@ -32,7 +32,7 @@ const foods = [
     name: 'Hyderabadi Biryani',
     region: 'Telangana Specialty',
     tag: 'Festival Special',
-    image: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&q=80&w=800',
+    image: '/images/food/biryani.png',
     desc: 'A world-famous aromatic rice dish cooked with exotic spices and tender meat.'
   }
 ];

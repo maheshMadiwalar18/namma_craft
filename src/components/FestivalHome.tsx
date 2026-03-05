@@ -28,8 +28,8 @@ const decorCrafts = [
 ];
 
 const festivalFoods = [
-  { id: 1, name: 'Assorted Diwali Mithai Box', creator: 'Lakshmi Devi', price: 850, tag: 'Festival Special', image: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=800' },
-  { id: 2, name: 'Dry Fruit Gujiya', creator: 'Shanti Devi', price: 550, tag: 'Homemade', image: 'https://images.unsplash.com/photo-1621348332185-3b764b882250?auto=format&fit=crop&q=80&w=800' },
+  { id: 1, name: 'Assorted Diwali Mithai Box', creator: 'Lakshmi Devi', price: 850, tag: 'Festival Special', image: '/images/food/mysore-pak.png' },
+  { id: 2, name: 'Dry Fruit Gujiya', creator: 'Shanti Devi', price: 550, tag: 'Homemade', image: '/images/food/ghevar.png' },
 ];
 
 const giftBundles = [

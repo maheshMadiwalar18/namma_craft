@@ -98,9 +98,9 @@ export const Marketplace = ({ onNavigate }: any) => {
   ];
 
   const foodProducts = [
-    { id: 1, name: 'Authentic Mysore Pak', creator: 'Lakshmi Devi', price: 450, region: 'Mysore, Karnataka', tag: 'Homemade', image: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=800' },
-    { id: 2, name: 'Rajasthani Ghevar', creator: 'Shanti Devi', price: 650, region: 'Jaipur, Rajasthan', tag: 'Festival Special', image: 'https://images.unsplash.com/photo-1621348332185-3b764b882250?auto=format&fit=crop&q=80&w=800' },
-    { id: 3, name: 'Malabar Parotta (Pack of 5)', creator: 'Mariam Beevi', price: 180, region: 'Kozhikode, Kerala', tag: 'Homemade', image: 'https://images.unsplash.com/photo-1633337474564-1d9478ca4e2e?auto=format&fit=crop&q=80&w=800' },
+    { id: 1, name: 'Authentic Mysore Pak', creator: 'Lakshmi Devi', price: 450, region: 'Mysore, Karnataka', tag: 'Homemade', image: '/images/food/mysore-pak.png' },
+    { id: 2, name: 'Rajasthani Ghevar', creator: 'Shanti Devi', price: 650, region: 'Jaipur, Rajasthan', tag: 'Festival Special', image: '/images/food/ghevar.png' },
+    { id: 3, name: 'Malabar Parotta (Pack of 5)', creator: 'Mariam Beevi', price: 180, region: 'Kozhikode, Kerala', tag: 'Homemade', image: '/images/food/parotta.png' },
     { id: 4, name: 'Organic Lakadong Turmeric', creator: 'Kong Mary', price: 320, region: 'Jaintia Hills, Meghalaya', tag: 'Organic', image: 'https://images.unsplash.com/photo-1615485242273-038234676646?auto=format&fit=crop&q=80&w=800' },
     { id: 5, name: 'Hand-Pounded Red Rice', creator: 'Suresh Gowda', price: 240, region: 'Coorg, Karnataka', tag: 'Organic', image: 'https://images.unsplash.com/photo-1586201314853-272e2cf57f72?auto=format&fit=crop&q=80&w=800' },
     { id: 6, name: 'Spicy Mango Pickle', creator: 'Amma\'s Kitchen', price: 150, region: 'Guntur, AP', tag: 'Homemade', image: 'https://images.unsplash.com/photo-1601050633647-8f8f17a940f3?auto=format&fit=crop&q=80&w=800' },
