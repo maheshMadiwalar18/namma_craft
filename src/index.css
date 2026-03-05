@@ -40,6 +40,13 @@
   h1 { @apply text-[56px] font-bold; }
   h2 { @apply text-[40px] font-bold; }
   h3 { @apply text-[24px] font-semibold; }
+
+  /* Mobile responsive headings */
+  @media (max-width: 768px) {
+    h1 { font-size: 32px !important; }
+    h2 { font-size: 28px !important; }
+    h3 { font-size: 20px !important; }
+  }
 }
 
 @layer components {
@@ -77,6 +84,18 @@
 
   .container-custom {
     @apply max-w-[1280px] mx-auto px-8;
+  }
+
+  /* Mobile responsive spacing */
+  @media (max-width: 768px) {
+    .section-spacing {
+      padding-top: 48px !important;
+      padding-bottom: 48px !important;
+    }
+    .container-custom {
+      padding-left: 16px !important;
+      padding-right: 16px !important;
+    }
   }
 
   .badge-indian {
@@ -117,4 +136,38 @@
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* Mobile responsive navbar */
+@media (max-width: 768px) {
+  nav.glass-premium {
+    height: 64px !important;
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  nav .text-3xl {
+    font-size: 1.25rem !important;
+  }
+  nav .w-12.h-12 {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+/* Mobile responsive hero */
+@media (max-width: 768px) {
+  .text-\[72px\],
+  .text-\[100px\] {
+    font-size: 36px !important;
+  }
+  .text-2xl.leading-relaxed {
+    font-size: 1rem !important;
+  }
+}
+
+/* Mobile product grid */
+@media (max-width: 640px) {
+  .grid-cols-2 {
+    grid-template-columns: 1fr !important;
+  }
 }

@@ -6,11 +6,11 @@ import {
     onAuthStateChanged
 } from 'firebase/auth';
 import { auth, googleProvider } from './firebase';
-import { saveUserProfile, getUserProfile, UserProfile } from './db';
+import { saveUserProfile, getUserProfile } from './db';
 
 interface AuthContextType {
     user: User | null;
-    userProfile: UserProfile | null;
+    userProfile: any | null;
     loading: boolean;
     signInWithGoogle: (role?: string) => Promise<void>;
     logout: () => Promise<void>;
@@ -28,16 +28,20 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<User | null>(null);
-    const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+    const [userProfile, setUserProfile] = useState<any | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
             setUser(currentUser);
             if (currentUser) {
-                // Fetch user profile from Firestore
-                const profile = await getUserProfile(currentUser.uid);
-                setUserProfile(profile);
+                try {
+                    const profile = await getUserProfile(currentUser.uid);
+                    setUserProfile(profile);
+                } catch (e) {
+                    // Backend may not be running — that's ok
+                    console.log('Could not fetch profile from backend');
+                }
             } else {
                 setUserProfile(null);
             }
@@ -49,9 +53,20 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const signInWithGoogle = async (role: string = 'buyer') => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
-            // Save/update user profile in Firestore
-            const profile = await saveUserProfile(result.user, role);
-            setUserProfile(profile);
+            const u = result.user;
+            // Save user to MongoDB via backend API
+            try {
+                const profile = await saveUserProfile(
+                    u.uid,
+                    u.displayName || '',
+                    u.email || '',
+                    u.photoURL || '',
+                    role
+                );
+                setUserProfile(profile);
+            } catch (e) {
+                console.log('Backend not available, using Firebase auth only');
+            }
         } catch (error: any) {
             console.error('Google Sign-In Error:', error);
             throw error;
