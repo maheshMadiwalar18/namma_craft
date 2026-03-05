@@ -1,12 +1,14 @@
 import os
+import time
 import datetime
 
-# Commit message with time
-commit_message = "auto update - " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+while True:
+    print("Checking for changes...")
 
-# Git commands
-os.system("git add .")
-os.system(f'git commit -m "{commit_message}"')
-os.system("git push origin main")
+    os.system("git add .")
+    commit_message = "auto update - " + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    os.system(f'git commit -m "{commit_message}"')
+    os.system("git push origin main")
 
-print("✅ Code automatically pushed to GitHub!")
+    print("✅ Checked and pushed if changes exist")
+    time.sleep(60)  # checks every 60 seconds
