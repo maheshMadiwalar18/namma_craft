@@ -21,7 +21,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
   ];
 
   return (
-    <div className="bg-cream min-h-screen pb-20 selection:bg-accent/20">
+    <div className="bg-cream min-h-screen pb-4 selection:bg-accent/20">
       {/* Header Section */}
       <div className="relative">
         <div className="h-64 md:h-[450px] w-full overflow-hidden relative">
@@ -293,7 +293,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
       </div>
 
       {/* CTA Section */}
-      <section className="section-spacing mt-32 relative overflow-hidden">
+      <section className="section-spacing mt-16 pb-0 relative overflow-hidden">
         <div className="absolute inset-0 bg-primary/5 -z-10" />
         <div className="absolute inset-0 mandala-bg opacity-[0.05] -z-10" />
         <div className="container-custom text-center relative">

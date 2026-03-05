@@ -3,7 +3,7 @@ import { Instagram, Twitter, Facebook, Mail } from 'lucide-react';
 
 export const Footer = ({ onNavigate }: any) => {
   return (
-    <footer className="bg-primary text-cream pt-14 pb-8 relative overflow-hidden">
+    <footer className="bg-primary text-cream pt-8 pb-6 relative overflow-hidden">
       {/* Decorative Background */}
       <div className="absolute inset-0 mandala-bg opacity-[0.08] pointer-events-none" />
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />

@@ -32,7 +32,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
         return prev - 1;
       });
     }, 1000);
-    
+
     const watcherInterval = setInterval(() => {
       setWatchers(prev => prev + (Math.random() > 0.5 ? 1 : -1));
     }, 5000);
@@ -101,7 +101,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
     return (
       <div className="bg-cream min-h-screen flex items-center justify-center p-6 selection:bg-accent/20">
         <div className="absolute inset-0 mandala-bg opacity-[0.05] pointer-events-none" />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="max-w-2xl w-full bg-white rounded-[60px] p-12 md:p-20 shadow-premium text-center relative overflow-hidden"
@@ -116,7 +116,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
           <p className="text-xl text-text-soft mb-12 font-light">
             You won the <span className="text-primary font-bold">{product.name}</span>. This handcrafted masterpiece is now yours to cherish.
           </p>
-          
+
           <div className="bg-cream/50 rounded-3xl p-8 mb-12 border border-highlight/10">
             <div className="flex justify-between items-center mb-4">
               <span className="text-text-soft text-sm uppercase tracking-widest font-bold">Winning Bid</span>
@@ -129,13 +129,13 @@ export const LiveAuction = ({ onNavigate }: any) => {
           </div>
 
           <div className="space-y-6">
-            <button 
+            <button
               onClick={() => onNavigate('checkout')}
               className="w-full btn-primary !py-6 text-lg shadow-2xl shadow-primary/20"
             >
               Proceed to Checkout
             </button>
-            <button 
+            <button
               onClick={() => onNavigate('home')}
               className="w-full py-4 text-accent font-bold uppercase tracking-widest text-sm hover:tracking-[0.2em] transition-all"
             >
@@ -151,7 +151,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
     return (
       <div className="bg-cream min-h-screen flex items-center justify-center p-6 selection:bg-accent/20">
         <div className="absolute inset-0 mandala-bg opacity-[0.05] pointer-events-none" />
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="max-w-2xl w-full bg-white rounded-[60px] p-12 md:p-20 shadow-premium text-center relative overflow-hidden"
@@ -166,7 +166,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
           <p className="text-xl text-text-soft mb-12 font-light">
             The auction for <span className="text-primary font-bold">{product.name}</span> has concluded. Better luck next time!
           </p>
-          
+
           <div className="bg-cream/50 rounded-3xl p-8 mb-12 border border-highlight/10">
             <h3 className="text-xs font-bold uppercase tracking-widest text-text-soft mb-6 text-left">Recommended for You</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -186,13 +186,13 @@ export const LiveAuction = ({ onNavigate }: any) => {
           </div>
 
           <div className="space-y-6">
-            <button 
+            <button
               onClick={() => onNavigate('auction-listing')}
               className="w-full btn-primary !py-6 text-lg shadow-2xl shadow-primary/20"
             >
               Browse More Auctions
             </button>
-            <button 
+            <button
               onClick={() => onNavigate('home')}
               className="w-full py-4 text-accent font-bold uppercase tracking-widest text-sm hover:tracking-[0.2em] transition-all"
             >
@@ -205,11 +205,11 @@ export const LiveAuction = ({ onNavigate }: any) => {
   }
 
   return (
-    <div className="bg-cream min-h-screen pb-20 selection:bg-accent/20">
+    <div className="bg-cream min-h-screen pb-8 selection:bg-accent/20">
       {/* Notifications */}
       <AnimatePresence>
         {showConfirmation && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 20 }}
             exit={{ opacity: 0, y: -50 }}
@@ -220,7 +220,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
           </motion.div>
         )}
         {showOutbidWarning && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 20 }}
             exit={{ opacity: 0, y: -50 }}
@@ -235,7 +235,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
       <div className="container mx-auto px-6 py-12">
         {/* Header Navigation */}
         <div className="flex items-center justify-between mb-12">
-          <button 
+          <button
             onClick={() => onNavigate('auction-listing')}
             className="flex items-center gap-2 text-text-soft hover:text-primary transition-all group"
           >
@@ -244,7 +244,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
             </div>
             <span className="font-bold uppercase tracking-widest text-xs">Back to Auctions</span>
           </button>
-          
+
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2 px-4 py-2 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">
               <div className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse" />
@@ -260,19 +260,19 @@ export const LiveAuction = ({ onNavigate }: any) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left: Product Display */}
           <div className="lg:col-span-7 space-y-8">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="relative aspect-[4/5] rounded-[48px] overflow-hidden shadow-premium bg-white"
             >
-              <img 
-                src={product.image} 
-                alt={product.name} 
+              <img
+                src={product.image}
+                alt={product.name}
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              
+
               <div className="absolute top-8 left-8 flex flex-col gap-3">
                 <span className="badge-indian shadow-lg backdrop-blur-md bg-white/80 border-white/50">
                   {product.origin}
@@ -340,7 +340,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
                   <span className="text-xs font-bold uppercase tracking-widest">{formatTime(timeLeft)} Remaining</span>
                 </div>
                 <p className="text-text-soft text-sm font-medium uppercase tracking-widest mb-2">Current Highest Bid</p>
-                <motion.div 
+                <motion.div
                   key={currentBid}
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
@@ -359,8 +359,8 @@ export const LiveAuction = ({ onNavigate }: any) => {
 
                 <div className="relative">
                   <div className="absolute left-6 top-1/2 -translate-y-1/2 text-primary font-bold">₹</div>
-                  <input 
-                    type="number" 
+                  <input
+                    type="number"
                     value={bidAmount}
                     onChange={(e) => setBidAmount(e.target.value)}
                     placeholder={minNextBid.toString()}
@@ -368,14 +368,14 @@ export const LiveAuction = ({ onNavigate }: any) => {
                   />
                 </div>
 
-                <button 
+                <button
                   onClick={handlePlaceBid}
                   className="w-full btn-primary !py-6 text-lg shadow-2xl shadow-primary/30 group flex items-center justify-center gap-3"
                 >
                   <TrendingUp className="w-6 h-6 group-hover:scale-110 transition-transform" />
                   Place Your Bid
                 </button>
-                
+
                 <button className="w-full py-4 text-text-soft hover:text-primary transition-colors text-xs font-bold uppercase tracking-widest flex items-center justify-center gap-2">
                   <Zap className="w-4 h-4" /> Or Buy Now for ₹45,000
                 </button>
@@ -390,11 +390,11 @@ export const LiveAuction = ({ onNavigate }: any) => {
                     Real-time
                   </div>
                 </div>
-                
+
                 <div className="space-y-4 max-h-[300px] overflow-y-auto no-scrollbar">
                   <AnimatePresence initial={false}>
                     {bids.map((bid, idx) => (
-                      <motion.div 
+                      <motion.div
                         key={bid.id}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -420,7 +420,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
                 </div>
               </div>
             </div>
-            
+
             <div className="flex items-center justify-center gap-8">
               <button className="flex items-center gap-2 text-text-soft hover:text-accent transition-all text-xs font-bold uppercase tracking-widest">
                 <Heart className="w-4 h-4" /> Save Auction
