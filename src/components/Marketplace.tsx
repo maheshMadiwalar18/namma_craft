@@ -18,9 +18,9 @@ const FoodCard = ({ image, name, creator, price, region, tag, onNavigate }: any)
       whileHover={{ y: -8 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       onClick={() => onNavigate && onNavigate('food-detail')}
-      className="group cursor-pointer relative bg-white rounded-[32px] p-4 shadow-sm hover:shadow-premium transition-all duration-500 border border-highlight/10"
+      className="group cursor-pointer relative bg-white rounded-[20px] sm:rounded-[32px] p-2 sm:p-4 shadow-sm hover:shadow-premium transition-all duration-500 border border-highlight/10"
     >
-      <div className="relative aspect-[4/5] rounded-[24px] overflow-hidden mb-6">
+      <div className="relative aspect-[4/5] rounded-[16px] sm:rounded-[24px] overflow-hidden mb-3 sm:mb-6">
         <img
           src={image}
           alt={name}
@@ -63,17 +63,17 @@ const FoodCard = ({ image, name, creator, price, region, tag, onNavigate }: any)
       </div>
 
       <div className="px-2 pb-2 space-y-2">
-        <div className="flex justify-between items-start gap-2">
-          <h3 className="text-xl font-display font-bold text-primary leading-tight group-hover:text-accent transition-colors truncate">{name}</h3>
+        <div className="flex justify-between items-start gap-1 sm:gap-2">
+          <h3 className="text-sm sm:text-xl font-display font-bold text-primary leading-tight group-hover:text-accent transition-colors truncate">{name}</h3>
         </div>
-        <p className="text-sm text-text-soft font-medium flex items-center gap-2 italic">
-          <span className="w-4 h-[1px] bg-accent/30" />
+        <p className="text-[10px] sm:text-sm text-text-soft font-medium flex items-center gap-1 sm:gap-2 italic">
+          <span className="w-3 sm:w-4 h-[1px] bg-accent/30" />
           By {creator}
         </p>
         <div className="flex justify-between items-center pt-2">
-          <span className="text-2xl font-display font-bold text-primary">₹{price.toLocaleString()}</span>
-          <div className="w-8 h-8 rounded-full border border-highlight/20 flex items-center justify-center group-hover:border-accent group-hover:text-accent transition-all">
-            <ChevronRight className="w-4 h-4" />
+          <span className="text-base sm:text-2xl font-display font-bold text-primary">₹{price.toLocaleString()}</span>
+          <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-highlight/20 flex items-center justify-center group-hover:border-accent group-hover:text-accent transition-all">
+            <ChevronRight className="w-3 h-3 sm:w-4 h-4" />
           </div>
         </div>
       </div>
@@ -371,7 +371,7 @@ export const Marketplace = ({ onNavigate }: any) => {
 
           {/* Product Grid */}
           <div className="flex-1">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
               {paginatedProducts.map(product => (
                 activeTab === 'crafts'
                   ? <ProductCard key={product.id} {...product} onNavigate={onNavigate} />
