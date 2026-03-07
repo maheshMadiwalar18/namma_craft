@@ -4,12 +4,17 @@ import { Mail, Lock, ArrowRight, User, ShieldCheck } from 'lucide-react';
 import { useToast } from '../ToastContext';
 import { useAuth } from '../AuthContext';
 
-export const Login = ({ onNavigate }: any) => {
+export const Login = ({ onNavigate, initialMode = 'login' }: any) => {
   const { showToast } = useToast();
   const { user, signInWithGoogle, loading } = useAuth();
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(initialMode === 'login');
   const [role, setRole] = useState('buyer');
   const [isSigningIn, setIsSigningIn] = useState(false);
+
+  // Sync mode if it changes
+  React.useEffect(() => {
+    setIsLogin(initialMode === 'login');
+  }, [initialMode]);
 
   // If user is already authenticated, redirect
   React.useEffect(() => {

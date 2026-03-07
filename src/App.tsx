@@ -90,7 +90,8 @@ export default function App() {
           <Route path="/auction-listing" element={<AuctionListing onNavigate={handleNavigate} />} />
           <Route path="/auction" element={<LiveAuction onNavigate={handleNavigate} />} />
           <Route path="/create-auction" element={<CreateAuction onNavigate={handleNavigate} />} />
-          <Route path="/login" element={<Login onNavigate={handleNavigate} />} />
+          <Route path="/login" element={<Login onNavigate={handleNavigate} initialMode="login" />} />
+          <Route path="/signup" element={<Login onNavigate={handleNavigate} initialMode="signup" />} />
           <Route path="/checkout" element={<Checkout onNavigate={handleNavigate} />} />
           <Route path="/food-detail" element={<FoodDetail onNavigate={handleNavigate} />} />
           <Route path="/add-food" element={<AddFoodItem onNavigate={handleNavigate} />} />
