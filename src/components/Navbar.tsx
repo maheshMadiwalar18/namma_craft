@@ -106,7 +106,7 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
                   </div>
                 )}
                 <span className="text-xs font-bold text-primary truncate max-w-[80px]">
-                  {user.displayName?.split(' ')[0] || 'User'}
+                  {user.displayName ? user.displayName.split(' ')[0] : 'User'}
                 </span>
               </div>
               <div className="absolute top-full right-0 mt-1 w-40 bg-white rounded-xl shadow-premium border border-highlight/10 p-1.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
