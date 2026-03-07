@@ -16,14 +16,16 @@
 [![Firebase](https://img.shields.io/badge/Firebase_12-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Express](https://img.shields.io/badge/Express_4-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
-[![Google Gemini](https://img.shields.io/badge/Gemini_AI-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
-
-[![Google Gemini](https://img.shields.io/badge/Gemini_AI-4285F4?style=for-the-badge&logo=google&logoColor=white)](https://ai.google.dev/)
-[![Live Demo](https://img.shields.io/badge/Live_Demo-nammacraft.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://nammacraft.netlify.app/)
 
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-In_Development-orange?style=for-the-badge)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
+
+<br/>
+
+### 🌐 Live Demo
+
+[![Netlify](https://img.shields.io/badge/Visit_Live_Site-nammacraft.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://nammacraft.netlify.app/)
 
 <br/>
 
@@ -50,9 +52,9 @@ Explore crafts by region using an **interactive D3.js cultural map** of India. F
 Real-time bidding interface with countdown timers, watcher counts, outbid alerts, and an animated bid stream. Supports auction creation, management, and winner resolution.
 
 ### 🤖 AI-Powered Features
-- **Voice Listing (Gemini AI)** — Artisans describe their product by voice in any language; Gemini extracts structured product data automatically.
-- **AI Pricing Intelligence** — Market-aware price range suggestions with demand scoring.
-- **Human-style AI Assistant** — A conversational Gemini-powered chat assistant embedded sitewide.
+- **Voice Listing (Gemini AI)** — Artisans describe their product by voice; Gemini extracts structured product data (name, category, price, origin) via the `@google/genai` SDK.
+- **Pricing Suggestions** — Estimated price range and demand scoring based on product category and metadata.
+- **Sitewide Chat Assistant (Gemini AI)** — A Gemini-powered assistant embedded across the platform to guide buyers and sellers.
 
 ### 🛍️ Complete Buyer Experience
 Full cart → checkout → order tracking flow. Personalized product recommendations, wishlist/favorites, cultural gift bundles, and handwritten notes on orders.
@@ -148,7 +150,7 @@ namma_craft/
 | **Firebase Auth** | Google OAuth sign-in |
 | **Firebase Firestore** | Realtime data (supplemental) |
 | **Firebase Hosting** | Static hosting option |
-| **Google Gemini AI** | Voice listing, pricing AI, chat assistant |
+| **Google Gemini AI** | Voice-to-product listing, sitewide chat assistant |
 
 ---
 
@@ -311,7 +313,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 <br/>
 
-**Built with ❤️ to preserve India's artisan heritage by TeamSUPRA**
+**Built with ❤️ to preserve India's artisan heritage**
 
 <br/>
 
