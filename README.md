@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./logo.png" alt="NammaCraft Logo" width="360" />
+<img src="./logo.png" alt="NammaCraft Logo" width="150" />
 
 <br/>
 
