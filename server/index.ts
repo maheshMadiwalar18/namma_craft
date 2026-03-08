@@ -45,11 +45,25 @@ const authMiddleware = async (req: any, res: any, next: any) => {
     const token = req.headers.authorization?.split('Bearer ')[1];
     if (!token) return res.status(401).json({ error: 'Unauthorized: No token provided' });
     try {
-        req.user = await admin.auth().verifyIdToken(token);
+        const decodedToken = await admin.auth().verifyIdToken(token);
+        // Find user in DB to get their role
+        const user = await UserModel.findOne({ firebaseUid: decodedToken.uid });
+        if (!user) return res.status(401).json({ error: 'User profile not found' });
+
+        req.user = user; // Attach the actual user document from DB
         next();
-    } catch {
+    } catch (error) {
         res.status(401).json({ error: 'Unauthorized: Invalid token' });
     }
+};
+
+const checkRole = (allowedRoles: string[]) => {
+    return (req: any, res: any, next: any) => {
+        if (!req.user || !allowedRoles.includes(req.user.role)) {
+            return res.status(403).json({ error: 'Forbidden: Insufficient permissions' });
+        }
+        next();
+    };
 };
 
 // ============================================
@@ -107,6 +121,25 @@ app.get('/api/users/:uid', async (req, res) => {
 });
 
 // ============================================
+// ROLE-BASED ACCESS CONTROL (RBAC) EXAMPLES
+// ============================================
+
+// Admin Only Route
+app.get('/api/admin/stats', authMiddleware, checkRole(['admin']), (req, res) => {
+    res.json({ message: 'Welcome Admin', data: { totalUsers: 1250, revenue: 500000 } });
+});
+
+// Seller Only Route
+app.get('/api/seller/dashboard', authMiddleware, checkRole(['seller', 'admin']), (req, res) => {
+    res.json({ message: 'Welcome Artisan', data: { activeListings: 12, pendingOrders: 3 } });
+});
+
+// Buyer (Collector) Route
+app.get('/api/buyer/profile', authMiddleware, checkRole(['buyer', 'seller', 'admin']), (req, res) => {
+    res.json({ message: 'Welcome Collector', profile: req.user });
+});
+
+// ============================================
 // PRODUCT ROUTES
 // ============================================
 
@@ -141,8 +174,8 @@ app.get('/api/products/artisan/:artisanId', async (req, res) => {
     }
 });
 
-// Add a product (seller)
-app.post('/api/products', authMiddleware, async (req, res) => {
+// Add a product (seller only)
+app.post('/api/products', authMiddleware, checkRole(['seller', 'admin']), async (req, res) => {
     try {
         const product = await ProductModel.create(req.body);
         res.status(201).json(product);
@@ -151,8 +184,8 @@ app.post('/api/products', authMiddleware, async (req, res) => {
     }
 });
 
-// Update a product
-app.put('/api/products/:id', authMiddleware, async (req, res) => {
+// Update a product (seller only)
+app.put('/api/products/:id', authMiddleware, checkRole(['seller', 'admin']), async (req, res) => {
     try {
         const product = await ProductModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json(product);
@@ -161,8 +194,8 @@ app.put('/api/products/:id', authMiddleware, async (req, res) => {
     }
 });
 
-// Delete a product
-app.delete('/api/products/:id', authMiddleware, async (req, res) => {
+// Delete a product (seller only)
+app.delete('/api/products/:id', authMiddleware, checkRole(['seller', 'admin']), async (req, res) => {
     try {
         await ProductModel.findByIdAndDelete(req.params.id);
         res.json({ message: 'Product deleted' });
