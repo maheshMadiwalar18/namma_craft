@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { GoogleGenAI, Type } from '@google/genai';
 import rateLimit from 'express-rate-limit';
+import admin from 'firebase-admin';
 
 import { UserModel } from './models/User';
 import { ProductModel } from './models/Product';
@@ -23,7 +24,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://nammacraft.netlify.app'],
+    origin: ['http://localhost:3000', 'http://localhost:3001', 'https://nammacraft.netlify.app'],
     methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
     credentials: true,
 }));
@@ -31,6 +32,25 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI || '';
+
+// ============================================
+// FIREBASE ADMIN
+// ============================================
+if (!admin.apps.length) {
+    // Basic init since we are just decoding tokens. In production provide Google Application Credentials
+    admin.initializeApp();
+}
+
+const authMiddleware = async (req: any, res: any, next: any) => {
+    const token = req.headers.authorization?.split('Bearer ')[1];
+    if (!token) return res.status(401).json({ error: 'Unauthorized: No token provided' });
+    try {
+        req.user = await admin.auth().verifyIdToken(token);
+        next();
+    } catch {
+        res.status(401).json({ error: 'Unauthorized: Invalid token' });
+    }
+};
 
 // ============================================
 // CONNECT TO MONGODB
@@ -122,7 +142,7 @@ app.get('/api/products/artisan/:artisanId', async (req, res) => {
 });
 
 // Add a product (seller)
-app.post('/api/products', async (req, res) => {
+app.post('/api/products', authMiddleware, async (req, res) => {
     try {
         const product = await ProductModel.create(req.body);
         res.status(201).json(product);
@@ -132,7 +152,7 @@ app.post('/api/products', async (req, res) => {
 });
 
 // Update a product
-app.put('/api/products/:id', async (req, res) => {
+app.put('/api/products/:id', authMiddleware, async (req, res) => {
     try {
         const product = await ProductModel.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json(product);
@@ -142,7 +162,7 @@ app.put('/api/products/:id', async (req, res) => {
 });
 
 // Delete a product
-app.delete('/api/products/:id', async (req, res) => {
+app.delete('/api/products/:id', authMiddleware, async (req, res) => {
     try {
         await ProductModel.findByIdAndDelete(req.params.id);
         res.json({ message: 'Product deleted' });
@@ -156,7 +176,7 @@ app.delete('/api/products/:id', async (req, res) => {
 // ============================================
 
 // Place order
-app.post('/api/orders', async (req, res) => {
+app.post('/api/orders', authMiddleware, async (req, res) => {
     try {
         const order = await OrderModel.create(req.body);
         res.status(201).json(order);
@@ -166,7 +186,7 @@ app.post('/api/orders', async (req, res) => {
 });
 
 // Get orders by user
-app.get('/api/orders/user/:userId', async (req, res) => {
+app.get('/api/orders/user/:userId', authMiddleware, async (req, res) => {
     try {
         const orders = await OrderModel.find({ buyerId: req.params.userId }).sort({ createdAt: -1 });
         res.json(orders);
