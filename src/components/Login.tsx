@@ -29,7 +29,7 @@ export const Login = ({ onNavigate, initialMode = 'login' }: any) => {
       const uRole = userProfile.role || 'buyer';
       if (uRole === 'admin') onNavigate('admin');
       else if (uRole === 'seller') onNavigate('creator');
-      else onNavigate('marketplace'); // Redirect buyer to marketplace/dashboard
+      else onNavigate('buyer/dashboard'); // Redirect buyer to dashboard
     }
   }, [user, userProfile]);
 
@@ -51,7 +51,7 @@ export const Login = ({ onNavigate, initialMode = 'login' }: any) => {
         showToast(`Welcome ${uRole === 'seller' ? 'Artisan' : 'Collector'}, ${profile.displayName}!`);
         if (uRole === 'admin') onNavigate('admin');
         else if (uRole === 'seller') onNavigate('creator');
-        else onNavigate('marketplace');
+        else onNavigate('buyer/dashboard');
       }
     } catch (error: any) {
       if (error.code === 'auth/popup-closed-by-user') {

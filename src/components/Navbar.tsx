@@ -115,7 +115,7 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
                     const uRole = (useAuth() as any).userProfile?.role;
                     if (uRole === 'admin') onNavigate('admin');
                     else if (uRole === 'seller') onNavigate('creator');
-                    else onNavigate('marketplace');
+                    else onNavigate('buyer/dashboard');
                   }}
                   className="w-full text-left px-3 py-2 text-xs font-bold text-primary hover:bg-cream rounded-lg transition-colors"
                 >
