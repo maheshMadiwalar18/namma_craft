@@ -14,7 +14,7 @@ export const Recommendations = ({ onNavigate }: any) => {
   return (
     <section className="section-spacing bg-cream relative overflow-hidden">
       <div className="absolute inset-0 mandala-bg opacity-[0.03] pointer-events-none" />
-      
+
       <div className="container-custom relative z-10">
         <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
           <div className="max-w-xl">
@@ -25,7 +25,7 @@ export const Recommendations = ({ onNavigate }: any) => {
             <h2 className="text-4xl md:text-5xl font-display font-bold text-primary leading-tight">Recommended for Your Collection</h2>
             <p className="text-text-soft mt-4 text-lg font-light">Handpicked treasures from across India, tailored to your appreciation for authentic craftsmanship.</p>
           </div>
-          <button 
+          <button
             onClick={() => onNavigate('marketplace')}
             className="group flex items-center gap-3 text-accent font-bold uppercase tracking-widest text-sm hover:tracking-[0.2em] transition-all"
           >
@@ -39,19 +39,19 @@ export const Recommendations = ({ onNavigate }: any) => {
         <div className="relative group">
           <div className="flex overflow-x-auto pb-12 gap-10 no-scrollbar scroll-smooth -mx-4 px-4">
             {recommended.map((product, idx) => (
-              <motion.div 
-                key={product.id} 
+              <motion.div
+                key={product.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className="min-w-[300px] md:min-w-[380px]"
+                className="min-w-[180px] md:min-w-[380px]"
               >
                 <ProductCard {...product} onNavigate={onNavigate} />
               </motion.div>
             ))}
           </div>
-          
+
           {/* Decorative Elements */}
           <div className="absolute -top-12 -right-12 w-48 h-48 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute -bottom-12 -left-12 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none" />

@@ -37,7 +37,7 @@ export const GiftBundles = ({ onNavigate }: any) => {
   return (
     <section className="section-spacing bg-white relative overflow-hidden">
       <div className="absolute inset-0 mandala-bg opacity-[0.02] pointer-events-none" />
-      
+
       <div className="container-custom relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="max-w-2xl">
@@ -50,7 +50,7 @@ export const GiftBundles = ({ onNavigate }: any) => {
               Thoughtfully curated collections that bring together the best of Indian crafts and flavors in a premium gift experience.
             </p>
           </div>
-          <button 
+          <button
             onClick={() => onNavigate('marketplace')}
             className="btn-secondary !py-3 !px-8 text-xs uppercase tracking-widest flex items-center gap-2"
           >
@@ -58,12 +58,12 @@ export const GiftBundles = ({ onNavigate }: any) => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
           {bundles.map((bundle) => (
             <motion.div
               key={bundle.id}
               whileHover={{ y: -10 }}
-              className="group bg-cream/30 rounded-[48px] overflow-hidden border border-highlight/10 shadow-sm hover:shadow-premium transition-all duration-500 relative"
+              className="group bg-cream/30 rounded-[24px] md:rounded-[48px] overflow-hidden border border-highlight/10 shadow-sm hover:shadow-premium transition-all duration-500 relative"
             >
               {bundle.id === 2 && (
                 <div className="absolute -top-4 -right-4 z-20">
@@ -72,15 +72,15 @@ export const GiftBundles = ({ onNavigate }: any) => {
                   </HandwrittenNote>
                 </div>
               )}
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={bundle.image} 
-                  alt={bundle.name} 
+              <div className="relative h-40 md:h-64 overflow-hidden">
+                <img
+                  src={bundle.image}
+                  alt={bundle.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
-                
+
                 <div className="absolute top-6 left-6">
                   <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[9px] font-bold text-primary uppercase tracking-widest shadow-sm flex items-center gap-1.5">
                     <Sparkles className="w-3 h-3 text-accent" /> {bundle.tag}
@@ -91,13 +91,13 @@ export const GiftBundles = ({ onNavigate }: any) => {
                   <Heart className="w-4 h-4" />
                 </button>
 
-                <div className="absolute bottom-6 left-6 right-6 text-white">
-                  <p className="text-[10px] font-bold uppercase tracking-widest mb-1 opacity-80">Gift Experience</p>
-                  <h3 className="text-2xl font-display font-bold text-white leading-tight">{bundle.name}</h3>
+                <div className="absolute bottom-3 left-4 right-4 text-white">
+                  <p className="text-[8px] font-bold uppercase tracking-widest mb-0.5 opacity-80">Gift Experience</p>
+                  <h3 className="text-sm md:text-2xl font-display font-bold text-white leading-tight truncate">{bundle.name}</h3>
                 </div>
               </div>
 
-              <div className="p-8 space-y-6">
+              <div className="p-4 md:p-8 space-y-4 md:space-y-6">
                 <p className="text-text-soft text-sm leading-relaxed">
                   {bundle.description}
                 </p>
@@ -116,16 +116,16 @@ export const GiftBundles = ({ onNavigate }: any) => {
                   </ul>
                 </div>
 
-                <div className="pt-6 border-t border-highlight/10 flex items-center justify-between">
+                <div className="pt-4 md:pt-6 border-t border-highlight/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <div>
-                    <p className="text-[10px] text-text-soft uppercase tracking-widest font-bold mb-1">Bundle Price</p>
-                    <p className="text-2xl font-display font-bold text-primary">₹{bundle.price.toLocaleString()}</p>
+                    <p className="text-[8px] text-text-soft uppercase tracking-widest font-bold mb-0.5">Bundle Price</p>
+                    <p className="text-lg md:text-2xl font-display font-bold text-primary">₹{bundle.price.toLocaleString()}</p>
                   </div>
-                  <button 
+                  <button
                     onClick={() => onNavigate('product')}
-                    className="btn-primary !py-3 !px-6 text-[10px] uppercase tracking-widest flex items-center gap-2"
+                    className="w-full sm:w-auto btn-primary !py-2 !px-4 md:!py-3 md:!px-6 text-[8px] md:text-[10px] uppercase tracking-widest flex items-center justify-center gap-2"
                   >
-                    View Bundle <Gift className="w-4 h-4" />
+                    View Bundle <Gift className="w-3 h-3 md:w-4 md:h-4" />
                   </button>
                 </div>
               </div>
@@ -150,14 +150,14 @@ export const GiftBundles = ({ onNavigate }: any) => {
             </div>
           </div>
           <div className="lg:col-span-8">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               className="bg-primary rounded-[48px] p-12 text-white relative overflow-hidden"
             >
               <div className="absolute inset-0 mandala-bg opacity-[0.05] pointer-events-none" />
               <div className="absolute top-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl -mr-48 -mt-48" />
-              
+
               <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
                 <div className="max-w-xl text-center lg:text-left">
                   <h3 className="text-white text-3xl md:text-4xl mb-4">Create Your Own Heritage Box</h3>
@@ -165,7 +165,7 @@ export const GiftBundles = ({ onNavigate }: any) => {
                     Mix and match your favorite crafts and flavors to create a personalized gift that tells a unique story.
                   </p>
                 </div>
-                <button 
+                <button
                   onClick={() => onNavigate('marketplace')}
                   className="btn-accent !px-12 !py-5 whitespace-nowrap shadow-2xl shadow-accent/20"
                 >
