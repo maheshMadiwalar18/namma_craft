@@ -34,22 +34,37 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
+        // Fallback timeout to prevent infinite loading screen
+        const timeout = setTimeout(() => {
+            if (loading) {
+                console.warn('Auth state taking too long to resolve, timing out loading state...');
+                setLoading(false);
+            }
+        }, 8000); // 8 seconds timeout
+
         const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+            clearTimeout(timeout);
             setUser(currentUser);
             if (currentUser) {
                 try {
                     const profile = await getUserProfile(currentUser.uid);
                     setUserProfile(profile);
                 } catch (e) {
-                    // Backend may not be running — that's ok
-                    console.log('Could not fetch profile from backend');
+                    console.error('Could not fetch profile from backend:', e);
                 }
             } else {
                 setUserProfile(null);
             }
             setLoading(false);
+        }, (error) => {
+            console.error('onAuthStateChanged error:', error);
+            clearTimeout(timeout);
+            setLoading(false);
         });
-        return () => unsubscribe();
+        return () => {
+            unsubscribe();
+            clearTimeout(timeout);
+        };
     }, []);
 
     const signInWithGoogle = async (role: string = 'buyer', extraData: any = {}) => {
