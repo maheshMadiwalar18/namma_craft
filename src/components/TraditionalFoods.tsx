@@ -66,7 +66,7 @@ export const TraditionalFoods = ({ onNavigate }: any) => {
           </motion.button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {foods.map((food, idx) => (
             <motion.div
               key={food.id}
@@ -77,33 +77,33 @@ export const TraditionalFoods = ({ onNavigate }: any) => {
               whileHover={{ y: -10 }}
               className="group bg-white rounded-[32px] overflow-hidden border border-highlight/10 shadow-sm hover:shadow-premium transition-all"
             >
-              <div className="relative h-64 overflow-hidden">
+              <div className="relative h-48 md:h-64 overflow-hidden">
                 <img
                   src={food.image}
                   alt={food.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute top-4 left-4">
-                  <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-primary uppercase tracking-widest shadow-sm">
+                <div className="absolute top-3 left-3">
+                  <span className="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[8px] md:text-[10px] font-bold text-primary uppercase tracking-widest shadow-sm">
                     {food.tag}
                   </span>
                 </div>
-                <button className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-primary hover:text-rose-500 transition-colors shadow-sm">
-                  <Heart className="w-4 h-4" />
+                <button className="absolute top-3 right-3 w-8 h-8 md:w-10 md:h-10 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center text-primary hover:text-rose-500 transition-colors shadow-sm">
+                  <Heart className="w-3 h-3 md:w-4 md:h-4" />
                 </button>
               </div>
 
-              <div className="p-8">
+              <div className="p-4 md:p-8">
                 <div className="flex items-center gap-2 mb-2">
                   <Utensils className="w-3 h-3 text-accent" />
-                  <span className="text-[10px] font-bold text-accent uppercase tracking-widest">{food.region}</span>
+                  <span className="text-[8px] md:text-[10px] font-bold text-accent uppercase tracking-widest">{food.region}</span>
                 </div>
-                <h3 className="text-xl font-display font-bold text-primary mb-3 group-hover:text-accent transition-colors">{food.name}</h3>
-                <p className="text-text-soft text-sm line-clamp-2 mb-6 leading-relaxed italic">"{food.desc}"</p>
+                <h3 className="text-sm md:text-xl font-display font-bold text-primary mb-2 group-hover:text-accent transition-colors truncate">{food.name}</h3>
+                <p className="hidden md:block text-text-soft text-sm line-clamp-2 mb-6 leading-relaxed italic">"{food.desc}"</p>
 
                 <button
                   onClick={() => onNavigate('food-detail')}
-                  className="w-full py-4 bg-cream/50 rounded-2xl text-primary font-bold text-[10px] uppercase tracking-widest hover:bg-primary hover:text-white transition-all"
+                  className="w-full py-3 md:py-4 bg-cream/50 rounded-xl md:rounded-2xl text-primary font-bold text-[8px] md:text-[10px] uppercase tracking-widest hover:bg-primary hover:text-white transition-all"
                 >
                   View Details
                 </button>
