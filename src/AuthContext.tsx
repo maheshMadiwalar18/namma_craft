@@ -1,15 +1,16 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import {
-    User,
-    signInWithPopup,
-    signOut,
-    onAuthStateChanged
-} from 'firebase/auth';
-import { auth, googleProvider } from './firebase';
 import { saveUserProfile, getUserProfile } from './db';
 
+// Mock User interface to replace Firebase User
+interface MockUser {
+    uid: string;
+    displayName: string | null;
+    email: string | null;
+    photoURL: string | null;
+}
+
 interface AuthContextType {
-    user: User | null;
+    user: MockUser | null;
     userProfile: any | null;
     loading: boolean;
     signInWithGoogle: (role?: string, extraData?: any) => Promise<any>;
@@ -29,76 +30,92 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [user, setUser] = useState<User | null>(null);
+    const [user, setUser] = useState<MockUser | null>(null);
     const [userProfile, setUserProfile] = useState<any | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Fallback timeout to prevent infinite loading screen
-        const timeout = setTimeout(() => {
-            if (loading) {
-                console.warn('Auth state taking too long to resolve, timing out loading state...');
-                setLoading(false);
-            }
-        }, 8000); // 8 seconds timeout
-
-        const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
-            clearTimeout(timeout);
-            setUser(currentUser);
-            if (currentUser) {
+        const initAuth = async () => {
+            const savedUserJson = localStorage.getItem('nammacraft_user');
+            if (savedUserJson) {
                 try {
+                    const currentUser = JSON.parse(savedUserJson) as MockUser;
+                    setUser(currentUser);
                     const profile = await getUserProfile(currentUser.uid);
-                    setUserProfile(profile);
+                    if (profile && !profile.error) {
+                        setUserProfile(profile);
+                    } else {
+                        // If backend fails, use mock profile from user data
+                        setUserProfile({
+                            firebaseUid: currentUser.uid,
+                            displayName: currentUser.displayName,
+                            email: currentUser.email,
+                            photoURL: currentUser.photoURL,
+                            role: 'buyer'
+                        });
+                    }
                 } catch (e) {
-                    console.error('Could not fetch profile from backend:', e);
+                    console.error('Auth restoration failed:', e);
+                    localStorage.removeItem('nammacraft_user');
                 }
-            } else {
-                setUserProfile(null);
             }
             setLoading(false);
-        }, (error) => {
-            console.error('onAuthStateChanged error:', error);
-            clearTimeout(timeout);
-            setLoading(false);
-        });
-        return () => {
-            unsubscribe();
-            clearTimeout(timeout);
         };
+        initAuth();
     }, []);
 
     const signInWithGoogle = async (role: string = 'buyer', extraData: any = {}) => {
+        setLoading(true);
         try {
-            const result = await signInWithPopup(auth, googleProvider);
-            const u = result.user;
-            // Save user to MongoDB via backend API
-            const profile = await saveUserProfile(
-                u.uid,
-                extraData.displayName || u.displayName || '',
-                u.email || '',
-                u.photoURL || '',
-                role,
-                extraData.age,
-                extraData.location,
-                extraData.phone,
-                extraData.gender,
-                extraData.bio,
-                extraData.state
-            );
+            // Simulated delay
+            await new Promise(r => setTimeout(r, 1000));
 
-            // Check if profile has error from backend
-            if (profile && (profile.error || profile.message === 'Internal server error')) {
-                console.error('Backend returned profile error:', profile);
-                // Even with error, we set the profile state so component can decide what to do
-                setUserProfile(profile);
-                return profile;
+            // Create mock user data
+            const mockUid = 'user_' + Math.random().toString(36).substr(2, 9);
+            const mockUser: MockUser = {
+                uid: extraData.uid || mockUid,
+                displayName: extraData.displayName || 'Demo User',
+                email: extraData.email || 'demo@nammacraft.com',
+                photoURL: extraData.photoURL || `https://ui-avatars.com/api/?name=${extraData.displayName || 'Demo User'}&background=random`
+            };
+
+            // Attempt to save to backend
+            let profile;
+            try {
+                profile = await saveUserProfile(
+                    mockUser.uid,
+                    mockUser.displayName || '',
+                    mockUser.email || '',
+                    mockUser.photoURL || '',
+                    role,
+                    extraData.age,
+                    extraData.location,
+                    extraData.phone,
+                    extraData.gender,
+                    extraData.bio,
+                    extraData.state
+                );
+            } catch (e) {
+                console.warn('Backend not available for sync, using mock profile');
+                profile = {
+                    firebaseUid: mockUser.uid,
+                    displayName: mockUser.displayName,
+                    email: mockUser.email,
+                    photoURL: mockUser.photoURL,
+                    role: role,
+                    ...extraData
+                };
             }
 
+            setUser(mockUser);
             setUserProfile(profile);
+            localStorage.setItem('nammacraft_user', JSON.stringify(mockUser));
             return profile;
         } catch (error: any) {
-            console.error('Google Sign-In Error:', error);
+            console.error('Login Error:', error);
             throw error;
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -127,13 +144,9 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     };
 
     const logout = async () => {
-        try {
-            await signOut(auth);
-            setUserProfile(null);
-        } catch (error: any) {
-            console.error('Logout Error:', error);
-            throw error;
-        }
+        setUser(null);
+        setUserProfile(null);
+        localStorage.removeItem('nammacraft_user');
     };
 
     return (
