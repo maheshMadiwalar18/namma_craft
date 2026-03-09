@@ -27,8 +27,12 @@ export const Footer = ({ onNavigate }: any) => {
               A global stage for India's master artisans. Bridging traditional craftsmanship and modern living.
             </p>
             <div className="flex gap-3">
-              {[Instagram, Twitter, Facebook].map((Icon, idx) => (
-                <button key={idx} className="w-9 h-9 flex items-center justify-center bg-white/5 rounded-xl border border-white/10 hover:bg-accent hover:text-primary hover:border-accent transition-all duration-300">
+              {[{ Icon: Instagram, label: 'Instagram' }, { Icon: Twitter, label: 'Twitter' }, { Icon: Facebook, label: 'Facebook' }].map(({ Icon, label }, idx) => (
+                <button
+                  key={idx}
+                  className="w-9 h-9 flex items-center justify-center bg-white/5 rounded-xl border border-white/10 hover:bg-accent hover:text-primary hover:border-accent transition-all duration-300"
+                  aria-label={`Follow us on ${label}`}
+                >
                   <Icon className="w-4 h-4" />
                 </button>
               ))}
@@ -36,7 +40,7 @@ export const Footer = ({ onNavigate }: any) => {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-accent font-bold uppercase tracking-[0.2em] text-xs mb-4">Market</h4>
+            <h2 className="text-accent font-bold uppercase tracking-[0.2em] text-xs mb-4">Market</h2>
             <ul className="space-y-2 text-cream/60 text-sm font-medium">
               <li><button onClick={() => onNavigate && onNavigate('marketplace')} className="hover:text-accent transition-colors">New Arrivals</button></li>
               <li><button onClick={() => onNavigate && onNavigate('marketplace')} className="hover:text-accent transition-colors">Best Sellers</button></li>
@@ -46,7 +50,7 @@ export const Footer = ({ onNavigate }: any) => {
           </div>
 
           <div className="lg:col-span-2">
-            <h4 className="text-accent font-bold uppercase tracking-[0.2em] text-xs mb-4">Support</h4>
+            <h2 className="text-accent font-bold uppercase tracking-[0.2em] text-xs mb-4">Support</h2>
             <ul className="space-y-2 text-cream/60 text-sm font-medium">
               <li><button className="hover:text-accent transition-colors">Shipping</button></li>
               <li><button className="hover:text-accent transition-colors">Returns</button></li>
@@ -56,15 +60,20 @@ export const Footer = ({ onNavigate }: any) => {
           </div>
 
           <div className="lg:col-span-3">
-            <h4 className="text-accent font-bold uppercase tracking-[0.2em] text-xs mb-4">Newsletter</h4>
+            <h2 className="text-accent font-bold uppercase tracking-[0.2em] text-xs mb-4">Newsletter</h2>
             <p className="text-cream/60 mb-4 font-light text-sm">Join for exclusive previews and artisan tales.</p>
             <div className="relative group">
+              <label htmlFor="newsletter-email" className="sr-only">Newsletter Email</label>
               <input
+                id="newsletter-email"
                 type="email"
                 placeholder="Enter your email"
                 className="w-full bg-white/5 border border-white/10 rounded-xl py-3 pl-4 pr-14 focus:outline-none focus:border-accent transition-all text-sm placeholder:text-cream/20"
               />
-              <button className="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-accent text-primary rounded-lg flex items-center justify-center hover:bg-white transition-all">
+              <button
+                className="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-accent text-primary rounded-lg flex items-center justify-center hover:bg-white transition-all"
+                aria-label="Subscribe to newsletter"
+              >
                 <Mail className="w-4 h-4" />
               </button>
             </div>

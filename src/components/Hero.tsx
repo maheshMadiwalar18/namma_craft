@@ -85,6 +85,8 @@ export const Hero = ({ onNavigate }: any) => {
                   alt="Indian Pottery"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
+                  loading="eager"
+                  fetchPriority="high"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent" />
               </motion.div>

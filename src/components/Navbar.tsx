@@ -68,15 +68,20 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
         {/* Right: Search + Actions */}
         <div className="flex items-center gap-3">
           <div className="relative hidden xl:block w-52">
+            <label htmlFor="nav-search" className="sr-only">Search heritage products</label>
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-accent" />
             <input
+              id="nav-search"
               type="text"
               placeholder="Search..."
               className="w-full bg-cream/50 border border-transparent focus:border-accent/20 focus:bg-white rounded-full py-2 pl-9 pr-4 text-xs font-medium text-primary transition-all outline-none placeholder:text-text-soft/40"
             />
           </div>
 
-          <button className="p-2 hover:bg-accent/10 rounded-xl transition-all relative">
+          <button
+            className="p-2 hover:bg-accent/10 rounded-xl transition-all relative"
+            aria-label="View Shopping Bag"
+          >
             <ShoppingBag className="w-5 h-5 text-primary" />
             <span className="absolute top-1 right-1 w-4 h-4 bg-accent text-white text-[8px] font-bold flex items-center justify-center rounded-full border-2 border-white">2</span>
           </button>
