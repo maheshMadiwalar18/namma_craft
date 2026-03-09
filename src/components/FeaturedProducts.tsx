@@ -38,6 +38,7 @@ export const ProductCard = ({ id, image, name, artisan, price, region, rarity, s
           alt={name}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           referrerPolicy="no-referrer"
+          loading="lazy"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
@@ -66,6 +67,7 @@ export const ProductCard = ({ id, image, name, artisan, price, region, rarity, s
             showToast(isLiked ? 'Removed from favorites' : 'Added to favorites');
           }}
           className="absolute top-2 sm:top-4 right-2 sm:right-4 p-2 sm:p-3 bg-white/90 backdrop-blur-md rounded-full hover:bg-white transition-all z-10 shadow-lg hover:scale-110"
+          aria-label={isLiked ? "Remove from wishlist" : "Add to wishlist"}
         >
           <Heart className={`w-3 h-3 sm:w-4 sm:h-4 transition-colors ${isLiked ? 'fill-accent text-accent' : 'text-primary'}`} />
         </button>
