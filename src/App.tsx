@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
-import { Sparkles, ChevronRight } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 import { Suspense } from 'react';
 
 // Eagerly loaded components
@@ -76,7 +76,6 @@ function Home() {
       >
         <div className="absolute inset-0 mandala-bg opacity-[0.05]" />
         <div className="container-custom relative z-10 flex items-center justify-center gap-6">
-          <Sparkles className="w-5 h-5 text-accent animate-pulse" />
           <p className="text-white text-sm font-bold uppercase tracking-[0.3em]">
             Celebrate <span className="text-accent">Diwali</span> with our Exclusive Heritage Collection
           </p>
@@ -113,7 +112,7 @@ export default function App() {
   }, [location.pathname]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col font-sans">
       <Navbar onNavigate={handleNavigate} currentPage={currentPath} />
       <main className="flex-grow">
         <Suspense fallback={<LoadingSpinner />}>
