@@ -17,6 +17,8 @@ export const Login = ({ onNavigate, initialMode = 'login' }: any) => {
   const [gender, setGender] = useState('');
   const [state, setState] = useState('');
   const [bio, setBio] = useState('');
+  const [email, setEmail] = useState('');
+
 
   // Sync mode if it changes
   React.useEffect(() => {
@@ -43,6 +45,7 @@ export const Login = ({ onNavigate, initialMode = 'login' }: any) => {
     try {
       const authData = isLogin ? {} : {
         displayName: fullName,
+        email,
         age: age ? parseInt(age) : undefined,
         location,
         phone,
@@ -50,6 +53,7 @@ export const Login = ({ onNavigate, initialMode = 'login' }: any) => {
         state,
         bio
       };
+
 
       const profile = await signInWithGoogle(role, authData);
 
