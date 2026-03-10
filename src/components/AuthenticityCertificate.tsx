@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, ShieldCheck, Award, MapPin, User, Calendar, Hash, Sparkles, Package } from 'lucide-react';
+import { X, ShieldCheck, Award, MapPin, User, Calendar, Hash, Package } from 'lucide-react';
 
 interface AuthenticityCertificateProps {
   isOpen: boolean;
@@ -12,14 +12,14 @@ interface AuthenticityCertificateProps {
   dateIssued: string;
 }
 
-export const AuthenticityCertificate = ({ 
-  isOpen, 
-  onClose, 
-  productName, 
-  artisan, 
-  region, 
-  certificateId, 
-  dateIssued 
+export const AuthenticityCertificate = ({
+  isOpen,
+  onClose,
+  productName,
+  artisan,
+  region,
+  certificateId,
+  dateIssued
 }: AuthenticityCertificateProps) => {
   return (
     <AnimatePresence>
@@ -32,7 +32,7 @@ export const AuthenticityCertificate = ({
             onClick={onClose}
             className="absolute inset-0 bg-primary/40 backdrop-blur-md"
           />
-          
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9, y: 20, rotate: -1 }}
             animate={{ opacity: 1, scale: 1, y: 0, rotate: 0 }}
@@ -42,9 +42,9 @@ export const AuthenticityCertificate = ({
             {/* Certificate Background Pattern */}
             <div className="absolute inset-0 mandala-bg opacity-[0.05] pointer-events-none" />
             <div className="absolute inset-0 border-[20px] border-accent/5 pointer-events-none" />
-            
+
             <div className="relative z-10 p-12 flex flex-col items-center text-center">
-              <button 
+              <button
                 onClick={onClose}
                 className="absolute top-6 right-6 p-2 hover:bg-accent/10 rounded-full transition-colors"
               >
@@ -55,7 +55,7 @@ export const AuthenticityCertificate = ({
               <div className="mb-8 flex flex-col items-center">
                 <div className="w-20 h-20 bg-accent/10 rounded-full flex items-center justify-center text-accent mb-6 relative">
                   <Award className="w-10 h-10" />
-                  <motion.div 
+                  <motion.div
                     animate={{ rotate: 360 }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                     className="absolute inset-0 border-2 border-dashed border-accent/30 rounded-full"
@@ -63,9 +63,7 @@ export const AuthenticityCertificate = ({
                 </div>
                 <h2 className="text-4xl font-display font-bold text-primary mb-2">Certificate of Authenticity</h2>
                 <div className="flex items-center gap-2 text-accent">
-                  <Sparkles className="w-4 h-4" />
                   <span className="text-[10px] font-bold uppercase tracking-[0.3em]">Verified Heritage Craft</span>
-                  <Sparkles className="w-4 h-4" />
                 </div>
               </div>
 
@@ -90,7 +88,7 @@ export const AuthenticityCertificate = ({
                       <User className="w-3 h-3" />
                       <span className="text-[9px] font-bold uppercase tracking-widest">Master Artisan</span>
                     </div>
-                    <p className="text-primary font-handwriting text-3xl">{artisan}</p>
+                    <p className="text-primary font-hand text-3xl">{artisan}</p>
                   </div>
 
                   <div className="space-y-1">
@@ -138,16 +136,15 @@ export const AuthenticityCertificate = ({
 
               {/* Seal */}
               <div className="relative flex flex-col items-center">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, rotate: 5 }}
                   className="w-24 h-24 bg-accent rounded-full shadow-xl flex items-center justify-center text-white border-4 border-white relative overflow-hidden group cursor-pointer"
                 >
                   <div className="absolute inset-0 mandala-bg opacity-20 group-hover:rotate-90 transition-transform duration-1000" />
                   <ShieldCheck className="w-12 h-12 relative z-10" />
-                  {/* Stamped Effect Overlay */}
                   <div className="absolute inset-0 bg-white/10 mix-blend-overlay pointer-events-none" />
                 </motion.div>
-                <p className="mt-4 text-[10px] font-bold text-accent uppercase tracking-[0.4em] font-handwriting text-lg">Official Artisan Seal</p>
+                <p className="mt-4 text-[10px] font-bold text-accent uppercase tracking-[0.4em] font-hand text-lg">Official Artisan Seal</p>
               </div>
             </div>
           </motion.div>
