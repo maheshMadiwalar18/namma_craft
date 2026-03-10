@@ -135,27 +135,44 @@ export const getFavorites = async (userId: string) => {
 // CART
 // ============================================
 
-export const addToCart = async (userId: string, item: any) => {
+export const addToCart = async (item: any) => {
     const res = await fetch(`${API_URL}/cart`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId, ...item }),
+        headers: await getHeaders(),
+        body: JSON.stringify(item),
     });
     return res.json();
 };
 
-export const getCartItems = async (userId: string) => {
-    const res = await fetch(`${API_URL}/cart/${userId}`);
+export const getCartItems = async () => {
+    const res = await fetch(`${API_URL}/cart`, {
+        headers: await getHeaders()
+    });
     return res.json();
 };
 
-export const removeFromCart = async (userId: string, productId: string) => {
-    const res = await fetch(`${API_URL}/cart/${userId}/${productId}`, { method: 'DELETE' });
+export const updateCartQuantity = async (productId: string, quantity: number) => {
+    const res = await fetch(`${API_URL}/cart/${productId}`, {
+        method: 'PATCH',
+        headers: await getHeaders(),
+        body: JSON.stringify({ quantity }),
+    });
     return res.json();
 };
 
-export const clearCart = async (userId: string) => {
-    const res = await fetch(`${API_URL}/cart/${userId}`, { method: 'DELETE' });
+export const removeFromCart = async (productId: string) => {
+    const res = await fetch(`${API_URL}/cart/${productId}`, {
+        method: 'DELETE',
+        headers: await getHeaders()
+    });
+    return res.json();
+};
+
+export const clearCart = async () => {
+    const res = await fetch(`${API_URL}/cart`, {
+        method: 'DELETE',
+        headers: await getHeaders()
+    });
     return res.json();
 };
 

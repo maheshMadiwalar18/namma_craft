@@ -329,12 +329,18 @@ app.get('/api/favorites/:userId', async (req, res) => {
 // ============================================
 
 // Add to cart
-app.post('/api/cart', async (req, res) => {
+app.post('/api/cart', authMiddleware, checkRole(['buyer']), async (req: any, res: any) => {
     try {
-        const { userId, productId, name, price, quantity, image } = req.body;
+        const { productId, name, price, quantity, image } = req.body;
+        const userId = req.user.firebaseUid;
+
+        // Use atomic update to increment quantity if exists, otherwise insert
         const item = await CartModel.findOneAndUpdate(
             { userId, productId },
-            { userId, productId, name, price, quantity, image },
+            {
+                $inc: { quantity: quantity || 1 },
+                $setOnInsert: { userId, productId, name, price, image }
+            },
             { upsert: true, new: true }
         );
         res.json(item);
@@ -344,20 +350,39 @@ app.post('/api/cart', async (req, res) => {
 });
 
 // Get cart items
-app.get('/api/cart/:userId', async (req, res) => {
+app.get('/api/cart', authMiddleware, checkRole(['buyer']), async (req: any, res: any) => {
     try {
-        const items = await CartModel.find({ userId: req.params.userId });
+        const items = await CartModel.find({ userId: req.user.firebaseUid });
         res.json(items);
     } catch (error: any) {
         res.status(500).json({ error: 'Internal server error' });
     }
 });
 
+// Update quantity
+app.patch('/api/cart/:productId', authMiddleware, checkRole(['buyer']), async (req: any, res: any) => {
+    try {
+        const { quantity } = req.body;
+        if (quantity < 1) {
+            await CartModel.findOneAndDelete({ userId: req.user.firebaseUid, productId: req.params.productId });
+            return res.json({ message: 'Item removed from cart' });
+        }
+        const item = await CartModel.findOneAndUpdate(
+            { userId: req.user.firebaseUid, productId: req.params.productId },
+            { quantity },
+            { new: true }
+        );
+        res.json(item);
+    } catch (error: any) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+});
+
 // Remove from cart
-app.delete('/api/cart/:userId/:productId', async (req, res) => {
+app.delete('/api/cart/:productId', authMiddleware, checkRole(['buyer']), async (req: any, res: any) => {
     try {
         await CartModel.findOneAndDelete({
-            userId: req.params.userId,
+            userId: req.user.firebaseUid,
             productId: req.params.productId
         });
         res.json({ message: 'Removed from cart' });
@@ -367,9 +392,9 @@ app.delete('/api/cart/:userId/:productId', async (req, res) => {
 });
 
 // Clear cart
-app.delete('/api/cart/:userId', async (req, res) => {
+app.delete('/api/cart', authMiddleware, checkRole(['buyer']), async (req: any, res: any) => {
     try {
-        await CartModel.deleteMany({ userId: req.params.userId });
+        await CartModel.deleteMany({ userId: req.user.firebaseUid });
         res.json({ message: 'Cart cleared' });
     } catch (error: any) {
         res.status(500).json({ error: 'Internal server error' });
