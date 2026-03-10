@@ -14,7 +14,7 @@ interface HandwrittenNoteProps {
   delay?: number;
 }
 
-export function HandwrittenNote({ children, className, rotation = -2, delay = 0 }: HandwrittenNoteProps) {
+export const HandwrittenNote = ({ children, className, rotation = -2, delay = 0 }: Readonly<HandwrittenNoteProps>) => {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.9, rotate: rotation - 5 }}
@@ -29,4 +29,4 @@ export function HandwrittenNote({ children, className, rotation = -2, delay = 0 
       {children}
     </motion.div>
   );
-}
+};
