@@ -10,15 +10,6 @@ import {
   Sparkles,
   Mic,
   IndianRupee,
-  ArrowLeft,
-  Upload,
-  Camera,
-  Tag,
-  Info,
-  CheckCircle2,
-  Sparkles,
-  Mic,
-  IndianRupee,
   Plus,
   Package,
   ChevronRight,
@@ -296,7 +287,7 @@ export const SellProduct = ({ onNavigate }: any) => {
                       </div>
 
                       <div>
-                        <label htmlFor="prod-material" className="block text-[10px] font-bold uppercase tracking-widest text-text-soft mb-3">Material Used</label>
+                        <label htmlFor="prod-material" className="block text-[10px) font-bold uppercase tracking-widest text-text-soft mb-3">Material Used</label>
                         <input
                           id="prod-material"
                           type="text"
@@ -341,7 +332,7 @@ export const SellProduct = ({ onNavigate }: any) => {
             </AnimatePresence>
           </div>
 
-          {/* AI Insights Sidebar */}
+          {/* Heritage Insights Sidebar */}
           <div className="lg:col-span-4">
             <div className="sticky top-32 space-y-8">
               <div className="relative mb-12">

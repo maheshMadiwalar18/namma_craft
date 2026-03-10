@@ -22,7 +22,7 @@ export function HandwrittenNote({ children, className, rotation = -2, delay = 0 
       viewport={{ once: true }}
       transition={{ delay, duration: 0.5, type: 'spring' }}
       className={cn(
-        "inline-block font-handwriting text-primary text-sm leading-tight bg-white/90 backdrop-blur-sm p-1.5 px-3 rounded-md shadow-sm border border-primary/5",
+        "inline-block font-hand text-primary text-base leading-tight bg-[#fff9db] p-2 px-4 shadow-md border-b-2 border-r-2 border-amber-200/50",
         className
       )}
     >
