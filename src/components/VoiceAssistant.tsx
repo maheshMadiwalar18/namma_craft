@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mic, MicOff, Sparkles, RefreshCw, Check, X, Languages, Volume2 } from 'lucide-react';
+import { Mic, RefreshCw, Check, X, Languages, Volume2, Sparkles } from 'lucide-react';
 import { processVoiceInput } from '../db';
 
 interface VoiceAssistantProps {
@@ -14,14 +14,11 @@ export const VoiceAssistant = ({ onDataExtracted }: VoiceAssistantProps) => {
   const [extractedData, setExtractedData] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
 
-  // Simulated voice recording for demo purposes
   const startListening = () => {
     setIsListening(true);
     setError(null);
     setExtractedData(null);
 
-    // In a real app, we'd use Web Speech API or record audio
-    // For this demo, we'll simulate a transcript after 3 seconds
     setTimeout(() => {
       setIsListening(false);
       const mockTranscripts = [
@@ -31,18 +28,18 @@ export const VoiceAssistant = ({ onDataExtracted }: VoiceAssistantProps) => {
       ];
       const randomTranscript = mockTranscripts[Math.floor(Math.random() * mockTranscripts.length)];
       setTranscript(randomTranscript);
-      processWithAI(randomTranscript);
+      processWithSupport(randomTranscript);
     }, 3000);
   };
 
-  const processWithAI = async (text: string) => {
+  const processWithSupport = async (text: string) => {
     setIsProcessing(true);
     try {
       const data = await processVoiceInput(text);
       setExtractedData(data);
     } catch (err) {
-      console.error("AI Processing Error:", err);
-      setError("Failed to process voice input. Please try again.");
+      console.error("Processing Error:", err);
+      setError("We couldn't catch that. Please try sharing the details again.");
     } finally {
       setIsProcessing(false);
     }
@@ -62,10 +59,10 @@ export const VoiceAssistant = ({ onDataExtracted }: VoiceAssistantProps) => {
         <div className="space-y-2">
           <div className="flex items-center justify-center gap-2 text-accent mb-2">
             <Sparkles className="w-5 h-5" />
-            <h4 className="font-display font-bold text-xl">Voice Upload Assistant</h4>
+            <h4 className="font-display font-bold text-xl">Artisan Voice Support</h4>
           </div>
           <p className="text-text-soft text-sm max-w-md">
-            Describe your product naturally. Our AI will detect the details, region, and story for you.
+            Tell us about your masterpiece in your own words. We'll help draft the details and the story.
           </p>
         </div>
 
@@ -102,7 +99,7 @@ export const VoiceAssistant = ({ onDataExtracted }: VoiceAssistantProps) => {
                 <div className="w-24 h-24 bg-primary/5 text-primary rounded-full flex items-center justify-center">
                   <RefreshCw className="w-10 h-10 animate-spin" />
                 </div>
-                <p className="mt-6 text-primary font-bold uppercase tracking-widest text-[10px]">AI is crafting your listing...</p>
+                <p className="mt-6 text-primary font-bold uppercase tracking-widest text-[10px]">Polishing your listing...</p>
               </motion.div>
             ) : (
               <motion.div
@@ -117,7 +114,7 @@ export const VoiceAssistant = ({ onDataExtracted }: VoiceAssistantProps) => {
                 >
                   <Mic className="w-10 h-10 group-hover:scale-110 transition-transform" />
                 </button>
-                <p className="mt-6 text-text-soft font-bold uppercase tracking-widest text-[10px]">Tap to start describing</p>
+                <p className="mt-6 text-text-soft font-bold uppercase tracking-widest text-[10px]">Tap to share your story</p>
               </motion.div>
             )}
           </AnimatePresence>
@@ -131,7 +128,7 @@ export const VoiceAssistant = ({ onDataExtracted }: VoiceAssistantProps) => {
           >
             <div className="flex items-center gap-2 mb-3 text-text-soft">
               <Volume2 className="w-4 h-4" />
-              <span className="text-[10px] font-bold uppercase tracking-widest">Captured Transcript</span>
+              <span className="text-[10px] font-bold uppercase tracking-widest">Shared Details</span>
             </div>
             <p className="text-sm text-primary italic leading-relaxed">"{transcript}"</p>
           </motion.div>
@@ -147,7 +144,7 @@ export const VoiceAssistant = ({ onDataExtracted }: VoiceAssistantProps) => {
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2 text-emerald-600">
                   <Check className="w-4 h-4" />
-                  <span className="text-[10px] font-bold uppercase tracking-widest">AI Extraction Successful</span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest">Details Ready</span>
                 </div>
                 {extractedData.language && (
                   <div className="flex items-center gap-1.5 px-2 py-1 bg-white rounded-lg text-[9px] font-bold text-text-soft uppercase tracking-widest shadow-sm">
@@ -170,13 +167,13 @@ export const VoiceAssistant = ({ onDataExtracted }: VoiceAssistantProps) => {
                   <p className="text-sm font-bold text-primary">{extractedData.origin}</p>
                 </div>
                 <div>
-                  <p className="text-[9px] font-bold text-text-soft uppercase tracking-widest mb-1">Start Price</p>
+                  <p className="text-[9px] font-bold text-text-soft uppercase tracking-widest mb-1">Price Start</p>
                   <p className="text-sm font-bold text-accent">₹{extractedData.startPrice}</p>
                 </div>
               </div>
 
               <div className="mt-4 pt-4 border-t border-emerald-100">
-                <p className="text-[9px] font-bold text-text-soft uppercase tracking-widest mb-1">Extracted Story</p>
+                <p className="text-[9px] font-bold text-text-soft uppercase tracking-widest mb-1">Heritage Story</p>
                 <p className="text-xs text-primary line-clamp-2 leading-relaxed">{extractedData.craftStory}</p>
               </div>
             </div>
@@ -192,7 +189,7 @@ export const VoiceAssistant = ({ onDataExtracted }: VoiceAssistantProps) => {
                 onClick={handleConfirm}
                 className="flex-1 py-4 bg-primary text-white rounded-2xl text-[10px] font-bold uppercase tracking-widest shadow-lg shadow-primary/20 hover:bg-primary-light transition-all flex items-center justify-center gap-2"
               >
-                <Check className="w-4 h-4" /> Use These Details
+                <Check className="w-4 h-4" /> Looks Perfect
               </button>
             </div>
           </motion.div>
