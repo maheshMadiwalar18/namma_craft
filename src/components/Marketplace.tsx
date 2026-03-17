@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Search, ChevronDown, Filter, X, ShoppingBag, Heart, ChevronRight, Utensils, Leaf } from 'lucide-react';
+import { Search, ChevronDown, Filter, X, ShoppingBag, Heart, ChevronRight, Utensils } from 'lucide-react';
 import { ProductCard } from './FeaturedProducts';
 import { motion, AnimatePresence } from 'motion/react';
 import { useToast } from '../ToastContext';
+import { useCart } from '../CartContext';
 
 import {
   craftCategories,
@@ -13,15 +14,16 @@ import {
   foodProducts
 } from '../data/marketplace';
 
-const FoodCard = ({ image, name, creator, price, region, tag, onNavigate }: any) => {
+const FoodCard = ({ id, image, name, creator, price, region, tag, onNavigate }: any) => {
   const { showToast } = useToast();
+  const { addToCart } = useCart();
   const [isLiked, setIsLiked] = useState(false);
 
   return (
     <motion.div
       whileHover={{ y: -8 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      onClick={() => onNavigate && onNavigate('food-detail')}
+      onClick={() => onNavigate?.('food-detail')}
       className="group cursor-pointer relative bg-white rounded-[20px] sm:rounded-[32px] p-2 sm:p-4 shadow-sm hover:shadow-premium transition-all duration-500 border border-highlight/10"
     >
       <div className="relative aspect-[4/5] rounded-[16px] sm:rounded-[24px] overflow-hidden mb-3 sm:mb-6">
@@ -57,7 +59,15 @@ const FoodCard = ({ image, name, creator, price, region, tag, onNavigate }: any)
           <button
             onClick={(e) => {
               e.stopPropagation();
-              showToast('Added to your cart!');
+              addToCart({
+                id: id || `food_${name.toLowerCase().replaceAll(/\s/g, '_')}`,
+                image,
+                name,
+                artisan: creator,
+                price,
+                region,
+                tag
+              });
             }}
             className="w-full btn-primary !py-3 text-xs flex items-center justify-center gap-2 shadow-xl"
           >
@@ -134,7 +144,7 @@ export const Marketplace = ({ onNavigate }: any) => {
     const matchesMaterial = selectedMaterials.length === 0 ||
       (activeTab === 'crafts'
         ? selectedMaterials.some(m => p.material?.includes(m) || p.name.includes(m))
-        : selectedMaterials.some(m => p.tag === m));
+        : selectedMaterials.includes(p.tag));
 
     return matchesSearch && matchesCategory && matchesRegion && matchesMaterial && p.price <= priceRange;
   }).sort((a: any, b: any) => {
@@ -271,7 +281,7 @@ export const Marketplace = ({ onNavigate }: any) => {
                   min="0"
                   max={activeTab === 'crafts' ? 10000 : 2000}
                   value={priceRange}
-                  onChange={(e) => { setPriceRange(parseInt(e.target.value)); setCurrentPage(1); }}
+                  onChange={(e) => { setPriceRange(Number.parseInt(e.target.value)); setCurrentPage(1); }}
                   className="w-full accent-accent h-1.5 bg-primary/5 rounded-full appearance-none cursor-pointer"
                 />
                 <div className="flex justify-between mt-4 text-sm font-bold text-primary">
@@ -357,13 +367,13 @@ export const Marketplace = ({ onNavigate }: any) => {
                   ←
                 </button>
                 <div className="flex gap-2">
-                  {Array.from({ length: totalPages }, (_, i) => i + 1).map(n => (
+                  {Array.from({ length: totalPages }).map((_, i) => (
                     <button
-                      key={n}
-                      onClick={() => setCurrentPage(n)}
-                      className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm transition-all ${n === currentPage ? 'bg-primary text-white shadow-lg' : 'bg-white text-primary border border-primary/5 hover:border-accent'}`}
+                      key={`page-${i + 1}`}
+                      onClick={() => setCurrentPage(i + 1)}
+                      className={`w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm transition-all ${i + 1 === currentPage ? 'bg-primary text-white shadow-lg' : 'bg-white text-primary border border-primary/5 hover:border-accent'}`}
                     >
-                      {n}
+                      {i + 1}
                     </button>
                   ))}
                 </div>
@@ -465,7 +475,7 @@ export const Marketplace = ({ onNavigate }: any) => {
                     min="0"
                     max={activeTab === 'crafts' ? 10000 : 2000}
                     value={priceRange}
-                    onChange={(e) => { setPriceRange(parseInt(e.target.value)); setCurrentPage(1); }}
+                    onChange={(e) => { setPriceRange(Number.parseInt(e.target.value)); setCurrentPage(1); }}
                     className="w-full accent-accent h-1.5 bg-primary/5 rounded-full appearance-none cursor-pointer"
                   />
                   <div className="flex justify-between mt-4 text-[10px] font-bold text-primary">

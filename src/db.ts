@@ -1,11 +1,11 @@
 import { auth } from './firebase';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
-if (typeof window !== 'undefined' &&
-    window.location.hostname !== 'localhost' &&
-    window.location.hostname !== '127.0.0.1' &&
+if (globalThis.window !== undefined &&
+    globalThis.window.location.hostname !== 'localhost' &&
+    globalThis.window.location.hostname !== '127.0.0.1' &&
     API_URL.includes('localhost')) {
-    console.warn("⚠️ Warning: Your frontend is hosted at " + window.location.hostname + " but is trying to connect to a backend on localhost. This will likely fail in production. Set VITE_API_URL to your deployed backend URL.");
+    console.warn("⚠️ Warning: Your frontend is hosted at " + globalThis.window.location.hostname + " but is trying to connect to a backend on localhost. This will likely fail in production. Set VITE_API_URL to your deployed backend URL.");
 }
 
 const getHeaders = async () => {
@@ -21,11 +21,11 @@ const getHeaders = async () => {
 // USER
 // ============================================
 
-export const saveUserProfile = async (firebaseUid: string, displayName: string, email: string, photoURL: string, role: string, age?: number, location?: string, phone?: string, gender?: string, bio?: string, state?: string) => {
+export const saveUserProfile = async (userData: any) => {
     const res = await fetch(`${API_URL}/users`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firebaseUid, displayName, email, photoURL, role, age, location, phone, gender, bio, state }),
+        body: JSON.stringify(userData),
     });
     return res.json();
 };

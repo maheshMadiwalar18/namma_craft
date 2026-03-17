@@ -53,6 +53,7 @@ const authMiddleware = async (req: any, res: any, next: any) => {
         req.user = user; // Attach the actual user document from DB
         next();
     } catch (error) {
+        console.error('Auth Middleware Error:', error);
         res.status(401).json({ error: 'Unauthorized: Invalid token' });
     }
 };
@@ -78,9 +79,15 @@ const checkOwnership = (userIdParam: string) => {
 // ============================================
 // CONNECT TO MONGODB
 // ============================================
-mongoose.connect(MONGO_URI)
-    .then(() => console.log('✅ Connected to MongoDB Atlas'))
-    .catch((err) => console.error('❌ MongoDB connection error:', err));
+const connectDB = async () => {
+    try {
+        await mongoose.connect(MONGO_URI);
+        console.log('✅ Connected to MongoDB Atlas');
+    } catch (err) {
+        console.error('❌ MongoDB connection error:', err);
+    }
+};
+connectDB();
 
 // ============================================
 // USER ROUTES
@@ -91,26 +98,24 @@ app.post('/api/users', async (req, res) => {
     try {
         const { firebaseUid, displayName, email, photoURL, role, age, location, phone, gender, bio, state } = req.body;
 
-        // Prevent role escalation to admin
         const safeRole = (role === 'seller' || role === 'buyer') ? role : 'buyer';
+
+        const updateData: any = { displayName, photoURL, email };
+        if (age) updateData.age = age;
+        if (location) updateData.location = location;
+        if (phone) updateData.phone = phone;
+        if (gender) updateData.gender = gender;
+        if (bio) updateData.bio = bio;
+        if (state) updateData.state = state;
 
         let user = await UserModel.findOne({ firebaseUid });
         if (user) {
-            user.displayName = displayName;
-            user.photoURL = photoURL;
-            // Admin role should not be updated from client request
-            if (user.role !== 'admin') {
-                user.role = safeRole;
-            }
-            if (age) user.age = age;
-            if (location) user.location = location;
-            if (phone) user.phone = phone;
-            if (gender) user.gender = gender;
-            if (bio) user.bio = bio;
-            if (state) user.state = state;
-            await user.save();
+            if (user.role !== 'admin') updateData.role = safeRole;
+            user = await UserModel.findOneAndUpdate({ firebaseUid }, updateData, { new: true });
         } else {
-            user = await UserModel.create({ firebaseUid, displayName, email, photoURL, role: safeRole, age, location, phone, gender, bio, state });
+            updateData.firebaseUid = firebaseUid;
+            updateData.role = safeRole;
+            user = await UserModel.create(updateData);
         }
         res.json(user);
     } catch (error: any) {
@@ -145,7 +150,7 @@ app.get('/api/seller/dashboard', authMiddleware, checkRole(['seller', 'admin']),
 
 // Buyer (Collector) Route
 app.get('/api/buyer/profile', authMiddleware, checkRole(['buyer', 'seller', 'admin']), (req, res) => {
-    res.json({ message: 'Welcome Collector', profile: req.user });
+    res.json({ message: 'Welcome Collector', profile: (req as any).user });
 });
 
 // ============================================
@@ -331,15 +336,15 @@ app.get('/api/favorites/:userId', async (req, res) => {
 // Add to cart
 app.post('/api/cart', authMiddleware, checkRole(['buyer']), async (req: any, res: any) => {
     try {
-        const { productId, name, price, quantity, image } = req.body;
+        const { productId, name, artisan, price, quantity, image } = req.body;
         const userId = req.user.firebaseUid;
 
         // Use atomic update to increment quantity if exists, otherwise insert
         const item = await CartModel.findOneAndUpdate(
             { userId, productId },
             {
-                $inc: { quantity: quantity || 1 },
-                $setOnInsert: { userId, productId, name, price, image }
+                $inc: { quantity: Number.parseInt(quantity) || 1 },
+                $setOnInsert: { userId, productId, name, artisan, price, image }
             },
             { upsert: true, new: true }
         );

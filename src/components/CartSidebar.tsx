@@ -10,16 +10,16 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRe
       {isOpen && (
         <>
           {/* Backdrop */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
             className="fixed inset-0 bg-primary/40 backdrop-blur-sm z-[60]"
           />
-          
+
           {/* Sidebar */}
-          <motion.div 
+          <motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -36,7 +36,7 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRe
                   <p className="text-xs text-text-soft font-bold uppercase tracking-widest">{cartItems.length} Items</p>
                 </div>
               </div>
-              <button 
+              <button
                 onClick={onClose}
                 className="p-3 hover:bg-cream rounded-2xl transition-all group"
               >
@@ -54,7 +54,7 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRe
                     <h3 className="text-xl font-display font-bold text-primary mb-2">Your collection is empty</h3>
                     <p className="text-sm text-text-soft max-w-[240px] mx-auto">Discover unique handcrafted treasures to add to your heritage collection.</p>
                   </div>
-                  <button 
+                  <button
                     onClick={() => { onClose(); onNavigate('marketplace'); }}
                     className="btn-primary !py-4 !px-8 text-xs uppercase tracking-widest"
                   >
@@ -63,15 +63,15 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRe
                 </div>
               ) : (
                 cartItems.map((item: any) => (
-                  <motion.div 
+                  <motion.div
                     layout
-                    key={item.id}
+                    key={item.productId}
                     className="flex gap-6 p-4 bg-white rounded-3xl border border-highlight/5 shadow-sm group"
                   >
                     <div className="w-24 h-24 rounded-2xl overflow-hidden flex-shrink-0">
-                      <img 
-                        src={item.image} 
-                        alt={item.name} 
+                      <img
+                        src={item.image}
+                        alt={item.name}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                         referrerPolicy="no-referrer"
                       />
@@ -83,25 +83,25 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRe
                       </div>
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3 bg-cream/50 rounded-xl p-1">
-                          <button 
-                            onClick={() => onUpdateQuantity(item.id, Math.max(1, item.quantity - 1))}
+                          <button
+                            onClick={() => onUpdateQuantity(item.productId, Math.max(1, item.quantity - 1))}
                             className="p-1 hover:bg-white rounded-lg transition-all"
                           >
                             <Minus className="w-3 h-3 text-primary" />
                           </button>
                           <span className="text-xs font-bold text-primary w-4 text-center">{item.quantity}</span>
-                          <button 
-                            onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                          <button
+                            onClick={() => onUpdateQuantity(item.productId, item.quantity + 1)}
                             className="p-1 hover:bg-white rounded-lg transition-all"
                           >
                             <Plus className="w-3 h-3 text-primary" />
                           </button>
                         </div>
                         <div className="flex items-center gap-4">
-                          <span className="font-display font-bold text-primary">₹{(item.price * item.quantity).toLocaleString()}</span>
-                          <button 
-                            onClick={() => onRemove(item.id)}
-                            className="p-2 text-text-soft hover:text-red-500 transition-colors"
+                          <p className="text-sm font-bold text-primary">₹{(item.price * item.quantity).toLocaleString()}</p>
+                          <button
+                            onClick={() => onRemove(item.productId)}
+                            className="p-2 hover:bg-rose-50 rounded-xl text-text-soft hover:text-rose-500 transition-all opacity-0 group-hover:opacity-100"
                           >
                             <Trash2 className="w-4 h-4" />
                           </button>
@@ -130,7 +130,7 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRe
                     <span>₹{total.toLocaleString()}</span>
                   </div>
                 </div>
-                <button 
+                <button
                   onClick={() => { onClose(); onNavigate('checkout'); }}
                   className="w-full btn-primary !py-5 text-sm flex items-center justify-center gap-3 group shadow-xl shadow-primary/20"
                 >

@@ -2,9 +2,11 @@ import React from 'react';
 import { Heart, ShoppingCart, ChevronRight, Gavel, Sparkles } from 'lucide-react';
 import { motion } from 'motion/react';
 import { useToast } from '../ToastContext';
+import { useCart } from '../CartContext';
 
 export const ProductCard = ({ id, image, name, artisan, price, region, rarity, stock, isPopularInAuction, onNavigate }: any) => {
   const { showToast } = useToast();
+  const { addToCart } = useCart();
   const [isLiked, setIsLiked] = React.useState(false);
 
   const getRarityColor = (level: string) => {
@@ -76,7 +78,7 @@ export const ProductCard = ({ id, image, name, artisan, price, region, rarity, s
           <button
             onClick={(e) => {
               e.stopPropagation();
-              showToast('Added to your collection!');
+              addToCart({ id, image, name, artisan, price, region, rarity, stock });
             }}
             className="w-full btn-primary !py-3 text-xs flex items-center justify-center gap-2 shadow-xl"
           >

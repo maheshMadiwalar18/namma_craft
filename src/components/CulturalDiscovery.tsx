@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import {
   Search,
   MapPin,
   Sparkles,
   ChevronRight,
-  Heart,
-  ShoppingBag,
   Utensils,
   Quote,
-  Filter,
-
   Calendar
-
 } from 'lucide-react';
 import { ProductCard } from './FeaturedProducts';
 

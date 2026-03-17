@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { 
-  ShoppingBag, 
-  Heart, 
-  Share2, 
-  Clock, 
-  ShieldCheck, 
-  Leaf, 
-  Info, 
-  Truck, 
+import {
+  ShoppingBag,
+  Heart,
+  Share2,
+  Clock,
+  ShieldCheck,
+  Leaf,
+  Info,
+  Truck,
   Package,
   ChevronLeft,
   ChevronRight,
@@ -16,8 +16,10 @@ import {
   Quote
 } from 'lucide-react';
 
+import { useCart } from '../CartContext';
+
 const foodData = {
-  id: 1,
+  id: 'food_mysore_pak_001',
   name: 'Authentic Mysore Pak',
   region: 'Karnataka',
   creator: 'Lakshmi Devi',
@@ -47,13 +49,14 @@ const similarFoods = [
 ];
 
 export const FoodDetail = ({ onNavigate }: any) => {
+  const { addToCart } = useCart();
   const [activeImg, setActiveImg] = useState(0);
   const [quantity, setQuantity] = useState(1);
 
   return (
     <div className="min-h-screen bg-cream pt-32 pb-20 selection:bg-accent/20">
       <div className="absolute inset-0 mandala-bg opacity-[0.03] pointer-events-none" />
-      
+
       <div className="container-custom relative z-10">
         {/* Breadcrumbs */}
         <nav className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-text-soft mb-12">
@@ -67,7 +70,7 @@ export const FoodDetail = ({ onNavigate }: any) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 mb-24">
           {/* Left: Image Gallery */}
           <div className="lg:col-span-7 space-y-6">
-            <motion.div 
+            <motion.div
               layoutId={`food-img-${foodData.id}`}
               className="relative aspect-square rounded-[48px] overflow-hidden bg-white border border-highlight/10 shadow-premium"
             >
@@ -82,15 +85,15 @@ export const FoodDetail = ({ onNavigate }: any) => {
                   className="w-full h-full object-cover"
                 />
               </AnimatePresence>
-              
+
               <div className="absolute inset-0 flex items-center justify-between px-6 opacity-0 hover:opacity-100 transition-opacity">
-                <button 
+                <button
                   onClick={() => setActiveImg((prev) => (prev === 0 ? foodData.images.length - 1 : prev - 1))}
                   className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-primary shadow-lg hover:bg-accent hover:text-white transition-all"
                 >
                   <ChevronLeft className="w-6 h-6" />
                 </button>
-                <button 
+                <button
                   onClick={() => setActiveImg((prev) => (prev === foodData.images.length - 1 ? 0 : prev + 1))}
                   className="w-12 h-12 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center text-primary shadow-lg hover:bg-accent hover:text-white transition-all"
                 >
@@ -102,11 +105,10 @@ export const FoodDetail = ({ onNavigate }: any) => {
             <div className="flex gap-4">
               {foodData.images.map((img, idx) => (
                 <button
-                  key={idx}
+                  key={img}
                   onClick={() => setActiveImg(idx)}
-                  className={`relative w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all ${
-                    activeImg === idx ? 'border-accent scale-105 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'
-                  }`}
+                  className={`relative w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all ${activeImg === idx ? 'border-accent scale-105 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'
+                    }`}
                 >
                   <img src={img} alt={`${foodData.name} ${idx}`} className="w-full h-full object-cover" />
                 </button>
@@ -125,12 +127,12 @@ export const FoodDetail = ({ onNavigate }: any) => {
                   Homemade
                 </span>
               </div>
-              
+
               <h1 className="text-5xl font-display font-bold text-primary mb-4 leading-tight">{foodData.name}</h1>
-              
+
               <div className="flex items-center gap-4 mb-8">
                 <div className="flex items-center gap-1 text-amber-500">
-                  {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-current" />)}
+                  {Array.from({ length: 5 }).map((_, i) => <Star key={`star-${i}`} className="w-4 h-4 fill-current" />)}
                 </div>
                 <span className="text-text-soft text-sm font-medium">(128 Reviews)</span>
                 <div className="h-4 w-[1px] bg-highlight/20" />
@@ -169,8 +171,8 @@ export const FoodDetail = ({ onNavigate }: any) => {
                   <Info className="w-4 h-4" /> Key Ingredients
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {foodData.ingredients.map((ing, i) => (
-                    <span key={i} className="px-4 py-2 bg-white rounded-xl border border-highlight/10 text-sm font-medium text-primary">
+                  {foodData.ingredients.map((ing) => (
+                    <span key={ing} className="px-4 py-2 bg-white rounded-xl border border-highlight/10 text-sm font-medium text-primary">
                       {ing}
                     </span>
                   ))}
@@ -183,7 +185,16 @@ export const FoodDetail = ({ onNavigate }: any) => {
                   <span className="w-12 text-center font-bold text-primary">{quantity}</span>
                   <button onClick={() => setQuantity(q => q + 1)} className="p-2 text-primary hover:text-accent transition-colors">+</button>
                 </div>
-                <button className="flex-1 btn-primary !py-5 text-sm shadow-xl shadow-primary/20 flex items-center justify-center gap-3 group">
+                <button
+                  onClick={() => addToCart({
+                    id: foodData.id,
+                    name: foodData.name,
+                    price: foodData.price,
+                    image: foodData.images[0],
+                    artisan: foodData.creator
+                  }, quantity)}
+                  className="flex-1 btn-primary !py-5 text-sm shadow-xl shadow-primary/20 flex items-center justify-center gap-3 group"
+                >
                   <ShoppingBag className="w-5 h-5" /> Add to Cart
                 </button>
                 <button className="w-16 h-16 rounded-2xl border border-highlight/10 flex items-center justify-center text-text-soft hover:text-rose-500 hover:bg-white transition-all">
@@ -265,8 +276,8 @@ export const FoodDetail = ({ onNavigate }: any) => {
                     { title: 'Small Batch', desc: 'Made in limited quantities to ensure quality.' },
                     { title: 'No Preservatives', desc: '100% natural ingredients, no artificial colors.' },
                     { title: 'Fair Trade', desc: 'Direct earnings for the home-chef.' }
-                  ].map((item, i) => (
-                    <li key={i} className="flex gap-4">
+                  ].map((item) => (
+                    <li key={item.title} className="flex gap-4">
                       <div className="w-6 h-6 rounded-full bg-accent flex items-center justify-center shrink-0">
                         <Star className="w-3 h-3 text-white fill-current" />
                       </div>

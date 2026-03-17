@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import { Search, ShoppingBag, User, Menu, X, Plus, LogOut, LayoutDashboard, ChevronDown } from 'lucide-react';
 import { useAuth } from '../AuthContext';
 import { useToast } from '../ToastContext';
+import { useCart } from '../CartContext';
 
 export const Navbar = ({ onNavigate, currentPage }: any) => {
   const { user, userProfile, logout, loading } = useAuth();
+  const { cartCount, setIsCartOpen } = useCart();
   const { showToast } = useToast();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const isBuyer = userProfile?.role === 'buyer' || !user;
 
   const handleDashboardNavigate = () => {
     const uRole = userProfile?.role;
@@ -78,13 +82,20 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
             />
           </div>
 
-          <button
-            className="p-2 hover:bg-accent/10 rounded-xl transition-all relative"
-            aria-label="View Shopping Bag"
-          >
-            <ShoppingBag className="w-5 h-5 text-primary" />
-            <span className="absolute top-1 right-1 w-4 h-4 bg-accent text-white text-[8px] font-bold flex items-center justify-center rounded-full border-2 border-white">2</span>
-          </button>
+          {isBuyer && (
+            <button
+              onClick={() => setIsCartOpen(true)}
+              className="p-2 hover:bg-accent/10 rounded-xl transition-all relative"
+              aria-label="View Shopping Bag"
+            >
+              <ShoppingBag className="w-5 h-5 text-primary" />
+              {cartCount > 0 && (
+                <span className="absolute top-1 right-1 w-4 h-4 bg-accent text-white text-[8px] font-bold flex items-center justify-center rounded-full border-2 border-white">
+                  {cartCount}
+                </span>
+              )}
+            </button>
+          )}
 
           {loading ? (
             <div className="w-20 h-8 bg-highlight/5 animate-pulse rounded-full" />

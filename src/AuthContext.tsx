@@ -11,7 +11,7 @@ interface MockUser {
 
 interface AuthContextType {
     user: MockUser | null;
-    userProfile: any | null;
+    userProfile: Record<string, any> | null;
     loading: boolean;
     signInWithGoogle: (role?: string, extraData?: any) => Promise<any>;
     updateProfile: (extraData: any) => Promise<any>;
@@ -31,7 +31,7 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [user, setUser] = useState<MockUser | null>(null);
-    const [userProfile, setUserProfile] = useState<any | null>(null);
+    const [userProfile, setUserProfile] = useState<Record<string, any> | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             await new Promise(r => setTimeout(r, 1000));
 
             // Create mock user data
-            const mockUid = 'user_' + Math.random().toString(36).substr(2, 9);
+            const mockUid = 'user_' + Math.random().toString(36).slice(2, 11);
             const mockUser: MockUser = {
                 uid: extraData.uid || mockUid,
                 displayName: extraData.displayName || 'Demo User',
@@ -82,21 +82,16 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             // Attempt to save to backend
             let profile;
             try {
-                profile = await saveUserProfile(
-                    mockUser.uid,
-                    mockUser.displayName || '',
-                    mockUser.email || '',
-                    mockUser.photoURL || '',
+                profile = await saveUserProfile({
+                    firebaseUid: mockUser.uid,
+                    displayName: mockUser.displayName || '',
+                    email: mockUser.email || '',
+                    photoURL: mockUser.photoURL || '',
                     role,
-                    extraData.age,
-                    extraData.location,
-                    extraData.phone,
-                    extraData.gender,
-                    extraData.bio,
-                    extraData.state
-                );
+                    ...extraData
+                });
             } catch (e) {
-                console.warn('Backend not available for sync, using mock profile');
+                console.error('Backend sync failed, using mock data:', e);
                 profile = {
                     firebaseUid: mockUser.uid,
                     displayName: mockUser.displayName,
@@ -122,19 +117,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const updateProfile = async (extraData: any = {}) => {
         if (!user || !userProfile) return null;
         try {
-            const profile = await saveUserProfile(
-                user.uid,
-                extraData.displayName || userProfile.displayName || '',
-                userProfile.email || '',
-                userProfile.photoURL || '',
-                userProfile.role,
-                extraData.age,
-                extraData.location,
-                extraData.phone,
-                extraData.gender,
-                extraData.bio,
-                extraData.state
-            );
+            const profile = await saveUserProfile({
+                firebaseUid: user.uid,
+                displayName: extraData.displayName || userProfile.displayName || '',
+                email: userProfile.email || '',
+                photoURL: userProfile.photoURL || '',
+                role: userProfile.role,
+                ...extraData
+            });
             setUserProfile(profile);
             return profile;
         } catch (e) {
@@ -149,8 +139,17 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         localStorage.removeItem('nammacraft_user');
     };
 
+    const authValue = React.useMemo(() => ({
+        user,
+        userProfile,
+        loading,
+        signInWithGoogle,
+        updateProfile,
+        logout
+    }), [user, userProfile, loading]);
+
     return (
-        <AuthContext.Provider value={{ user, userProfile, loading, signInWithGoogle, updateProfile, logout }}>
+        <AuthContext.Provider value={authValue}>
             {children}
         </AuthContext.Provider>
     );

@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Star, Minus, Plus, ShoppingCart, Zap, Heart, Share2, ChevronLeft, ChevronRight, MapPin, Gavel, ShieldCheck, Truck, Package, Gem, Award, Camera, Palette, User } from 'lucide-react';
+import { Star, Minus, Plus, ShoppingCart, ChevronLeft, ChevronRight, MapPin, Truck, Package, Camera, Gavel, Palette, User, Gem } from 'lucide-react';
 import { ProductCard } from './FeaturedProducts';
 import { AuthenticityCertificate } from './AuthenticityCertificate';
 import { HandwrittenNote } from './HandwrittenNote';
-import { useToast } from '../ToastContext';
+import { useCart } from '../CartContext';
 
 export const ProductDetail = ({ onNavigate }: any) => {
-  const { showToast } = useToast();
+  const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [activeImage, setActiveImage] = useState(0);
   const [isCertificateOpen, setIsCertificateOpen] = useState(false);
 
   const product = {
+    id: 'prod_blue_pottery_001',
     name: 'Hand-Painted Blue Pottery Vase',
     price: 2450,
     artisan: 'Ananya Sharma',
@@ -104,23 +105,23 @@ export const ProductDetail = ({ onNavigate }: any) => {
 
               {/* Image Indicators */}
               <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-                {product.images.map((_, idx) => (
+                {product.images.map((img, idx) => (
                   <div
-                    key={idx}
+                    key={img}
                     className={`h-1.5 rounded-full transition-all duration-300 ${activeImage === idx ? 'w-8 bg-white' : 'w-1.5 bg-white/40'}`}
                   />
                 ))}
               </div>
             </div>
 
-            <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+            <div className="flex gap-4">
               {product.images.map((img, idx) => (
                 <button
-                  key={idx}
+                  key={img}
                   onClick={() => setActiveImage(idx)}
-                  className={`flex-shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${activeImage === idx ? 'border-accent scale-105 shadow-lg' : 'border-transparent opacity-50 hover:opacity-100'}`}
+                  className={`relative w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all ${activeImage === idx ? 'border-accent scale-105 shadow-md' : 'border-transparent opacity-60 hover:opacity-100'}`}
                 >
-                  <img src={img} alt={`Thumbnail ${idx}`} className="w-full h-full object-cover" />
+                  <img src={img} alt={`${product.name} View ${idx + 1}`} className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
@@ -155,7 +156,6 @@ export const ProductDetail = ({ onNavigate }: any) => {
                   onClick={() => setIsCertificateOpen(true)}
                   className="flex items-center gap-2 px-4 py-2 bg-accent/5 hover:bg-accent/10 text-accent rounded-full border border-accent/20 transition-all group"
                 >
-                  <Award className="w-4 h-4 group-hover:scale-110 transition-transform" />
                   <span className="text-[10px] font-bold uppercase tracking-widest">Digital Authenticity Certificate</span>
                 </button>
               </div>
@@ -165,15 +165,11 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 <span className="badge-indian !bg-primary/5 !text-primary !border-primary/10">Traditional Craft</span>
               </div>
 
-              <div className="flex items-center gap-6 mb-8">
+              <div className="flex items-center gap-4 mb-4">
                 <div className="flex items-center gap-1 text-accent">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`w-5 h-5 ${i < 4 ? 'fill-accent' : 'fill-highlight text-highlight'}`} />
-                  ))}
-                  <span className="ml-2 font-bold text-primary">4.9</span>
+                  {['s1', 's2', 's3', 's4', 's5'].map((s) => <Star key={s} className="w-4 h-4 fill-current" />)}
                 </div>
-                <div className="h-4 w-[1px] bg-highlight/30" />
-                <span className="text-text-soft text-sm font-medium">{product.reviews} Patrons</span>
+                <span className="text-text-soft text-sm">({product.reviews} Collector Reviews)</span>
               </div>
 
               <div className="mb-10">
@@ -203,11 +199,11 @@ export const ProductDetail = ({ onNavigate }: any) => {
 
                 <div className="flex flex-col sm:flex-row gap-4">
                   <button
-                    onClick={() => showToast('Order placed successfully! Redirecting to payment...')}
+                    onClick={() => addToCart(product, quantity)}
                     className="flex-1 btn-primary flex items-center justify-center gap-3 !py-5 text-lg shadow-xl shadow-primary/20 group"
                   >
-                    <Zap className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                    Buy Now
+                    <ShoppingCart className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                    Add to Cart
                   </button>
                   <button
                     onClick={() => onNavigate('auction')}
@@ -258,12 +254,12 @@ export const ProductDetail = ({ onNavigate }: any) => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
-                  { img: 'https://picsum.photos/seed/process-1/400/400', caption: 'Initial sketch' },
-                  { img: 'https://picsum.photos/seed/process-2/400/400', caption: 'Detailed painting' },
-                  { img: 'https://picsum.photos/seed/process-3/400/400', caption: 'Kiln firing' }
+                  { id: 'step-1', img: 'https://picsum.photos/seed/process-1/400/400', caption: 'Initial sketch' },
+                  { id: 'step-2', img: 'https://picsum.photos/seed/process-2/400/400', caption: 'Detailed painting' },
+                  { id: 'step-3', img: 'https://picsum.photos/seed/process-3/400/400', caption: 'Kiln firing' }
                 ].map((item, idx) => (
                   <motion.div
-                    key={idx}
+                    key={item.id}
                     whileHover={{ scale: 1.05, rotate: idx % 2 === 0 ? 2 : -2 }}
                     className="bg-white p-4 pb-10 shadow-xl rounded-sm border border-primary/5 relative"
                   >
@@ -393,8 +389,8 @@ export const ProductDetail = ({ onNavigate }: any) => {
                   <p className="text-[10px] text-accent uppercase tracking-widest font-bold">Average Rating</p>
                 </div>
                 <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-accent text-accent" />
+                  {['r1', 'r2', 'r3', 'r4', 'r5'].map((r) => (
+                    <Star key={r} className="w-4 h-4 fill-accent text-accent" />
                   ))}
                 </div>
               </div>
@@ -402,10 +398,10 @@ export const ProductDetail = ({ onNavigate }: any) => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {[
-                { user: 'Priya M.', initial: 'PM', comment: "The blue pottery is exquisite. The colors are so vibrant and the finish is perfect. It looks stunning in my living room." },
-                { user: 'Amit S.', initial: 'AS', comment: "Beautiful craftsmanship. It arrived safely in very secure packaging. Highly recommended for anyone who loves traditional Indian art." }
-              ].map((review, i) => (
-                <div key={i} className="bg-white p-10 rounded-[32px] border border-highlight/20 shadow-premium group hover:border-accent transition-colors">
+                { id: 'rev-1', user: 'Priya M.', initial: 'PM', comment: "The blue pottery is exquisite. The colors are so vibrant and the finish is perfect. It looks stunning in my living room." },
+                { id: 'rev-2', user: 'Amit S.', initial: 'AS', comment: "Beautiful craftsmanship. It arrived safely in very secure packaging. Highly recommended for anyone who loves traditional Indian art." }
+              ].map((review) => (
+                <div key={review.id} className="bg-white p-10 rounded-[32px] border border-highlight/20 shadow-premium group hover:border-accent transition-colors">
                   <div className="flex justify-between items-start mb-6">
                     <div className="flex items-center gap-4">
                       <div className="w-14 h-14 rounded-2xl bg-cream flex items-center justify-center font-display font-bold text-primary text-xl group-hover:bg-primary group-hover:text-white transition-all">
