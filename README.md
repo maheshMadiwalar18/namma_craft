@@ -23,7 +23,7 @@
 
 <br/>
 
-### 🌐 Live Demo
+###  Live Demo
 
 [![Netlify](https://img.shields.io/badge/Visit_Live_Site-nammacraft.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://nammacraft.netlify.app/)
 
@@ -37,13 +37,13 @@
 
 </div>
 
-## 📸 Platform Preview
+##  Platform Preview
 
 > *A premium artisan goods marketplace with cultural discovery, live auctions, AI-assisted pricing, and regional craft maps — built for India's 7 million+ craft artisans.*
 
 ---
 
-## ✨ Feature Highlights
+##  Feature Highlights
 
 ### 🏛️ Cultural Discovery Engine
 Explore crafts by region using an **interactive D3.js cultural map** of India. Filter by state, craft type, and artisan story. Every product is tied to its origin — not just a SKU.
