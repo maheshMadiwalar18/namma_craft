@@ -29,7 +29,7 @@
 
 <br/>
 
-> **NammaCraft** is a full-stack, AI-powered artisan marketplace that bridges India's centuries-old craft traditions with the modern digital economy. Buyers discover authentic handmade goods; artisans gain a voice, a storefront, and fair pricing — powered by Gemini AI.
+> **NammaCraft** is a full-stack, AI-powered artisan marketplace that bridges India's centuries-old craft traditions with the modern digital economy. Buyers discover authentic handmade goods; artisans gain a voice, a storefront, and fair pricing — powered by Gemini AI.{}
 
 <br/>
 
