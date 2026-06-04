@@ -112,8 +112,8 @@ export const LiveAuction = ({ onNavigate }: any) => {
               <PartyPopper className="w-12 h-12" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-primary mb-6">Congratulations!</h1>
-          <p className="text-xl text-text-soft mb-12 font-light">
+          <h1 className="text-2xl md:text-4xl font-display font-bold text-primary mb-4">Congratulations!</h1>
+          <p className="text-base text-text-soft mb-10 font-light">
             You won the <span className="text-primary font-bold">{product.name}</span>. This handcrafted masterpiece is now yours to cherish.
           </p>
 
@@ -131,7 +131,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
           <div className="space-y-6">
             <button
               onClick={() => onNavigate('checkout')}
-              className="w-full btn-primary !py-6 text-lg shadow-2xl shadow-primary/20"
+              className="w-full btn-primary !py-4 text-base shadow-2xl shadow-primary/20"
             >
               Proceed to Checkout
             </button>
@@ -162,8 +162,8 @@ export const LiveAuction = ({ onNavigate }: any) => {
               <AlertCircle className="w-12 h-12" />
             </div>
           </div>
-          <h1 className="text-4xl md:text-6xl font-display font-bold text-primary mb-6">Auction Ended</h1>
-          <p className="text-xl text-text-soft mb-12 font-light">
+          <h1 className="text-2xl md:text-4xl font-display font-bold text-primary mb-4">Auction Ended</h1>
+          <p className="text-base text-text-soft mb-10 font-light">
             The auction for <span className="text-primary font-bold">{product.name}</span> has concluded. Better luck next time!
           </p>
 
@@ -188,7 +188,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
           <div className="space-y-6">
             <button
               onClick={() => onNavigate('auction-listing')}
-              className="w-full btn-primary !py-6 text-lg shadow-2xl shadow-primary/20"
+              className="w-full btn-primary !py-4 text-base shadow-2xl shadow-primary/20"
             >
               Browse More Auctions
             </button>
@@ -263,7 +263,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="relative aspect-[4/5] rounded-[48px] overflow-hidden shadow-premium bg-white"
+              className="relative aspect-[3/4] rounded-[40px] overflow-hidden shadow-premium bg-white"
             >
               <img
                 src={product.image}
@@ -286,7 +286,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
               </div>
 
               <div className="absolute bottom-10 left-10 right-10">
-                <h1 className="text-4xl md:text-5xl font-display font-bold text-white mb-4 leading-tight">{product.name}</h1>
+                <h1 className="text-2xl md:text-3xl font-display font-bold text-white mb-3 leading-tight">{product.name}</h1>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/40">
                     <img src="https://picsum.photos/seed/artisan-face/100/100" alt={product.artisan} className="w-full h-full object-cover" />
@@ -344,7 +344,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
                   key={currentBid}
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  className="text-6xl font-display font-bold text-primary mb-2"
+                  className="text-4xl font-display font-bold text-primary mb-2"
                 >
                   ₹{currentBid.toLocaleString()}
                 </motion.div>
@@ -370,7 +370,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
 
                 <button
                   onClick={handlePlaceBid}
-                  className="w-full btn-primary !py-6 text-lg shadow-2xl shadow-primary/30 group flex items-center justify-center gap-3"
+                  className="w-full btn-primary !py-4 text-base shadow-2xl shadow-primary/30 group flex items-center justify-center gap-3"
                 >
                   <TrendingUp className="w-6 h-6 group-hover:scale-110 transition-transform" />
                   Place Your Bid
