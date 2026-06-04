@@ -24,7 +24,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
     <div className="bg-cream min-h-screen pb-4 selection:bg-accent/20">
       {/* Header Section */}
       <div className="relative">
-        <div className="h-64 md:h-[450px] w-full overflow-hidden relative">
+        <div className="h-44 md:h-64 w-full overflow-hidden relative">
           <img
             src="https://picsum.photos/seed/rajasthan-landscape/1920/800"
             alt="Artisan Workshop"
@@ -36,11 +36,11 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
         </div>
 
         <div className="container mx-auto px-6">
-          <div className="relative -mt-32 md:-mt-48 flex flex-col md:flex-row items-end gap-8 mb-16">
+          <div className="relative -mt-16 md:-mt-24 flex flex-col md:flex-row items-end gap-6 mb-10">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="w-48 h-48 md:w-72 md:h-72 rounded-full border-[12px] border-cream overflow-hidden shadow-premium z-10 relative group"
+              className="w-24 h-24 md:w-36 md:h-36 rounded-full border-[6px] border-cream overflow-hidden shadow-premium z-10 relative group"
             >
               <img
                 src="https://picsum.photos/seed/indian-face/600/600"
@@ -65,7 +65,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                       Est. 2008
                     </HandwrittenNote>
                   </div>
-                  <h1 className="text-5xl md:text-7xl font-display font-bold text-primary mb-4 tracking-tight">Ananya Sharma</h1>
+                  <h1 className="text-2xl md:text-3xl font-display font-bold text-primary mb-2 tracking-tight">Ananya Sharma</h1>
                   <div className="flex flex-wrap items-center gap-6 text-text-soft">
                     <span className="flex items-center gap-2 font-medium bg-white/50 px-4 py-2 rounded-full border border-highlight/20 shadow-sm">
                       <MapPin className="w-5 h-5 text-accent" />
@@ -129,13 +129,13 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
               <div className="absolute -left-10 top-0 text-[120px] font-display text-primary/5 select-none pointer-events-none">
                 Story
               </div>
-              <h2 className="text-4xl font-display font-bold mb-8 text-primary flex items-center gap-4">
-                <Palette className="w-8 h-8 text-accent" />
+              <h2 className="text-xl font-display font-bold mb-5 text-primary flex items-center gap-3">
+                <Palette className="w-5 h-5 text-accent" />
                 The Journey of Blue Pottery
                 <div className="h-[1px] flex-1 bg-gradient-to-r from-accent/30 to-transparent" />
               </h2>
               <div className="prose prose-lg max-w-none text-text-soft leading-relaxed space-y-6 font-light">
-                <p className="first-letter:text-7xl first-letter:font-display first-letter:text-primary first-letter:mr-3 first-letter:float-left">
+                <p className="first-letter:text-4xl first-letter:font-display first-letter:text-primary first-letter:mr-2 first-letter:float-left">
                   Growing up in the vibrant streets of Jaipur, I was always surrounded by the mesmerizing blue pottery that our city is famous for. My journey began in my father's workshop, where I learned the delicate art of mixing quartz, glass, and multani mitti.
                 </p>
                 <p>
@@ -177,11 +177,11 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
             {/* Crafting Process - Polaroid Style */}
             <section>
               <div className="flex items-center justify-between mb-10">
-                <h2 className="text-4xl font-display font-bold text-primary flex items-center gap-4">
-                  <Camera className="w-8 h-8 text-accent" />
+                <h2 className="text-xl font-display font-bold text-primary flex items-center gap-3">
+                  <Camera className="w-5 h-5 text-accent" />
                   Studio Moments
                 </h2>
-                <span className="font-handwriting text-2xl text-accent -rotate-3">"Behind the scenes"</span>
+                <span className="font-handwriting text-base text-accent -rotate-3">"Behind the scenes"</span>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {[
@@ -209,7 +209,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
             <section id="artisan-collection">
               <div className="flex justify-between items-end mb-10">
                 <div>
-                  <h2 className="text-4xl font-display font-bold text-primary">The Collection</h2>
+                  <h2 className="text-xl font-display font-bold text-primary">The Collection</h2>
                   <p className="text-text-soft mt-2">Curated pieces from Ananya's studio</p>
                 </div>
                 <span className="text-accent font-bold text-sm tracking-widest uppercase">{artisanProducts.length} Masterpieces</span>
@@ -257,7 +257,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
 
               <button
                 onClick={() => showToast('Opening message window...')}
-                className="w-full mt-10 btn-primary py-5 text-lg shadow-xl shadow-primary/20 flex items-center justify-center gap-3"
+                className="w-full mt-6 btn-primary py-3 text-sm shadow-xl shadow-primary/20 flex items-center justify-center gap-2"
               >
                 <MessageCircle className="w-6 h-6" />
                 Message Artisan
@@ -302,8 +302,8 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-5xl font-display font-bold mb-6 text-primary">Support the Craft</h2>
-            <p className="text-text-soft mb-12 max-w-2xl mx-auto text-lg">
+            <h2 className="text-2xl font-display font-bold mb-4 text-primary">Support the Craft</h2>
+            <p className="text-text-soft mb-8 max-w-2xl mx-auto text-sm">
               By following Ananya, you're not just supporting an artist; you're helping preserve a 14th-century craft for future generations.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
@@ -312,13 +312,13 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                   setIsFollowing(!isFollowing);
                   showToast(isFollowing ? 'Unfollowed Ananya Sharma' : 'Following Ananya Sharma!');
                 }}
-                className="btn-primary px-12 py-5 text-lg"
+                className="btn-primary px-8 py-3 text-sm"
               >
                 {isFollowing ? 'Following' : 'Follow Ananya'}
               </button>
               <button
                 onClick={() => showToast('Story link shared!')}
-                className="btn-secondary px-12 py-5 text-lg"
+                className="btn-secondary px-8 py-3 text-sm"
               >
                 Share Her Story
               </button>
