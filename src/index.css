@@ -49,29 +49,29 @@
   }
 
   h1 {
-    @apply text-[56px] font-bold;
-  }
-
-  h2 {
     @apply text-[40px] font-bold;
   }
 
+  h2 {
+    @apply text-[30px] font-bold;
+  }
+
   h3 {
-    @apply text-[24px] font-semibold;
+    @apply text-[20px] font-semibold;
   }
 
   /* Mobile responsive headings */
   @media (max-width: 768px) {
     h1 {
-      font-size: 32px !important;
+      font-size: 26px !important;
     }
 
     h2 {
-      font-size: 28px !important;
+      font-size: 22px !important;
     }
 
     h3 {
-      font-size: 20px !important;
+      font-size: 17px !important;
     }
   }
 }
@@ -203,12 +203,14 @@
 @media (max-width: 768px) {
 
   .text-\[72px\],
-  .text-\[100px\] {
-    font-size: 36px !important;
+  .text-\[100px\],
+  .text-\[52px\] {
+    font-size: 28px !important;
   }
 
-  .text-2xl.leading-relaxed {
-    font-size: 1rem !important;
+  .text-2xl.leading-relaxed,
+  .text-xl.leading-relaxed {
+    font-size: 0.9rem !important;
   }
 }
 

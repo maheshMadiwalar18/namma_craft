@@ -23,7 +23,7 @@ export const Hero = ({ onNavigate }: any) => {
               Heritage in every stitch
             </div>
 
-            <h1 className="text-[72px] md:text-[100px] font-display font-bold leading-[0.85] mb-10 text-primary tracking-tight">
+            <h1 className="text-[52px] md:text-[72px] font-display font-bold leading-[0.85] mb-10 text-primary tracking-tight">
               Discover the <br />
               <span className="italic font-normal text-accent relative">
                 Soul
@@ -34,21 +34,21 @@ export const Hero = ({ onNavigate }: any) => {
               Handmade Culture.
             </h1>
 
-            <p className="text-2xl leading-relaxed text-text-soft mb-14 max-w-xl mx-auto lg:mx-0 font-light">
+            <p className="text-xl leading-relaxed text-text-soft mb-14 max-w-xl mx-auto lg:mx-0 font-light">
               A curated treasury of India's timeless artistry, where every piece carries the legacy of generations and the warmth of human touch.
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-8">
               <button
                 onClick={() => onNavigate('discovery')}
-                className="btn-primary !px-12 !py-6 text-lg shadow-2xl shadow-primary/20 group flex items-center gap-4"
+                className="btn-primary !px-10 !py-4 text-base shadow-2xl shadow-primary/20 group flex items-center gap-4"
               >
                 Cultural Discovery
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
                 onClick={() => onNavigate('marketplace')}
-                className="btn-secondary !px-12 !py-6 text-lg group flex items-center gap-3"
+                className="btn-secondary !px-10 !py-4 text-base group flex items-center gap-3"
               >
                 Marketplace
               </button>
