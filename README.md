@@ -16,20 +16,22 @@
 [![Firebase](https://img.shields.io/badge/Firebase_12-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)](https://firebase.google.com/)
 [![MongoDB](https://img.shields.io/badge/MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 [![Express](https://img.shields.io/badge/Express_4-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Capacitor](https://img.shields.io/badge/Capacitor_8-119EFF?style=for-the-badge&logo=capacitor&logoColor=white)](https://capacitorjs.com/)
 
 [![License](https://img.shields.io/badge/license-MIT-green?style=for-the-badge)](LICENSE)
 [![Status](https://img.shields.io/badge/Status-In_Development-orange?style=for-the-badge)]()
 [![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-brightgreen?style=for-the-badge)](CONTRIBUTING.md)
+[![PWA](https://img.shields.io/badge/PWA-Ready-purple?style=for-the-badge&logo=pwa&logoColor=white)]()
 
 <br/>
 
-###  Live Demo
+### 🌐 Live Demo
 
 [![Netlify](https://img.shields.io/badge/Visit_Live_Site-nammacraft.netlify.app-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)](https://nammacraft.netlify.app/)
 
 <br/>
 
-> **NammaCraft** is a full-stack, AI-powered artisan marketplace that bridges India's centuries-old craft traditions with the modern digital economy. Buyers discover authentic handmade goods; artisans gain a voice, a storefront, and fair pricing — powered by Gemini AI.{}
+> **NammaCraft** is a full-stack, AI-powered artisan marketplace that bridges India's centuries-old craft traditions with the modern digital economy. Buyers discover authentic handmade goods; artisans gain a voice, a storefront, and fair pricing — powered by Gemini AI.
 
 <br/>
 
@@ -37,13 +39,13 @@
 
 </div>
 
-##  Platform Preview
+## 🖼️ Platform Preview
 
 > *A premium artisan goods marketplace with cultural discovery, live auctions, AI-assisted pricing, and regional craft maps — built for India's 7 million+ craft artisans.*
 
 ---
 
-##  Feature Highlights
+## ✨ Feature Highlights
 
 ### 🏛️ Cultural Discovery Engine
 Explore crafts by region using an **interactive D3.js cultural map** of India. Filter by state, craft type, and artisan story. Every product is tied to its origin — not just a SKU.
@@ -53,21 +55,33 @@ Real-time bidding interface with countdown timers, watcher counts, outbid alerts
 
 ### 🤖 AI-Powered Features
 - **Voice Listing (Gemini AI)** — Artisans describe their product by voice; Gemini extracts structured product data (name, category, price, origin) via the `@google/genai` SDK.
-- **Pricing Suggestions** — Estimated price range and demand scoring based on product category and metadata.
-- **Sitewide Chat Assistant (Gemini AI)** — A Gemini-powered assistant embedded across the platform to guide buyers and sellers.
+- **AI Pricing Suggestions** — Estimated price range and demand scoring based on product category and metadata.
+- **Sitewide Chat Assistant (Gemini AI)** — A Gemini-powered floating assistant embedded across the platform to guide buyers and sellers in real time.
 
 ### 🛍️ Complete Buyer Experience
-Full cart → checkout → order tracking flow. Personalized product recommendations, wishlist/favorites, cultural gift bundles, and handwritten notes on orders.
+Full cart → checkout → order tracking flow. Personalized product recommendations, wishlist/favorites, cultural gift bundles, handwritten notes on orders, and a dedicated **Buyer Dashboard** for order history and account management.
 
 ### 🎨 Multi-Role Dashboard System
 | Role | Dashboard | Capabilities |
 |------|-----------|--------------|
-| **Buyer** | Home + Marketplace | Browse, cart, wishlist, checkout |
-| **Artisan/Creator** | Creator Dashboard | List products, manage auctions, track sales |
+| **Buyer** | Buyer Dashboard | Browse, cart, wishlist, order history, account |
+| **Artisan/Creator** | Creator Dashboard | List products, manage auctions, track sales & earnings |
 | **Admin** | Admin Dashboard | Monitor bids, manage users, revenue analytics |
 
 ### 🎪 Festival & Cultural Commerce
-Seasonal festival homepages (Diwali, etc.), authenticity certificates, traditional food marketplace, and artisan story spotlights.
+Seasonal festival homepages (Diwali, etc.), authenticity certificates, traditional food marketplace, artisan story spotlights, and regional artisan profiles.
+
+### 📱 Mobile App (Android)
+Built with **Capacitor 8** — the web app is wrapped into a native Android APK. A pre-built APK (`namma-craft.apk`) is included for direct installation.
+
+### 🔧 Progressive Web App (PWA)
+Installable on desktop and mobile browsers via `vite-plugin-pwa`. Works offline with service worker caching.
+
+### 🎬 Live Studio
+Live selling sessions where artisans can showcase their craft in real-time, directly from the Creator Dashboard.
+
+### 📜 Authenticity Certificates
+Blockchain-ready certificate generation for handmade goods, verifying artisan origin, craft type, and product authenticity.
 
 ---
 
@@ -76,13 +90,14 @@ Seasonal festival homepages (Diwali, etc.), authenticity certificates, tradition
 ```
 namma_craft/
 ├── 📁 src/
-│   ├── App.tsx                  # Route definitions (React Router v7)
-│   ├── AuthContext.tsx          # Firebase Auth + MongoDB user sync
-│   ├── db.ts                   # Frontend API service (REST → Express)
-│   ├── firebase.ts             # Firebase app init (Auth + Firestore)
-│   ├── index.css               # Global styles + Tailwind v4 theme
-│   └── components/
+│   ├── App.tsx                   # Route definitions (React Router v7)
+│   ├── AuthContext.tsx           # Firebase Auth + MongoDB user sync
+│   ├── db.ts                    # Frontend API service (REST → Express)
+│   ├── firebase.ts              # Firebase app init (Auth + Firestore)
+│   ├── index.css                # Global styles + Tailwind v4 theme
+│   └── components/              # 37 components total
 │       ├── AdminDashboard.tsx   # Analytics, user/auction management
+│       ├── BuyerDashboard.tsx   # Buyer order history & account
 │       ├── CreatorDashboard.tsx # Artisan storefront & earnings
 │       ├── LiveAuction.tsx      # Real-time bidding UI
 │       ├── AuctionListing.tsx   # Auction browse/filter
@@ -90,18 +105,34 @@ namma_craft/
 │       ├── Marketplace.tsx      # Product browse + filters
 │       ├── ProductDetail.tsx    # PDP with authenticity cert
 │       ├── ArtisanProfile.tsx   # Public artisan page
+│       ├── ArtisanStory.tsx     # Individual artisan story page
+│       ├── ArtisanSpotlight.tsx # Featured artisan highlight widget
 │       ├── Checkout.tsx         # Shipping + payment + tracking
 │       ├── CulturalMap.tsx      # D3.js India regional map
-│       ├── CulturalDiscovery.tsx # Cultural exploration page
+│       ├── CulturalDiscovery.tsx# Cultural exploration page
 │       ├── TraditionalFoods.tsx # Traditional food section
+│       ├── FoodDetail.tsx       # Traditional food product detail
+│       ├── AddFoodItem.tsx      # Add traditional food listing
 │       ├── FestivalHome.tsx     # Seasonal festival pages
 │       ├── VoiceAssistant.tsx   # Gemini voice → product form
 │       ├── AIPricingPanel.tsx   # AI price suggestion widget
 │       ├── HumanAssistant.tsx   # Sitewide Gemini chat widget
+│       ├── LiveStudio.tsx       # Live selling session UI
 │       ├── GiftBundles.tsx      # Curated gift sets
 │       ├── SellProduct.tsx      # Artisan product listing form
 │       ├── CartSidebar.tsx      # Slide-out cart
-│       └── ...                  # 35+ components total
+│       ├── AuthenticityCertificate.tsx # Artisan cert generator
+│       ├── FeaturedProducts.tsx # Homepage featured items
+│       ├── CategoryGrid.tsx     # Category browse grid
+│       ├── Recommendations.tsx  # AI product recommendations
+│       ├── Hero.tsx             # Homepage hero section
+│       ├── Navbar.tsx           # Responsive navigation
+│       ├── Footer.tsx           # Global footer
+│       ├── Login.tsx            # Sign in / Sign up
+│       ├── FuturePlans.tsx      # Roadmap section
+│       ├── HandwrittenNote.tsx  # Personalized order note UI
+│       ├── Toast.tsx            # Notification toast system
+│       └── NotFound.tsx         # 404 page
 │
 ├── 📁 server/
 │   ├── index.ts                 # Express app + all API routes
@@ -112,10 +143,14 @@ namma_craft/
 │       ├── Cart.ts              # Mongoose Cart schema
 │       └── Favorite.ts          # Mongoose Favorites schema
 │
+├── 📁 android/                  # Capacitor Android project
 ├── 📁 public/images/            # Static craft photography assets
-├── vite.config.ts               # Vite + Tailwind v4 config
+├── namma-craft.apk              # Pre-built Android APK
+├── capacitor.config.ts          # Capacitor mobile config
+├── vite.config.ts               # Vite + Tailwind v4 + PWA config
 ├── firebase.json                # Firebase Hosting config
 ├── netlify.toml                 # Netlify deploy config
+├── start_all.bat                # Windows: run frontend + backend together
 └── package.json
 ```
 
@@ -125,32 +160,48 @@ namma_craft/
 
 ### Frontend
 | Technology | Version | Purpose |
-|------------|---------|---------|
+|------------|---------|---------| 
 | **React** | 19.0 | UI framework |
 | **TypeScript** | 5.8 | Type safety |
 | **Vite** | 6.2 | Build tool & dev server |
 | **Tailwind CSS** | v4.1 | Utility-first styling |
 | **React Router** | v7 | Client-side routing |
-| **Framer Motion** | 12 | Animations & transitions |
-| **Recharts** | 3.7 | Dashboard charts |
+| **Motion (Framer)** | 12 | Animations & transitions |
+| **Recharts** | 3.7 | Dashboard charts & analytics |
 | **D3.js** | 7.9 | Cultural map visualization |
 | **Lucide React** | 0.546 | Icon system |
+| **clsx** | 2.1 | Conditional class management |
+| **tailwind-merge** | 3.5 | Tailwind class conflict resolution |
 
 ### Backend
 | Technology | Version | Purpose |
-|------------|---------|---------|
+|------------|---------|---------| 
 | **Express** | 4.21 | REST API server |
 | **Mongoose** | 9.2 | MongoDB ODM |
 | **MongoDB Atlas** | — | Primary database |
-| **tsx** | 4.21 | TypeScript execution |
+| **tsx** | 4.21 | TypeScript execution for Node |
+| **Zod** | 4.3 | Schema validation & type inference |
+| **express-validator** | 7.3 | Request body validation |
+| **express-rate-limit** | 8.3 | API rate limiting |
+| **better-sqlite3** | 12.4 | Local SQLite (dev/cache) |
+| **dotenv** | 17.2 | Environment variable management |
 
 ### Auth & Cloud
 | Technology | Purpose |
 |------------|---------|
 | **Firebase Auth** | Google OAuth sign-in |
 | **Firebase Firestore** | Realtime data (supplemental) |
+| **Firebase Admin SDK** | Server-side token verification |
 | **Firebase Hosting** | Static hosting option |
-| **Google Gemini AI** | Voice-to-product listing, sitewide chat assistant |
+| **Google Gemini AI** | Voice-to-product listing & sitewide chat |
+
+### Mobile & PWA
+| Technology | Version | Purpose |
+|------------|---------|---------| 
+| **Capacitor** | 8.2 | Native Android wrapper |
+| **@capacitor/android** | 8.2 | Android platform |
+| **@capacitor/assets** | 3.0 | App icon & splash assets |
+| **vite-plugin-pwa** | 1.2 | Progressive Web App support |
 
 ---
 
@@ -214,6 +265,34 @@ Deploy the `dist/` folder to Firebase Hosting or Netlify (configs included).
 
 ---
 
+## 📱 Mobile (Android)
+
+NammaCraft ships as a native Android app using **Capacitor 8**.
+
+### Install the pre-built APK
+Download and install `namma-craft.apk` directly on any Android device (enable "Install from unknown sources").
+
+### Build your own APK
+```bash
+# Sync web build with Capacitor
+npm run mobile:sync
+
+# Open in Android Studio
+npm run mobile:open
+```
+
+---
+
+## 🌐 PWA (Progressive Web App)
+
+NammaCraft is installable as a PWA on desktop and mobile browsers.
+
+- Visit [nammacraft.netlify.app](https://nammacraft.netlify.app/)
+- Click **"Install"** in your browser's address bar
+- App launches offline with service worker caching
+
+---
+
 ## 📡 API Reference
 
 Base URL: `http://localhost:5000/api`
@@ -254,6 +333,7 @@ Base URL: `http://localhost:5000/api`
 | `/create-auction` | `CreateAuction` | Create new auction |
 | `/creator` | `CreatorDashboard` | Artisan seller dashboard |
 | `/sell-product` | `SellProduct` | New product listing form |
+| `/buyer` | `BuyerDashboard` | Buyer order history & account |
 | `/admin` | `AdminDashboard` | Admin analytics |
 | `/checkout` | `Checkout` | Order & payment flow |
 | `/discovery` | `CulturalDiscovery` | Cultural exploration |
@@ -271,9 +351,10 @@ Base URL: `http://localhost:5000/api`
 
 - **Environment Variables**: Firebase config and Gemini API key must be stored in `.env` — never hardcoded in source files.
 - **CORS**: The backend should be configured with an explicit allowed-origin list rather than a wildcard in production.
+- **Rate Limiting**: `express-rate-limit` is configured to protect API endpoints from abuse.
+- **Input Validation**: `express-validator` and `Zod` schemas validate and sanitize all incoming request bodies.
 - **Route Protection**: Admin and Creator routes should be wrapped with role-based authentication guards before going live.
-- **API Security**: All write endpoints (`POST`, `PUT`, `DELETE`) should validate Firebase JWT tokens server-side before processing requests.
-- **Input Validation**: Server routes should validate and sanitize incoming request bodies before database operations.
+- **API Security**: All write endpoints (`POST`, `PUT`, `DELETE`) should validate Firebase JWT tokens server-side before processing requests (Firebase Admin SDK is included).
 
 ---
 
@@ -281,13 +362,14 @@ Base URL: `http://localhost:5000/api`
 
 - [ ] Real-time WebSocket auction bidding (Socket.io)
 - [ ] Payment gateway integration (Razorpay)
-- [ ] Mobile app (React Native)
+- [ ] iOS app (Capacitor)
 - [ ] Artisan video stories
 - [ ] Multi-language support (Hindi, Kannada, Tamil, Bengali)
 - [ ] Blockchain-backed authenticity certificates
 - [ ] AR product preview
 - [ ] Artisan co-operative group stores
 - [ ] International shipping integrations
+- [ ] Push notifications (Firebase Cloud Messaging)
 
 ---
 
