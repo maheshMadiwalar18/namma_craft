@@ -6,11 +6,11 @@
   --font-display: "Playfair Display", serif;
   --font-hand: "Caveat", cursive;
 
-  --color-primary: #6B1D1D;
-  /* Modern Maroon */
-  --color-primary-light: #8B2E2E;
-  --color-accent: #E67E22;
-  /* Saffron Accent */
+  --color-primary: #4A0E0E;
+  /* Deep Modern Maroon */
+  --color-primary-light: #6A1A1A;
+  --color-accent: #F59E0B;
+  /* Vibrant Saffron/Gold Accent */
   --color-saffron: #F39C12;
   /* Golden Saffron */
   --color-cream: #FDFBF7;
@@ -78,15 +78,15 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-primary-light hover:shadow-xl hover:-translate-y-1 active:translate-y-0;
+    @apply bg-primary text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-primary-light hover:shadow-2xl hover:scale-[1.02] active:scale-100;
   }
 
   .btn-secondary {
-    @apply border border-primary text-primary px-8 py-4 rounded-full font-medium bg-transparent transition-all duration-300 hover:bg-primary hover:text-white active:scale-[0.98];
+    @apply border-2 border-primary text-primary px-8 py-4 rounded-full font-medium bg-transparent transition-all duration-300 hover:bg-primary hover:text-white hover:shadow-xl active:scale-[0.98];
   }
 
   .btn-accent {
-    @apply bg-accent text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-accent/90 hover:shadow-lg active:scale-[0.98];
+    @apply bg-accent text-white px-8 py-4 rounded-full font-medium transition-all duration-300 hover:bg-accent/90 hover:shadow-xl hover:scale-[1.02] active:scale-[0.98];
   }
 
   .input-field {
@@ -98,21 +98,21 @@
   }
 
   .product-card {
-    @apply bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2;
-    box-shadow: 0 4px 20px rgba(107, 29, 29, 0.04);
+    @apply bg-white rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:scale-[1.01];
+    box-shadow: 0 4px 20px rgba(74, 14, 14, 0.04);
   }
 
   .product-card:hover {
-    box-shadow: 0 20px 40px rgba(107, 29, 29, 0.1);
+    box-shadow: 0 25px 50px rgba(74, 14, 14, 0.12);
   }
 
   .artisan-card {
-    @apply bg-white rounded-2xl p-8 transition-all duration-500;
-    box-shadow: 0 4px 20px rgba(107, 29, 29, 0.04);
+    @apply bg-white rounded-2xl p-8 transition-all duration-500 hover:-translate-y-1;
+    box-shadow: 0 4px 20px rgba(74, 14, 14, 0.04);
   }
 
   .artisan-card:hover {
-    box-shadow: 0 15px 35px rgba(107, 29, 29, 0.08);
+    box-shadow: 0 20px 45px rgba(74, 14, 14, 0.1);
   }
 
   .section-spacing {
@@ -165,7 +165,7 @@
 }
 
 .glass-premium {
-  @apply bg-white/80 backdrop-blur-xl border border-white/40 shadow-premium;
+  @apply bg-white/70 backdrop-blur-[20px] border border-white/60 shadow-premium;
 }
 
 .text-balance {

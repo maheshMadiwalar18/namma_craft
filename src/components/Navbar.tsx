@@ -79,7 +79,7 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
               <span className="text-[10px] font-bold uppercase tracking-widest text-primary hidden md:inline">{currentLang}</span>
               <ChevronDown className="w-3 h-3 text-text-soft" />
             </button>
-            <div className="absolute top-full right-0 mt-2 w-32 bg-white rounded-2xl shadow-premium border border-highlight/10 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="absolute top-full right-0 mt-2 w-32 bg-white/90 backdrop-blur-md rounded-2xl shadow-premium border border-highlight/20 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top-right group-hover:scale-100 scale-95">
               {['English', 'हिंदी', 'ಕನ್ನಡ'].map((lang) => (
                 <button
                   key={lang}
@@ -104,7 +104,7 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
               id="nav-search"
               type="text"
               placeholder="Search..."
-              className="w-full bg-cream/50 border border-transparent focus:border-accent/20 focus:bg-white rounded-full py-2 pl-9 pr-4 text-xs font-medium text-primary transition-all outline-none placeholder:text-text-soft/40"
+              className="w-full bg-cream/50 border border-transparent focus:border-accent/40 focus:ring-2 focus:ring-accent/10 focus:bg-white rounded-full py-2 pl-9 pr-4 text-xs font-medium text-primary transition-all outline-none placeholder:text-text-soft/40 shadow-inner"
             />
           </div>
 
@@ -167,7 +167,7 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
                   )}
                   <ChevronDown className="w-3.5 h-3.5 text-text-soft group-hover:text-primary transition-colors" />
                 </div>
-                <div className="absolute top-full right-0 mt-2 w-48 bg-white rounded-2xl shadow-premium border border-highlight/10 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="absolute top-full right-0 mt-2 w-48 bg-white/90 backdrop-blur-md rounded-2xl shadow-premium border border-highlight/20 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50 transform origin-top-right group-hover:scale-100 scale-95">
                   <div className="px-4 py-3 border-b border-highlight/5 mb-2">
                     <p className="text-xs font-bold text-primary truncate">{user.displayName || 'User'}</p>
                     <p className="text-[10px] text-text-soft uppercase tracking-widest">{userProfile?.role || 'Guest'}</p>

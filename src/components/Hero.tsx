@@ -7,8 +7,8 @@ export const Hero = ({ onNavigate }: any) => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-cream selection:bg-accent/20">
       <div className="absolute inset-0 mandala-bg opacity-[0.04] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/15 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/15 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
       <div className="container-custom relative z-10 py-16">
         <div className="flex flex-col lg:flex-row items-center gap-24">
@@ -23,7 +23,7 @@ export const Hero = ({ onNavigate }: any) => {
               Heritage in every stitch
             </div>
 
-            <h1 className="text-[52px] md:text-[72px] font-display font-bold leading-[0.85] mb-10 text-primary tracking-tight">
+            <h1 className="text-[52px] md:text-[72px] font-display font-bold leading-[0.85] mb-10 text-primary tracking-tight drop-shadow-sm">
               Discover the <br />
               <span className="italic font-normal text-accent relative">
                 Soul
@@ -41,7 +41,7 @@ export const Hero = ({ onNavigate }: any) => {
             <div className="flex flex-wrap justify-center lg:justify-start gap-8">
               <button
                 onClick={() => onNavigate('discovery')}
-                className="btn-primary !px-10 !py-4 text-base shadow-2xl shadow-primary/20 group flex items-center gap-4"
+                className="btn-primary !px-10 !py-4 text-base shadow-2xl shadow-primary/30 group flex items-center gap-4 hover:shadow-primary/40"
               >
                 Cultural Discovery
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -69,8 +69,8 @@ export const Hero = ({ onNavigate }: any) => {
             className="w-full lg:w-2/5 relative h-[600px]"
           >
             <div className="relative w-full h-full">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-accent/5 organic-blob -rotate-12 pointer-events-none" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-primary/5 organic-blob rotate-45 pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-accent/10 to-accent/5 organic-blob -rotate-12 pointer-events-none" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-gradient-to-bl from-primary/10 to-primary/5 organic-blob rotate-45 pointer-events-none" />
 
               <motion.div
                 whileHover={{ scale: 1.02 }}
