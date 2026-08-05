@@ -32,7 +32,7 @@ export const ProductCard = ({ id, image, name, artisan, price, region, rarity, s
       whileHover={{ y: -8 }}
       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       onClick={() => onNavigate && onNavigate(`product/${id || 1}`)}
-      className="group cursor-pointer relative bg-white rounded-[20px] sm:rounded-[32px] p-2 sm:p-4 shadow-sm hover:shadow-premium transition-all duration-500 border border-highlight/10"
+      className="group cursor-pointer relative bg-white rounded-[20px] sm:rounded-[32px] p-4 sm:p-5 shadow-sm hover:shadow-premium transition-all duration-500 border border-highlight/10 h-full flex flex-col"
     >
       <div className="relative aspect-[4/5] rounded-[16px] sm:rounded-[24px] overflow-hidden mb-3 sm:mb-6">
         <img
@@ -87,7 +87,8 @@ export const ProductCard = ({ id, image, name, artisan, price, region, rarity, s
         </div>
       </div>
 
-      <div className="px-1 sm:px-2 pb-1 sm:pb-2 space-y-1 sm:space-y-3">
+      <div className="px-1 sm:px-2 pb-1 sm:pb-2 flex-grow flex flex-col justify-between">
+        <div className="space-y-1 sm:space-y-3">
         <div className="flex justify-between items-start gap-1 sm:gap-2">
           <h3 className="text-sm sm:text-xl font-display font-bold text-primary leading-tight group-hover:text-accent transition-colors truncate">{name}</h3>
         </div>
@@ -103,6 +104,7 @@ export const ProductCard = ({ id, image, name, artisan, price, region, rarity, s
           <span className="text-base sm:text-2xl font-display font-bold text-primary">₹{price.toLocaleString()}</span>
           <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full border border-highlight/20 flex items-center justify-center group-hover:border-accent group-hover:text-accent transition-all">
             <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
+          </div>
           </div>
         </div>
       </div>
@@ -134,7 +136,7 @@ export const FeaturedProducts = ({ onNavigate }: any) => {
               </div>
               <div className="h-[1px] w-12 bg-accent" />
             </div>
-            <p className="text-lg text-text-soft text-balance">
+            <p className="text-lg text-text-soft text-readable text-balance">
               Each creation is a testament to the skill and dedication of our master artisans, preserving techniques passed down through centuries.
             </p>
           </div>
@@ -147,7 +149,7 @@ export const FeaturedProducts = ({ onNavigate }: any) => {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
           {products.map(product => (
             <ProductCard key={product.id} {...product} onNavigate={onNavigate} />
           ))}

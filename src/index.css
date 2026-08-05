@@ -116,7 +116,7 @@
   }
 
   .section-spacing {
-    @apply py-16;
+    @apply py-20 md:py-28;
   }
 
   .section-no-pb {
@@ -124,14 +124,14 @@
   }
 
   .container-custom {
-    @apply max-w-[1280px] mx-auto px-8;
+    @apply max-w-[1280px] mx-auto px-6 md:px-12 lg:px-24;
   }
 
   /* Mobile responsive spacing */
   @media (max-width: 768px) {
     .section-spacing {
-      padding-top: 48px !important;
-      padding-bottom: 48px !important;
+      padding-top: 64px !important;
+      padding-bottom: 64px !important;
     }
 
     .container-custom {
@@ -170,6 +170,10 @@
 
 .text-balance {
   text-wrap: balance;
+}
+
+.text-readable {
+  @apply max-w-[65ch];
 }
 
 .no-scrollbar::-webkit-scrollbar {

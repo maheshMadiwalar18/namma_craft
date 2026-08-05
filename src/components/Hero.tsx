@@ -16,14 +16,14 @@ export const Hero = ({ onNavigate }: any) => {
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full lg:w-3/5 text-center lg:text-left"
+            className="w-full lg:w-3/5 flex flex-col items-center lg:items-start text-center lg:text-left"
           >
             <div className="inline-flex items-center gap-4 bg-white/50 backdrop-blur-md px-6 py-2.5 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] text-accent mb-10 border border-accent/10 shadow-sm">
               <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
               Heritage in every stitch
             </div>
 
-            <h1 className="text-[52px] md:text-[72px] font-display font-bold leading-[0.85] mb-10 text-primary tracking-tight drop-shadow-sm">
+            <h1 className="text-[52px] md:text-[72px] font-display font-bold leading-[1.1] mb-8 text-primary tracking-tight drop-shadow-sm text-balance">
               Discover the <br />
               <span className="italic font-normal text-accent relative">
                 Soul
@@ -34,7 +34,7 @@ export const Hero = ({ onNavigate }: any) => {
               Handmade Culture.
             </h1>
 
-            <p className="text-xl leading-relaxed text-text-soft mb-14 max-w-xl mx-auto lg:mx-0 font-light">
+            <p className="text-xl leading-relaxed text-text-soft mb-12 text-readable mx-auto lg:mx-0 font-light">
               A curated treasury of India's timeless artistry, where every piece carries the legacy of generations and the warmth of human touch.
             </p>
 

@@ -23,12 +23,12 @@ export const CategoryGrid = ({ onNavigate }: any) => {
             <div className="h-[1px] w-8 bg-accent/30" />
           </div>
           <h2 className="text-5xl font-display font-bold text-primary mb-6">Discover by Craft</h2>
-          <p className="text-text-soft text-lg font-light leading-relaxed">
+          <p className="text-text-soft text-lg font-light leading-relaxed text-readable mx-auto text-balance">
             Explore our curated collections, each representing a unique chapter of India's vast cultural tapestry and artistic heritage.
           </p>
         </div>
 
-        <div className="grid grid-cols-3 md:grid-cols-5 gap-3 md:gap-10">
+        <div className="grid grid-cols-3 md:grid-cols-5 gap-6 md:gap-10">
           {categories.map((cat, idx) => (
             <motion.div
               key={cat.name}
@@ -38,7 +38,7 @@ export const CategoryGrid = ({ onNavigate }: any) => {
               transition={{ delay: idx * 0.1 }}
               whileHover={{ y: -12 }}
               onClick={() => onNavigate('marketplace')}
-              className="group flex flex-col items-center gap-4 md:gap-8 cursor-pointer"
+              className="group flex flex-col items-center gap-4 md:gap-8 cursor-pointer h-full"
             >
               <div className="relative w-full aspect-square rounded-[24px] md:rounded-[48px] overflow-hidden bg-white border border-highlight/10 flex items-center justify-center transition-all duration-700 group-hover:shadow-premium group-hover:border-accent/30">
                 <img
