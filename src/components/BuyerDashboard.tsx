@@ -169,14 +169,14 @@ export const BuyerDashboard = ({ onNavigate }: any) => {
                                 exit={{ opacity: 0, y: -20 }}
                                 className="space-y-10"
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                                     <StatCard title="Total Spent" value="₹12,450" icon={TrendingUp} color="bg-emerald-50 text-emerald-600" />
                                     <StatCard title="Active Orders" value="2" icon={Package} color="bg-blue-50 text-blue-600" />
                                     <StatCard title="Favorites" value="18" icon={Heart} color="bg-rose-50 text-rose-600" />
                                     <StatCard title="Craft Coins" value="850" icon={CreditCard} color="bg-amber-50 text-amber-600" />
                                 </div>
 
-                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                                <div className="grid grid-cols-1 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                                     {/* Recent Orders */}
                                     <div className="lg:col-span-2 bg-white rounded-[40px] p-8 border border-highlight/10 shadow-sm">
                                         <div className="flex justify-between items-center mb-8 px-2">
@@ -270,7 +270,7 @@ export const BuyerDashboard = ({ onNavigate }: any) => {
                                         </button>
                                     </div>
 
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                                    <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8">
                                         <div className="space-y-2">
                                             <label className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-4">Full Name</label>
                                             <div className="relative">
@@ -404,7 +404,7 @@ export const BuyerDashboard = ({ onNavigate }: any) => {
                                 key="wishlist"
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                                className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                             >
                                 {wishlist.map((item) => (
                                     <div key={item.id} className="bg-white rounded-[32px] p-4 border border-highlight/10 shadow-sm group">

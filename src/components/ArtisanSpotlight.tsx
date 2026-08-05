@@ -7,7 +7,7 @@ export const ArtisanSpotlight = ({ onNavigate }: any) => {
     <section className="section-spacing bg-cream">
       <div className="container-custom">
         <div className="bg-primary rounded-[24px] md:rounded-[40px] overflow-hidden flex flex-col lg:flex-row items-stretch shadow-premium">
-          <div className="w-full lg:w-2/5 relative min-h-[300px] lg:min-h-[400px]">
+          <div className="w-full lg:w-2/5 relative min-h-[200px] md:min-h-[300px] lg:min-h-[400px]">
             <img
               src="https://picsum.photos/seed/artisan-india/1000/1200"
               alt="Artisan at work"

@@ -138,7 +138,7 @@ export const AddFoodItem = ({ onNavigate }: any) => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="food-name" className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-4">Product Name</label>
                     <div className="relative">
@@ -176,14 +176,14 @@ export const AddFoodItem = ({ onNavigate }: any) => {
                   <textarea
                     id="food-ingredients"
                     placeholder="List the main ingredients..."
-                    className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium min-h-[100px] resize-none"
+                    className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium min-h-[80px] md:min-h-[100px] resize-none"
                     value={formData.ingredients}
                     onChange={(e) => setFormData({ ...formData, ingredients: e.target.value })}
                     required
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="food-shelfLife" className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-4">Shelf Life</label>
                     <div className="relative">
@@ -250,7 +250,7 @@ export const AddFoodItem = ({ onNavigate }: any) => {
                   <textarea
                     id="food-story"
                     placeholder="Provide a description of the product..."
-                    className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium min-h-[120px] resize-none"
+                    className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium min-h-[100px] md:min-h-[120px] resize-none"
                     value={formData.story}
                     onChange={(e) => setFormData({ ...formData, story: e.target.value })}
                     required

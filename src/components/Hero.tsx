@@ -7,8 +7,8 @@ export const Hero = ({ onNavigate }: any) => {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-cream selection:bg-accent/20">
       <div className="absolute inset-0 mandala-bg opacity-[0.04] pointer-events-none" />
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-accent/15 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-primary/15 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[150vw] md:w-[600px] h-[150vw] md:h-[600px] bg-accent/15 rounded-full blur-[80px] md:blur-[120px] -translate-y-1/2 translate-x-1/3 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[100vw] md:w-[400px] h-[100vw] md:h-[400px] bg-primary/15 rounded-full blur-[60px] md:blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
       <div className="container-custom relative z-10 py-16">
         <div className="flex flex-col lg:flex-row items-center gap-24">
@@ -23,7 +23,7 @@ export const Hero = ({ onNavigate }: any) => {
               Heritage in every stitch
             </div>
 
-            <h1 className="text-[52px] md:text-[72px] font-display font-bold leading-[1.1] mb-8 text-primary tracking-tight drop-shadow-sm text-balance">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[72px] font-display font-bold leading-[1.1] mb-8 text-primary tracking-tight drop-shadow-sm text-balance">
               Discover the <br />
               <span className="italic font-normal text-accent relative">
                 Soul
@@ -66,7 +66,7 @@ export const Hero = ({ onNavigate }: any) => {
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full lg:w-2/5 relative h-[600px]"
+            className="w-full lg:w-2/5 relative h-[400px] sm:h-[500px] md:h-[600px] mt-12 lg:mt-0"
           >
             <div className="relative w-full h-full">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-accent/10 to-accent/5 organic-blob -rotate-12 pointer-events-none" />
@@ -102,7 +102,7 @@ export const Hero = ({ onNavigate }: any) => {
               </motion.div>
 
               <HandwrittenNote
-                className="absolute -bottom-12 -left-8 z-30"
+                className="absolute -bottom-4 sm:-bottom-12 left-0 sm:-left-8 z-30"
                 rotation={-8}
                 delay={1}
               >
@@ -124,7 +124,7 @@ export const Hero = ({ onNavigate }: any) => {
               </motion.div>
 
               <HandwrittenNote
-                className="absolute -top-8 right-0 z-30"
+                className="absolute top-0 sm:-top-8 right-0 sm:-right-4 z-30"
                 rotation={12}
                 delay={1.2}
               >

@@ -75,7 +75,7 @@ export const FestivalHome = ({ onNavigate }: any) => {
             <div className="inline-flex items-center gap-3 px-4 py-2 bg-accent/20 text-accent rounded-full text-[10px] font-bold uppercase tracking-widest mb-6 border border-accent/30">
               <Sparkles className="w-3 h-3" /> {festivalData.tagline}
             </div>
-            <h1 className="text-6xl md:text-8xl font-display font-bold text-white mb-8 leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl md:text-8xl font-display font-bold text-white mb-8 leading-tight">
               Celebrate <br />
               <span className="text-accent italic font-normal">{festivalData.name}</span> with Soul.
             </h1>
@@ -125,7 +125,7 @@ export const FestivalHome = ({ onNavigate }: any) => {
             <button className="text-accent font-bold text-[10px] uppercase tracking-widest hover:tracking-[0.2em] transition-all mb-8">View All Decor</button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {decorCrafts.map((craft, idx) => (
               <motion.div
                 key={craft.id}
@@ -165,7 +165,7 @@ export const FestivalHome = ({ onNavigate }: any) => {
                 <Utensils className="w-4 h-4 text-accent" />
                 <span className="text-accent font-bold text-[10px] uppercase tracking-widest">Traditional Tastes</span>
               </div>
-              <h2 className="text-5xl font-display font-bold text-primary mb-6">Festive Flavors</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary mb-6">Festive Flavors</h2>
               <p className="text-text-soft text-lg mb-10 leading-relaxed">
                 Homemade sweets and savories prepared with traditional recipes and pure ingredients, just like at home.
               </p>
@@ -174,7 +174,7 @@ export const FestivalHome = ({ onNavigate }: any) => {
               </button>
             </div>
 
-            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-8">
               {festivalFoods.map((food, idx) => (
                 <motion.div
                   key={food.id}
@@ -210,11 +210,11 @@ export const FestivalHome = ({ onNavigate }: any) => {
                 <Gift className="w-5 h-5 text-accent" />
                 <span className="text-accent font-bold text-[10px] uppercase tracking-widest">Gifting Reimagined</span>
               </div>
-              <h2 className="text-5xl font-display font-bold mb-6">Curated Gift Bundles</h2>
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold mb-6">Curated Gift Bundles</h2>
               <p className="text-cream/60">Thoughtfully paired heritage items to share the spirit of the festival with your loved ones.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-12">
               {giftBundles.map((bundle) => (
                 <div key={bundle.id} className="group bg-white/5 backdrop-blur-md rounded-[48px] p-8 border border-white/10 hover:bg-white/10 transition-all">
                   <div className="flex flex-col md:flex-row gap-8">
@@ -257,7 +257,7 @@ export const FestivalHome = ({ onNavigate }: any) => {
                   <div className="h-[1px] w-8 bg-accent" />
                   <span className="text-accent font-bold text-[10px] uppercase tracking-widest">Artisan of the Season</span>
                 </div>
-                <h2 className="text-5xl font-display font-bold text-primary mb-8">Meet Ananya Sharma</h2>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary mb-8">Meet Ananya Sharma</h2>
                 <p className="text-xl text-text-soft leading-relaxed italic font-serif mb-10">
                   "Diwali is when my workshop comes alive. Every diya I paint is a prayer for prosperity, carrying the light of our traditions to your homes."
                 </p>

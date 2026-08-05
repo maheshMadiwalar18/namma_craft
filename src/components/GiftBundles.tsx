@@ -58,7 +58,7 @@ export const GiftBundles = ({ onNavigate }: any) => {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
           {bundles.map((bundle) => (
             <motion.div
               key={bundle.id}

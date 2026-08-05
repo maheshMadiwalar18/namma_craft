@@ -179,14 +179,14 @@ export const AdminDashboard = ({ onNavigate }: any) => {
                       <p className="text-text-soft">Real-time monitoring of heritage auctions and artisan growth.</p>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
                       <StatCard title="Active Auctions" value="42" change="+12%" icon={Gavel} trend="up" />
                       <StatCard title="Ending Soon" value="8" change="-2" icon={Clock} trend="down" />
                       <StatCard title="Total Bids Today" value="1,240" change="+18%" icon={TrendingUp} trend="up" />
                       <StatCard title="Auction Revenue" value="₹8.4L" change="+24%" icon={ShoppingBag} trend="up" />
                     </div>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                    <div className="grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-2 gap-8 mb-10">
                       <div className="bg-white p-8 rounded-[32px] border border-highlight/10 shadow-sm">
                         <h3 className="text-xl font-display font-bold text-primary mb-6">Bidding Trends</h3>
                         <div className="h-64">
@@ -372,7 +372,7 @@ export const AdminDashboard = ({ onNavigate }: any) => {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-3 gap-6 mb-10">
+                      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
                         <div className="p-6 bg-cream/30 rounded-2xl border border-highlight/5">
                           <p className="text-[10px] text-text-soft uppercase tracking-widest font-bold mb-2">Total Bids</p>
                           <p className="text-2xl font-display font-bold text-primary">24</p>
@@ -447,7 +447,7 @@ export const AdminDashboard = ({ onNavigate }: any) => {
                       </div>
                       <div className="mt-8 pt-8 border-t border-highlight/10">
                         <p className="text-[10px] text-text-soft uppercase tracking-widest font-bold mb-4">Quick Actions</p>
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 gap-3">
                           <button
                             onClick={() => showToast('Auction extended by 1 hour')}
                             className="p-3 bg-cream/50 rounded-xl text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-accent hover:text-white transition-all"

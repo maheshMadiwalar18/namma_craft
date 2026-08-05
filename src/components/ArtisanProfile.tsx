@@ -152,7 +152,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                 </HandwrittenNote>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+              <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-6 mt-12">
                 <div className="bg-white p-8 rounded-2xl border border-highlight/20 shadow-sm relative overflow-hidden group">
                   <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">
                     <Palette className="w-12 h-12" />
@@ -183,7 +183,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                 </h2>
                 <span className="font-handwriting text-base text-accent -rotate-3">"Behind the scenes"</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
                   { img: 'https://picsum.photos/seed/pottery-1/400/400', caption: 'Mixing the dough' },
                   { img: 'https://picsum.photos/seed/pottery-2/400/400', caption: 'Fine brush strokes' },
@@ -214,7 +214,7 @@ export const ArtisanProfile = ({ onNavigate }: any) => {
                 </div>
                 <span className="text-accent font-bold text-sm tracking-widest uppercase">{artisanProducts.length} Masterpieces</span>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+              <div className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 gap-10">
                 {artisanProducts.map(product => (
                   <ProductCard key={product.id} {...product} onNavigate={onNavigate} />
                 ))}

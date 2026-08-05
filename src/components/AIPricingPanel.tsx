@@ -61,7 +61,7 @@ export const AIPricingPanel = ({ name, category }: AIPricingPanelProps) => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-10">
           <div className="space-y-6">
             <div>
               <p className="text-[10px] font-bold text-text-soft uppercase tracking-widest mb-3">Suggested Price Range</p>

@@ -118,7 +118,7 @@ export const SellProduct = ({ onNavigate }: any) => {
                         />
                       </div>
 
-                      <div className="grid grid-cols-2 gap-6">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                           <label htmlFor="prod-category" className="block text-[10px] font-bold uppercase tracking-widest text-text-soft mb-3">Category</label>
                           <select
@@ -193,7 +193,7 @@ export const SellProduct = ({ onNavigate }: any) => {
                       <Camera className="w-6 h-6 text-accent" /> Product Media
                     </h3>
 
-                    <div className="grid grid-cols-2 gap-6 mb-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
                       <div className="aspect-square rounded-3xl border-2 border-dashed border-primary/10 flex flex-col items-center justify-center gap-4 hover:border-accent/40 hover:bg-accent/5 transition-all cursor-pointer group">
                         <div className="w-16 h-16 rounded-2xl bg-primary/5 flex items-center justify-center text-primary group-hover:bg-accent group-hover:text-white transition-all">
                           <Upload className="w-8 h-8" />
@@ -203,7 +203,7 @@ export const SellProduct = ({ onNavigate }: any) => {
                           <p className="text-[10px] text-text-soft uppercase tracking-widest mt-1">Min 1200x1200px</p>
                         </div>
                       </div>
-                      <div className="grid grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {[1, 2, 3, 4].map(i => (
                           <div key={i} className="aspect-square rounded-2xl border-2 border-dashed border-primary/5 flex items-center justify-center text-text-soft/40 hover:border-accent/20 hover:bg-accent/5 transition-all cursor-pointer">
                             <Plus className="w-6 h-6" />
@@ -250,7 +250,7 @@ export const SellProduct = ({ onNavigate }: any) => {
                     </h3>
 
                     <div className="space-y-8">
-                      <div className="grid grid-cols-2 gap-8">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
                         <div>
                           <label htmlFor="prod-price" className="block text-[10px] font-bold uppercase tracking-widest text-text-soft mb-3">Selling Price (₹)</label>
                           <div className="relative">

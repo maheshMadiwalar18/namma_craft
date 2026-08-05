@@ -63,7 +63,7 @@ export function HumanAssistant() {
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
-            className="bg-white rounded-3xl shadow-2xl w-[380px] h-[520px] mb-4 flex flex-col overflow-hidden border border-primary/10"
+            className="bg-white rounded-3xl shadow-2xl w-[90vw] sm:w-[380px] h-[70vh] sm:h-[520px] mb-4 flex flex-col overflow-hidden border border-primary/10 relative"
           >
             {/* Header */}
             <div className="bg-primary p-6 text-white flex items-center justify-between">
