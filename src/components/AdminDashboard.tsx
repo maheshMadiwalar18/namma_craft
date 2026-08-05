@@ -372,7 +372,7 @@ export const AdminDashboard = ({ onNavigate }: any) => {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-3 gap-6 mb-10">
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
                         <div className="p-6 bg-cream/30 rounded-2xl border border-highlight/5">
                           <p className="text-[10px] text-text-soft uppercase tracking-widest font-bold mb-2">Total Bids</p>
                           <p className="text-2xl font-display font-bold text-primary">24</p>
@@ -447,7 +447,7 @@ export const AdminDashboard = ({ onNavigate }: any) => {
                       </div>
                       <div className="mt-8 pt-8 border-t border-highlight/10">
                         <p className="text-[10px] text-text-soft uppercase tracking-widest font-bold mb-4">Quick Actions</p>
-                        <div className="grid grid-cols-2 gap-3">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                           <button
                             onClick={() => showToast('Auction extended by 1 hour')}
                             className="p-3 bg-cream/50 rounded-xl text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-accent hover:text-white transition-all"

@@ -176,7 +176,7 @@ export const AddFoodItem = ({ onNavigate }: any) => {
                   <textarea
                     id="food-ingredients"
                     placeholder="List the main ingredients..."
-                    className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium min-h-[100px] resize-none"
+                    className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium min-h-[80px] md:min-h-[100px] resize-none"
                     value={formData.ingredients}
                     onChange={(e) => setFormData({ ...formData, ingredients: e.target.value })}
                     required
@@ -250,7 +250,7 @@ export const AddFoodItem = ({ onNavigate }: any) => {
                   <textarea
                     id="food-story"
                     placeholder="Provide a description of the product..."
-                    className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium min-h-[120px] resize-none"
+                    className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium min-h-[100px] md:min-h-[120px] resize-none"
                     value={formData.story}
                     onChange={(e) => setFormData({ ...formData, story: e.target.value })}
                     required

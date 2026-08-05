@@ -97,7 +97,7 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, onUpdateQuantity, onRe
                             <Plus className="w-3 h-3 text-primary" />
                           </button>
                         </div>
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-2 sm:gap-4">
                           <p className="text-sm font-bold text-primary">₹{(item.price * item.quantity).toLocaleString()}</p>
                           <button
                             onClick={() => onRemove(item.productId)}
