@@ -104,7 +104,7 @@ export const CreateAuction = ({ onNavigate }: any) => {
               </div>
 
               <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-2">Product Name</label>
                     <input 
@@ -191,7 +191,7 @@ export const CreateAuction = ({ onNavigate }: any) => {
                 <h2 className="text-xl font-display font-bold text-primary">Auction Settings</h2>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-8">
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-2 flex items-center gap-1">
@@ -298,7 +298,7 @@ export const CreateAuction = ({ onNavigate }: any) => {
               </div>
 
               <div className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-2">The Craft Story</label>
                     <textarea 

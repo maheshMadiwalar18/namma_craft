@@ -138,7 +138,7 @@ export const AddFoodItem = ({ onNavigate }: any) => {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="food-name" className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-4">Product Name</label>
                     <div className="relative">
@@ -183,7 +183,7 @@ export const AddFoodItem = ({ onNavigate }: any) => {
                   />
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <div className="space-y-2">
                     <label htmlFor="food-shelfLife" className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-4">Shelf Life</label>
                     <div className="relative">

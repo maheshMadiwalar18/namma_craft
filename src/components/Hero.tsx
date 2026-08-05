@@ -23,7 +23,7 @@ export const Hero = ({ onNavigate }: any) => {
               Heritage in every stitch
             </div>
 
-            <h1 className="text-[52px] md:text-[72px] font-display font-bold leading-[1.1] mb-8 text-primary tracking-tight drop-shadow-sm text-balance">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[72px] font-display font-bold leading-[1.1] mb-8 text-primary tracking-tight drop-shadow-sm text-balance">
               Discover the <br />
               <span className="italic font-normal text-accent relative">
                 Soul

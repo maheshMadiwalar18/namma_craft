@@ -265,14 +265,14 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
                 exit={{ opacity: 0, y: -20 }}
                 className="space-y-10"
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
                   <StatCard title="Total Revenue" value={`₹${calculateEarnings()}`} change="+12%" icon={DollarSign} trend="up" />
                   <StatCard title="Active Listings" value={sellerProducts.length} icon={Package} label="Crafts currently live" />
                   <StatCard title="Total Orders" value={sellerOrders.length} icon={ShoppingBag} label="Orders received" />
                   <StatCard title="Profile Views" value="842" change="+18%" icon={Eye} trend="up" />
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-2 gap-8">
                   <div className="bg-white p-8 rounded-[40px] border border-highlight/10 shadow-sm">
                     <h3 className="text-xl font-display font-bold text-primary mb-6">Sales Performance</h3>
                     <div className="h-64">
@@ -346,7 +346,7 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
                       <button onClick={() => { setIsAddingProduct(false); setEditingProduct(null); }} className="text-xs font-bold text-text-soft hover:text-rose-500 uppercase tracking-widest transition-colors">Cancel</button>
                     </div>
 
-                    <form onSubmit={handleAddProduct} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <form onSubmit={handleAddProduct} className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-8">
                       <div className="space-y-2">
                         <label className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-4">Product Name</label>
                         <input
@@ -637,7 +637,7 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+                  <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-8">
                     <div className="space-y-2">
                       <label className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-4">Full Name</label>
                       <input
@@ -682,7 +682,7 @@ export const CreatorDashboard = ({ onNavigate }: any) => {
                 animate={{ opacity: 1 }}
                 className="space-y-10"
               >
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   <StatCard title="Available Balance" value={`₹${calculateEarnings()}`} icon={Wallet} color="bg-emerald-50" />
                   <StatCard title="Withdrawals" value="₹2,400" icon={ArrowDownRight} color="bg-rose-50" />
                   <StatCard title="Next Payout" value="Mar 15" icon={Clock} color="bg-blue-50" />

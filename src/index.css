@@ -124,7 +124,7 @@
   }
 
   .container-custom {
-    @apply max-w-[1280px] mx-auto px-6 md:px-12 lg:px-24;
+    @apply w-full max-w-[1920px] mx-auto px-4 sm:px-6 md:px-12 lg:px-24 xl:px-32;
   }
 
   /* Mobile responsive spacing */

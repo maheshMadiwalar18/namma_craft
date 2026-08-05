@@ -119,7 +119,7 @@ export const Checkout = ({ onNavigate }: any) => {
               {step === 1 ? (
                 <div className="space-y-8">
                   <h2 className="text-2xl font-display font-bold text-primary">Shipping Address</h2>
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="full-name" className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-2">Full Name</label>
                       <input id="full-name" type="text" placeholder="Arjun Kapoor" className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium" />
@@ -133,7 +133,7 @@ export const Checkout = ({ onNavigate }: any) => {
                     <label htmlFor="address" className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-2">Street Address</label>
                     <input id="address" type="text" placeholder="123, Heritage Lane, Indiranagar" className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium" />
                   </div>
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
                       <label htmlFor="city" className="text-[10px] font-bold uppercase tracking-widest text-text-soft ml-2">City</label>
                       <input id="city" type="text" placeholder="Bangalore" className="w-full px-6 py-4 bg-cream/30 rounded-2xl border-2 border-transparent focus:border-accent focus:bg-white outline-none transition-all text-sm font-medium" />

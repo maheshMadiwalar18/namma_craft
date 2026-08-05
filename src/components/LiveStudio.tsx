@@ -26,7 +26,7 @@ export function LiveStudio() {
               <span className="w-2 h-2 bg-accent rounded-full animate-pulse" />
               Live from the Studio
             </span>
-            <h2 className="text-5xl md:text-6xl font-display font-bold text-primary mb-6 leading-tight">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl md:text-6xl font-display font-bold text-primary mb-6 leading-tight">
               Peek into the <span className="italic font-serif font-light">Soul</span> of Craft
             </h2>
             <p className="text-xl text-text-soft font-serif italic">

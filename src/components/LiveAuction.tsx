@@ -169,7 +169,7 @@ export const LiveAuction = ({ onNavigate }: any) => {
 
           <div className="bg-cream/50 rounded-3xl p-8 mb-12 border border-highlight/10">
             <h3 className="text-xs font-bold uppercase tracking-widest text-text-soft mb-6 text-left">Recommended for You</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 gap-4">
               {[
                 { name: 'Dhokra Lamp', price: '₹12,400', img: 'https://picsum.photos/seed/dhokra-lamp/100/100' },
                 { name: 'Bronze Figurine', price: '₹8,900', img: 'https://picsum.photos/seed/bronze/100/100' }

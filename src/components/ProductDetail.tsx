@@ -147,7 +147,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 </div>
               </button>
 
-              <h1 className="text-5xl md:text-6xl font-display font-bold text-primary mb-4 leading-[1.1] tracking-tight">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl md:text-6xl font-display font-bold text-primary mb-4 leading-[1.1] tracking-tight">
                 {product.name}
               </h1>
 
@@ -173,7 +173,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
               </div>
 
               <div className="mb-10">
-                <p className="text-5xl font-display font-bold text-primary">₹{product.price.toLocaleString()}</p>
+                <p className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary">₹{product.price.toLocaleString()}</p>
                 <p className="text-text-soft text-sm mt-2">Inclusive of all taxes • Free shipping in India</p>
               </div>
 
@@ -252,7 +252,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 </h3>
                 <span className="font-handwriting text-2xl text-accent -rotate-3">"Captured in the studio"</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
                   { id: 'step-1', img: 'https://picsum.photos/seed/process-1/400/400', caption: 'Initial sketch' },
                   { id: 'step-2', img: 'https://picsum.photos/seed/process-2/400/400', caption: 'Detailed painting' },
@@ -280,7 +280,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
         <section className="mb-32 relative overflow-hidden rounded-[60px] bg-cream-dark p-12 md:p-24 border border-highlight/20">
           <div className="absolute inset-0 mandala-bg opacity-[0.02] pointer-events-none" />
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-1 sm:grid-cols-2 gap-20 items-center relative z-10">
             <div>
               <div className="flex items-center gap-4 mb-8">
                 <div className="h-[1px] w-12 bg-accent" />
@@ -289,7 +289,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
               <h2 className="text-4xl md:text-6xl font-display font-bold text-primary mb-10 leading-tight">The Legacy of Jaipur Blue Pottery</h2>
               <div className="prose prose-lg text-text-soft font-light leading-relaxed space-y-6">
                 <p>{product.culturalStory}</p>
-                <div className="grid grid-cols-2 gap-8 mt-12">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
                   <div className="space-y-2">
                     <p className="text-xs font-bold uppercase tracking-widest text-accent">Materials</p>
                     <p className="text-primary font-medium">{product.materials}</p>
@@ -396,7 +396,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-8">
               {[
                 { id: 'rev-1', user: 'Priya M.', initial: 'PM', comment: "The blue pottery is exquisite. The colors are so vibrant and the finish is perfect. It looks stunning in my living room." },
                 { id: 'rev-2', user: 'Amit S.', initial: 'AS', comment: "Beautiful craftsmanship. It arrived safely in very secure packaging. Highly recommended for anyone who loves traditional Indian art." }
@@ -439,7 +439,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
               View Studio →
             </button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {relatedProducts.map(product => (
               <ProductCard key={product.id} {...product} onNavigate={onNavigate} />
             ))}
@@ -467,7 +467,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-cream text-5xl md:text-7xl font-display font-bold mb-8 leading-tight">Authentic Craftsmanship,<br />Delivered to Your Door</h2>
+            <h2 className="text-cream text-3xl md:text-4xl lg:text-5xl md:text-7xl font-display font-bold mb-8 leading-tight">Authentic Craftsmanship,<br />Delivered to Your Door</h2>
             <p className="text-cream/70 mb-12 max-w-2xl mx-auto text-xl font-light">
               Every purchase supports a local artisan and helps preserve traditional techniques for future generations.
             </p>

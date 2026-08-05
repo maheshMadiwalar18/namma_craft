@@ -40,7 +40,7 @@ export const CulturalDiscovery = ({ onNavigate }: any) => {
           >
             <Sparkles className="w-3 h-3" /> Personalized Cultural Picks for You
           </motion.div>
-          <h1 className="text-5xl md:text-6xl font-display font-bold text-primary mb-6">Discover India’s Soul</h1>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl md:text-6xl font-display font-bold text-primary mb-6">Discover India’s Soul</h1>
           <p className="text-text-soft text-lg">Explore curated heritage crafts and flavors based on your interests and regions.</p>
         </div>
 
@@ -139,7 +139,7 @@ export const CulturalDiscovery = ({ onNavigate }: any) => {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {discoveryData.crafts.map(craft => (
                 <ProductCard key={craft.id} {...craft} onNavigate={onNavigate} />
               ))}
@@ -161,7 +161,7 @@ export const CulturalDiscovery = ({ onNavigate }: any) => {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {discoveryData.foods.map(food => (
                 <motion.div
                   key={food.id}
@@ -205,7 +205,7 @@ export const CulturalDiscovery = ({ onNavigate }: any) => {
               <span className="text-accent font-bold text-[10px] uppercase tracking-widest">The Hands Behind the Craft</span>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-12">
               {discoveryData.artisans.map(artisan => (
                 <motion.div
                   key={artisan.id}

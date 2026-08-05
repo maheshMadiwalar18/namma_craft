@@ -53,7 +53,7 @@ export const TraditionalFoods = ({ onNavigate }: any) => {
               <div className="h-[1px] w-8 bg-accent/30" />
               <span className="text-accent font-bold text-xs tracking-widest uppercase">Culinary Heritage</span>
             </div>
-            <h2 className="text-5xl font-display font-bold text-primary mb-4">Taste India’s Traditional Foods</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary mb-4">Taste India’s Traditional Foods</h2>
             <p className="text-text-soft text-lg max-w-xl">Homemade specialties from local communities, crafted with recipes passed down through generations.</p>
           </motion.div>
 
@@ -66,7 +66,7 @@ export const TraditionalFoods = ({ onNavigate }: any) => {
           </motion.button>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8">
           {foods.map((food, idx) => (
             <motion.div
               key={food.id}
