@@ -3,6 +3,7 @@ import { Search, ShoppingBag, User, Menu, X, Plus, LogOut, LayoutDashboard, Chev
 import { useAuth } from '../AuthContext';
 import { useToast } from '../ToastContext';
 import { useCart } from '../CartContext';
+import { motion, AnimatePresence } from 'motion/react';
 
 export const Navbar = ({ onNavigate, currentPage }: any) => {
   const { user, userProfile, logout, loading } = useAuth();
@@ -193,71 +194,153 @@ export const Navbar = ({ onNavigate, currentPage }: any) => {
 
           {/* Mobile menu toggle */}
           <button
-            className="lg:hidden p-2 text-primary"
+            className="lg:hidden p-3 text-primary hover:bg-primary/5 rounded-full transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle Navigation Menu"
           >
-            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      {menuOpen && (
-        <div className="lg:hidden fixed inset-0 top-16 z-[100] bg-black/20" onClick={() => setMenuOpen(false)}>
-          <div className="bg-white border-b border-highlight/20 shadow-xl p-4 space-y-1" onClick={(e) => e.stopPropagation()}>
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => { onNavigate(item.id); setMenuOpen(false); }}
-                className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-colors ${currentPage === item.id ? 'bg-primary/5 text-primary' : 'text-text-soft hover:bg-cream'}`}
-              >
-                {item.label}
-              </button>
-            ))}
-            <button
-              onClick={() => { onNavigate('admin'); setMenuOpen(false); }}
-              className="w-full text-left px-4 py-3 rounded-xl text-sm font-bold text-text-soft hover:bg-cream"
+      {/* Mobile Menu Slide-out Drawer Overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setMenuOpen(false)}
+              className="lg:hidden fixed inset-0 z-[90] bg-black/40 backdrop-blur-sm"
+            />
+            {/* Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="lg:hidden fixed right-0 top-0 bottom-0 w-[85vw] max-w-sm bg-cream z-[100] p-6 shadow-2xl overflow-y-auto flex flex-col justify-between"
             >
-              Admin
-            </button>
-            {!user ? (
-              <button
-                onClick={() => { onNavigate('login'); setMenuOpen(false); }}
-                className="w-full bg-primary text-white py-3.5 rounded-xl text-sm font-bold mt-2 shadow-lg shadow-primary/20"
-              >
-                Sign In to NammaCraft
-              </button>
-            ) : (
-              <div className="space-y-2 mt-2">
-                <div className="flex items-center gap-3 p-4 bg-cream/30 rounded-2xl mb-4">
-                  <img
-                    src={user.photoURL || 'https://ui-avatars.com/api/?name=User'}
-                    className="w-10 h-10 rounded-full border-2 border-accent"
-                    alt=""
+              <div>
+                <div className="flex justify-between items-center mb-8 border-b border-primary/5 pb-4">
+                  <span className="font-display font-bold text-xl text-primary">Navigation Menu</span>
+                  <button onClick={() => setMenuOpen(false)} className="p-2 hover:bg-primary/5 rounded-full transition-colors" aria-label="Close menu">
+                    <X className="w-6 h-6 text-primary" />
+                  </button>
+                </div>
+
+                {/* Mobile Search Bar */}
+                <div className="relative mb-6">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-accent" />
+                  <input
+                    type="text"
+                    placeholder="Search heritage products..."
+                    className="w-full bg-white border border-primary/10 rounded-full py-3 pl-11 pr-4 text-xs font-medium text-primary outline-none focus:border-accent focus:ring-2 focus:ring-accent/10 transition-all shadow-sm"
                   />
-                  <div className="min-w-0">
-                    <p className="text-sm font-bold text-primary truncate">{user.displayName}</p>
-                    <p className="text-[10px] text-text-soft uppercase tracking-widest">{userProfile?.role || 'Collector'}</p>
+                </div>
+
+                {/* Nav Items */}
+                <div className="space-y-1 mb-8">
+                  {navItems.map((item) => (
+                    <button
+                      key={item.id}
+                      onClick={() => { onNavigate(item.id); setMenuOpen(false); }}
+                      className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all ${currentPage === item.id ? 'bg-primary text-white shadow-md' : 'text-text-soft hover:bg-white hover:text-primary'}`}
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => { onNavigate('admin'); setMenuOpen(false); }}
+                    className={`w-full text-left px-4 py-3 rounded-xl text-sm font-bold transition-all ${currentPage === 'admin' ? 'bg-primary text-white shadow-md' : 'text-text-soft hover:bg-white hover:text-primary'}`}
+                  >
+                    Admin Panel
+                  </button>
+                </div>
+
+                {/* Language Selector in Mobile Menu */}
+                <div className="border-t border-primary/5 pt-6 mb-6">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-text-soft mb-3 flex items-center gap-1.5">
+                    <Globe className="w-3.5 h-3.5" /> Select Language
+                  </p>
+                  <div className="flex gap-2 flex-wrap">
+                    {['English', 'हिंदी', 'ಕನ್ನಡ'].map((lang) => (
+                      <button
+                        key={lang}
+                        onClick={() => {
+                          setCurrentLang(lang);
+                          showToast(`Language set to ${lang}`);
+                        }}
+                        className={`px-4 py-2 text-xs font-bold rounded-full border transition-all ${
+                          currentLang === lang ? 'bg-primary text-white border-primary shadow-sm' : 'bg-white text-text-soft border-primary/10 hover:border-accent'
+                        }`}
+                      >
+                        {lang}
+                      </button>
+                    ))}
                   </div>
                 </div>
-                <button
-                  onClick={() => { handleDashboardNavigate(); setMenuOpen(false); }}
-                  className="w-full bg-accent text-primary py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2 shadow-lg shadow-accent/20"
-                >
-                  <LayoutDashboard className="w-4 h-4" /> Go to Dashboard
-                </button>
-                <button
-                  onClick={() => { handleLogout(); setMenuOpen(false); }}
-                  className="w-full bg-rose-50 text-rose-600 py-3.5 rounded-xl text-sm font-bold flex items-center justify-center gap-2"
-                >
-                  <LogOut className="w-4 h-4" /> Sign Out
-                </button>
               </div>
-            )}
 
-          </div>
-        </div>
-      )}
+              {/* Bottom: Auth / Profile Actions */}
+              <div className="border-t border-primary/5 pt-6 mt-6">
+                {!user ? (
+                  <div className="space-y-3">
+                    <button
+                      onClick={() => { onNavigate('login'); setMenuOpen(false); }}
+                      className="w-full btn-secondary !py-3.5 text-xs uppercase tracking-widest flex items-center justify-center font-bold"
+                    >
+                      Sign In
+                    </button>
+                    <button
+                      onClick={() => { onNavigate('signup'); setMenuOpen(false); }}
+                      className="w-full btn-primary !py-3.5 text-xs uppercase tracking-widest flex items-center justify-center gap-2 shadow-lg font-bold"
+                    >
+                      <Plus className="w-4 h-4" /> Sign Up
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 p-4 bg-white rounded-2xl border border-primary/5">
+                      {user.photoURL ? (
+                        <img
+                          src={user.photoURL}
+                          className="w-10 h-10 rounded-full object-cover border-2 border-accent"
+                          alt={user.displayName || 'User'}
+                        />
+                      ) : (
+                        <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white font-bold text-sm">
+                          {user.displayName?.charAt(0) || 'U'}
+                        </div>
+                      )}
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-bold text-primary truncate">{user.displayName}</p>
+                        <p className="text-[10px] text-text-soft uppercase tracking-widest">{userProfile?.role || 'Collector'}</p>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-2">
+                      <button
+                        onClick={() => { handleDashboardNavigate(); setMenuOpen(false); }}
+                        className="w-full bg-accent/10 hover:bg-accent hover:text-primary text-accent py-3.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5 border border-accent/10"
+                      >
+                        <LayoutDashboard className="w-3.5 h-3.5" /> Dashboard
+                      </button>
+                      <button
+                        onClick={() => { handleLogout(); setMenuOpen(false); }}
+                        className="w-full bg-rose-50 hover:bg-rose-100 text-rose-600 py-3.5 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-1.5"
+                      >
+                        <LogOut className="w-3.5 h-3.5" /> Sign Out
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </>
   );
 };

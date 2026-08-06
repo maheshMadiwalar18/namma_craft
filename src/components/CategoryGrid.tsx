@@ -28,7 +28,7 @@ export const CategoryGrid = ({ onNavigate }: any) => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:grid-cols-5 gap-6 md:gap-10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-10">
           {categories.map((cat, idx) => (
             <motion.div
               key={cat.name}

@@ -6,6 +6,8 @@
   --font-display: "Playfair Display", serif;
   --font-hand: "Caveat", cursive;
 
+  --breakpoint-xs: 480px;
+
   --color-primary: #4A0E0E;
   /* Deep Modern Maroon */
   --color-primary-light: #6A1A1A;
@@ -132,11 +134,6 @@
     .section-spacing {
       padding-top: 64px !important;
       padding-bottom: 64px !important;
-    }
-
-    .container-custom {
-      padding-left: 16px !important;
-      padding-right: 16px !important;
     }
   }
 

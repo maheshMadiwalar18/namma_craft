@@ -91,7 +91,7 @@ export const Hero = ({ onNavigate }: any) => {
                 initial={{ x: 20, y: 20 }}
                 animate={{ x: 0, y: 0 }}
                 whileHover={{ scale: 1.05, zIndex: 20 }}
-                className="absolute bottom-10 left-0 w-1/2 aspect-square rounded-[32px] organic-blob overflow-hidden shadow-premium z-20 border-4 border-cream"
+                className="absolute bottom-10 left-2 sm:left-0 w-1/2 aspect-square rounded-[32px] organic-blob overflow-hidden shadow-premium z-20 border-4 border-cream"
               >
                 <img
                   src="https://picsum.photos/seed/indian-textile/600/600"
@@ -102,7 +102,7 @@ export const Hero = ({ onNavigate }: any) => {
               </motion.div>
 
               <HandwrittenNote
-                className="absolute -bottom-4 sm:-bottom-12 left-0 sm:-left-8 z-30"
+                className="absolute -bottom-4 sm:-bottom-12 left-4 sm:-left-8 z-30"
                 rotation={-8}
                 delay={1}
               >
@@ -113,7 +113,7 @@ export const Hero = ({ onNavigate }: any) => {
                 initial={{ x: -20, y: -20 }}
                 animate={{ x: 0, y: 0 }}
                 whileHover={{ scale: 1.05, zIndex: 20 }}
-                className="absolute top-20 -left-10 w-2/5 aspect-square rounded-[24px] organic-blob overflow-hidden shadow-premium z-0 border-4 border-cream"
+                className="absolute top-20 left-2 sm:-left-10 w-2/5 aspect-square rounded-[24px] organic-blob overflow-hidden shadow-premium z-0 border-4 border-cream"
               >
                 <img
                   src="https://picsum.photos/seed/indian-woodcraft/400/400"
@@ -124,7 +124,7 @@ export const Hero = ({ onNavigate }: any) => {
               </motion.div>
 
               <HandwrittenNote
-                className="absolute top-0 sm:-top-8 right-0 sm:-right-4 z-30"
+                className="absolute top-0 sm:-top-8 right-4 sm:-right-4 z-30"
                 rotation={12}
                 delay={1.2}
               >

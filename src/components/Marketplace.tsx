@@ -55,7 +55,7 @@ const FoodCard = ({ id, image, name, creator, price, region, tag, onNavigate }: 
           <Heart className={`w-4 h-4 transition-colors ${isLiked ? 'fill-accent text-accent' : 'text-primary'}`} />
         </button>
 
-        <div className="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+        <div className="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 hidden sm:block">
           <button
             onClick={(e) => {
               e.stopPropagation();
@@ -74,6 +74,27 @@ const FoodCard = ({ id, image, name, creator, price, region, tag, onNavigate }: 
             <ShoppingBag className="w-4 h-4" /> Add to Cart
           </button>
         </div>
+
+        {/* Mobile-only Add to Cart button (always visible on mobile, hidden on sm and above) */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            addToCart({
+              id: id || `food_${name.toLowerCase().replaceAll(/\s/g, '_')}`,
+              image,
+              name,
+              artisan: creator,
+              price,
+              region,
+              tag
+            });
+            showToast('Added to cart');
+          }}
+          className="absolute bottom-2 right-2 p-2.5 bg-primary hover:bg-primary-light text-white rounded-full sm:hidden shadow-lg z-10 active:scale-95 transition-all"
+          aria-label="Add to cart"
+        >
+          <ShoppingBag className="w-4 h-4" />
+        </button>
       </div>
 
       <div className="px-2 pb-2 space-y-2">
@@ -348,7 +369,7 @@ export const Marketplace = ({ onNavigate }: any) => {
 
           {/* Product Grid */}
           <div className="flex-1">
-            <div className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {paginatedProducts.map(product => (
                 activeTab === 'crafts'
                   ? <ProductCard key={product.id} {...product} onNavigate={onNavigate} />
@@ -438,7 +459,7 @@ export const Marketplace = ({ onNavigate }: any) => {
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
-              className="fixed right-0 top-0 bottom-0 w-80 bg-cream z-[70] p-10 shadow-2xl overflow-y-auto"
+              className="fixed right-0 top-0 bottom-0 w-[85vw] max-w-xs bg-cream z-[70] p-6 sm:p-10 shadow-2xl overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-12">
                 <h3 className="text-primary">Filters</h3>

@@ -252,7 +252,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
                 </h3>
                 <span className="font-handwriting text-2xl text-accent -rotate-3">"Captured in the studio"</span>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {[
                   { id: 'step-1', img: 'https://picsum.photos/seed/process-1/400/400', caption: 'Initial sketch' },
                   { id: 'step-2', img: 'https://picsum.photos/seed/process-2/400/400', caption: 'Detailed painting' },
@@ -396,7 +396,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
               {[
                 { id: 'rev-1', user: 'Priya M.', initial: 'PM', comment: "The blue pottery is exquisite. The colors are so vibrant and the finish is perfect. It looks stunning in my living room." },
                 { id: 'rev-2', user: 'Amit S.', initial: 'AS', comment: "Beautiful craftsmanship. It arrived safely in very secure packaging. Highly recommended for anyone who loves traditional Indian art." }
@@ -439,7 +439,7 @@ export const ProductDetail = ({ onNavigate }: any) => {
               View Studio →
             </button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-10">
+          <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
             {relatedProducts.map(product => (
               <ProductCard key={product.id} {...product} onNavigate={onNavigate} />
             ))}
