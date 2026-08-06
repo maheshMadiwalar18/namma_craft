@@ -74,7 +74,7 @@ export const AuthenticityCertificate = ({
 
                 <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
 
-                <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-8 text-left">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-left">
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-accent mb-1">
                       <Package className="w-3 h-3" />

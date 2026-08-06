@@ -85,6 +85,19 @@ export const ProductCard = ({ id, image, name, artisan, price, region, rarity, s
             <ShoppingCart className="w-4 h-4" /> Add to Collection
           </button>
         </div>
+
+        {/* Mobile-only Add to Cart button (always visible on mobile, hidden on sm and above) */}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            addToCart({ id, image, name, artisan, price, region, rarity, stock });
+            showToast('Added to collection');
+          }}
+          className="absolute bottom-2 right-2 p-2.5 bg-primary hover:bg-primary-light text-white rounded-full sm:hidden shadow-lg z-10 active:scale-95 transition-all"
+          aria-label="Add to collection"
+        >
+          <ShoppingCart className="w-4 h-4" />
+        </button>
       </div>
 
       <div className="px-1 sm:px-2 pb-1 sm:pb-2 flex-grow flex flex-col justify-between">
@@ -149,7 +162,7 @@ export const FeaturedProducts = ({ onNavigate }: any) => {
           </button>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
+        <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10">
           {products.map(product => (
             <ProductCard key={product.id} {...product} onNavigate={onNavigate} />
           ))}

@@ -125,7 +125,7 @@ export const FestivalHome = ({ onNavigate }: any) => {
             <button className="text-accent font-bold text-[10px] uppercase tracking-widest hover:tracking-[0.2em] transition-all mb-8">View All Decor</button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {decorCrafts.map((craft, idx) => (
               <motion.div
                 key={craft.id}
@@ -174,7 +174,7 @@ export const FestivalHome = ({ onNavigate }: any) => {
               </button>
             </div>
 
-            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-8">
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
               {festivalFoods.map((food, idx) => (
                 <motion.div
                   key={food.id}
@@ -214,7 +214,7 @@ export const FestivalHome = ({ onNavigate }: any) => {
               <p className="text-cream/60">Thoughtfully paired heritage items to share the spirit of the festival with your loved ones.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
               {giftBundles.map((bundle) => (
                 <div key={bundle.id} className="group bg-white/5 backdrop-blur-md rounded-[48px] p-8 border border-white/10 hover:bg-white/10 transition-all">
                   <div className="flex flex-col md:flex-row gap-8">
