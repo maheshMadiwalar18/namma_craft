@@ -1,8 +1,5 @@
 <div align="center">
 
-<img src="./logo.png" alt="NammaCraft Logo" width="350" />
-
-<br/>
 
 <img src="https://readme-typing-svg.demolab.com?font=Lato&size=18&duration=3000&pause=800&color=6B7280&center=true&vCenter=true&width=700&height=40&lines=Empowering+Indian+artisans+with+a+premium+digital+marketplace;Where+tradition+meets+technology" alt="Tagline" />
 
